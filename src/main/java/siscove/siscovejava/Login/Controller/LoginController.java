@@ -27,9 +27,6 @@ public class LoginController extends BaseController{
 	public EnvelopeResponse<LoginDto> validaLogin(@RequestBody LoginDto loginDto,
 			HttpSession session) throws UnsupportedEncodingException {
 		EnvelopeResponse<LoginDto> envLogin = loginService.validaLogin(loginDto);
-		if (envLogin.isRetorno()) {
-			session.setAttribute("usuario", envLogin.getObjeto());
-		}
 		
 		return envLogin; 
 	}

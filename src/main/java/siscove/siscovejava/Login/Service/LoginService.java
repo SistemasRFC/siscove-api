@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.Login.Dto.LoginDto;
-import siscove.siscovejava.Login.Entity.Usuario.Usuario;
-import siscove.siscovejava.Login.Respositry.UsuarioDao;
+import siscove.siscovejava.Usuario.Entity.Usuario;
+import siscove.siscovejava.Usuario.Repository.UsuarioDao;
 
 @Service
 public class LoginService {
@@ -30,9 +30,9 @@ public class LoginService {
 		}
 		
         byte[] decodedValue = Base64.getEncoder().encode(loginDto.getTxtSenha().getBytes());
-        String s = new String(decodedValue, StandardCharsets.UTF_8.toString());
+        String senhaEncriptada = new String(decodedValue, StandardCharsets.UTF_8.toString());
 		
-		Usuario usuario= usuarioDao.usuarioLogin(loginDto.getNmeUsuario(), s);
+		Usuario usuario= usuarioDao.usuarioLogin(loginDto.getNmeUsuario(), senhaEncriptada);
 		
 		if (null!=usuario && usuario.getCodUsuario()>0) {
 			loginDto.setCodUsuario(usuario.getCodUsuario());

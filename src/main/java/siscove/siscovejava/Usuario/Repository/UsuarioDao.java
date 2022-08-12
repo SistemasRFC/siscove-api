@@ -1,12 +1,10 @@
-package siscove.siscovejava.Login.Respositry;
-
-import java.time.LocalDate;
+package siscove.siscovejava.Usuario.Repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import siscove.siscovejava.Login.Entity.Usuario.Usuario;
+import siscove.siscovejava.Usuario.Entity.Usuario;
 
 @Repository(value = "UsuarioDao")
 public interface UsuarioDao extends CrudRepository<Usuario, Integer> {
