@@ -1,5 +1,9 @@
 package siscove.siscovejava.Login.Controller;
 
+import java.io.UnsupportedEncodingException;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +24,14 @@ public class LoginController extends BaseController{
 	private LoginService loginService;
 
 	@RequestMapping(value="/validar", method = RequestMethod.POST, consumes = {"*/*"})
-	public EnvelopeResponse<Boolean> validaLogin(@RequestBody LoginDto loginDto) {
-		return loginService.validaLogin(loginDto);
+	public EnvelopeResponse<LoginDto> validaLogin(@RequestBody LoginDto loginDto,
+			HttpSession session) throws UnsupportedEncodingException {
+		EnvelopeResponse<LoginDto> envLogin = loginService.validaLogin(loginDto);
+		if (envLogin.isRetorno()) {
+			session.setAttribute("usuario", envLogin.getObjeto());
+		}
+		
+		return envLogin; 
 	}
 
 }

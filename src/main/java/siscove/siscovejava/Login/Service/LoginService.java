@@ -1,5 +1,9 @@
 package siscove.siscovejava.Login.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,23 +19,26 @@ public class LoginService {
 	private UsuarioDao usuarioDao;
 	
 	
-	public EnvelopeResponse<Boolean> validaLogin(LoginDto loginDto) {
+	public EnvelopeResponse<LoginDto> validaLogin(LoginDto loginDto) throws UnsupportedEncodingException {
 		
 		if (loginDto.getNmeUsuario()==null || loginDto.getNmeUsuario()=="") {
-			return new EnvelopeResponse<Boolean>(false, false, "Favor preencher o nome do usuário!");
+			return new EnvelopeResponse<LoginDto>(null, false, "Favor preencher o nome do usuário!");
 		}
 		
 		if (loginDto.getTxtSenha()==null || loginDto.getTxtSenha()=="") {
-			return new EnvelopeResponse<Boolean>(false, false, "Favor preencher a senha do usuário!");
+			return new EnvelopeResponse<LoginDto>(null, false, "Favor preencher a senha do usuário!");
 		}
 		
-		Usuario usuario= usuarioDao.usuarioLogin(loginDto.getNmeUsuario(), loginDto.getTxtSenha());
+        byte[] decodedValue = Base64.getEncoder().encode(loginDto.getTxtSenha().getBytes());
+        String s = new String(decodedValue, StandardCharsets.UTF_8.toString());
+		
+		Usuario usuario= usuarioDao.usuarioLogin(loginDto.getNmeUsuario(), s);
 		
 		if (null!=usuario && usuario.getCodUsuario()>0) {
 			loginDto.setCodUsuario(usuario.getCodUsuario());
-			return new EnvelopeResponse<Boolean>(true, true, "");
+			return new EnvelopeResponse<LoginDto>(loginDto, true, "");
 		}
 	
-		return new EnvelopeResponse<Boolean>(false, false, "Sem registros!");
+		return new EnvelopeResponse<LoginDto>(null, false, "Sem registros!");
 	}
 }
