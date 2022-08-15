@@ -19,7 +19,7 @@ public class Usuario{
 	@Id
 	@Column(name="COD_USUARIO")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codUsuario;
+	private Integer codUsuario;
 	
 	@Column(name="NME_USUARIO")
 	private String nmeUsuario;
@@ -52,15 +52,16 @@ public class Usuario{
 	private String codPerfilW;
 	
 	@Column(name="VLR_PORCENTAGEM_SERVICO")
-	private String vlrPorcentagemServico;
+	private Float vlrPorcentagemServico;
 	
 	@Column(name="VLR_PORCENTAGEM_VENDA")
-	private String vlrPorcentagemVenda;
+	private Float vlrPorcentagemVenda;
 	
 	@Column(name="VLR_PORCENTAGEM_GERENCIA")
-	private String vlrPorcentagemGerencia;
+	private Float vlrPorcentagemGerencia;
 	
 	@Column(name="IND_ATIVO")
 	private String indAtivo;
 
 }
+
