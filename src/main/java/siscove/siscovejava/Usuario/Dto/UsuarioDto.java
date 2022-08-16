@@ -38,7 +38,7 @@ public class UsuarioDto {
 		Usuario usuario = new Usuario();
 		usuario.setCodUsuario(usuarioDto.getCodUsuario());
 		usuario.setNmeUsuario(usuarioDto.getNmeUsuario());
-		
+
 		try {
 			byte[] decodedValue = Base64.getEncoder().encode(usuarioDto.getTxtSenhaW().getBytes());
 			String senhaEncriptada = new String(decodedValue, StandardCharsets.UTF_8.toString());
@@ -47,7 +47,7 @@ public class UsuarioDto {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		usuario.setNmeUsuarioCompleto(usuarioDto.getNmeUsuarioCompleto());
 		usuario.setIndLogado(usuarioDto.getIndLogado());
 		usuario.setDataLogado(usuarioDto.getDataLogado());
@@ -61,5 +61,25 @@ public class UsuarioDto {
 		usuario.setVlrPorcentagemGerencia(usuarioDto.getVlrPorcentagemGerencia());
 		usuario.setIndAtivo(usuarioDto.getIndAtivo());
 		return usuario;
+	}
+
+	public static UsuarioDto build(Usuario usuario) {
+		UsuarioDto usuarioDto = new UsuarioDto(
+		usuario.getCodUsuario(),
+		usuario.getNmeUsuario(),
+		usuario.getTxtSenhaW(),
+		usuario.getNmeUsuarioCompleto(),
+		usuario.getIndLogado(),
+		usuario.getDataLogado(),
+		usuario.getNroTelCelular(),
+		usuario.getTxtEmail(),
+		usuario.getDtaInativo(),
+		usuario.getCodDeposito(),
+		usuario.getCodPerfilW(),
+		usuario.getVlrPorcentagemServico(),
+		usuario.getVlrPorcentagemVenda(),
+		usuario.getVlrPorcentagemGerencia(),
+		usuario.getIndAtivo());
+		return usuarioDto;
 	}
 }

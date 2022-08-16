@@ -1,5 +1,7 @@
 package siscove.siscovejava.Usuario.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,5 +24,15 @@ public class UsuarioController extends BaseController{
 	public EnvelopeResponse<UsuarioDto> salvarUsuario(@RequestBody UsuarioDto usuarioDto){
 		EnvelopeResponse<UsuarioDto> envLogin = usuarioService.salvar(usuarioDto);
 		return envLogin;
+	}
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET, consumes = { "*/*" })
+	public EnvelopeResponse<List<UsuarioDto>> ListaUsuarios() {
+		return usuarioService.getListaUsuarios();
+	}
+
+	@RequestMapping(value = "/lista", method = RequestMethod.GET, consumes = { "*/*" })
+	public EnvelopeResponse<List<UsuarioDto>> ListaUsuariosAtivos() {
+		return usuarioService.getListaUsuariosAtivos();
 	}
 }
