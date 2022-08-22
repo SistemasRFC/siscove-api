@@ -1,6 +1,6 @@
 package siscove.siscovejava.Token.Entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +25,7 @@ public class Token{
 	private Integer codToken;
 
 	@Column(name="DTA_TOKEN")
-	private LocalDate dtaToken;
+	private LocalDateTime dtaToken;
 	
 	@Column(name="TXT_TOKEN")
 	private String txtToken;

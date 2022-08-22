@@ -1,6 +1,6 @@
 package siscove.siscovejava.Token.Dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,7 @@ public class TokenDto {
 
 	private Integer codToken;
 	private String txtToken;
-	private LocalDate dtaToken;
+	private LocalDateTime dtaToken;
 	private Integer codUsuario;
 
 	public static Token parse(TokenDto tokenDto) {
@@ -31,5 +31,9 @@ public class TokenDto {
 		usuario.setCodUsuario(tokenDto.getCodUsuario());
 		token.setUsuario(usuario);	
 		return token;
+	}
+	
+	public static TokenDto build(Token token) {
+		return new TokenDto(token.getCodToken(), token.getTxtToken(), token.getDtaToken(), token.getUsuario().getCodUsuario());
 	}
 }

@@ -15,19 +15,18 @@ import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.Login.Dto.LoginDto;
 import siscove.siscovejava.Login.Service.LoginService;
 
-
 @RestController
 @RequestMapping(value="/login")
 public class LoginController extends BaseController{
 
 	@Autowired
 	private LoginService loginService;
-
+	
 	@RequestMapping(value="/validar", method = RequestMethod.POST, consumes = {"*/*"})
 	public EnvelopeResponse<LoginDto> validaLogin(@RequestBody LoginDto loginDto,
 			HttpSession session) throws UnsupportedEncodingException {
 		EnvelopeResponse<LoginDto> envLogin = loginService.validaLogin(loginDto);
-		
+
 		return envLogin; 
 	}
 

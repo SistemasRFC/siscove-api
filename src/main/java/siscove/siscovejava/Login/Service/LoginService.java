@@ -2,22 +2,36 @@ package siscove.siscovejava.Login.Service;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.Login.Dto.LoginDto;
+import siscove.siscovejava.Token.Dto.TokenDto;
+import siscove.siscovejava.Token.Entity.Token;
+import siscove.siscovejava.Token.Repository.TokenDao;
+import siscove.siscovejava.Token.Service.TokenService;
 import siscove.siscovejava.Usuario.Entity.Usuario;
 import siscove.siscovejava.Usuario.Repository.UsuarioDao;
 
+@Slf4j
 @Service
 public class LoginService {
 
 	@Autowired
 	private UsuarioDao usuarioDao;
 	
+	@Autowired
+	private TokenDao tokenDao;
+	
+	@Autowired
+	private TokenService tokenService;
 	
 	public EnvelopeResponse<LoginDto> validaLogin(LoginDto loginDto) throws UnsupportedEncodingException {
 		
@@ -35,10 +49,37 @@ public class LoginService {
 		Usuario usuario= usuarioDao.usuarioLogin(loginDto.getNmeUsuario(), senhaEncriptada);
 		
 		if (null!=usuario && usuario.getCodUsuario()>0) {
+			tokenService.excluitokenByCodUsuario(usuario.getCodUsuario());
 			loginDto.setCodUsuario(usuario.getCodUsuario());
+			this.salvarToken(loginDto);
+			Token token = tokenDao.getByCodUsuario(usuario.getCodUsuario());
+			if (null!=token) {
+				loginDto.setTxtToken(token.getTxtToken());
+			}
 			return new EnvelopeResponse<LoginDto>(loginDto, true, "");
 		}
 	
 		return new EnvelopeResponse<LoginDto>(null, false, "Sem registros!");
+	}
+	
+	private void salvarToken(LoginDto loginDto) {
+		try {
+			MessageDigest m;
+			m = MessageDigest.getInstance("SHA-256");
+			m.update((LocalDateTime.now().toString()+loginDto.getNmeUsuario()+":"+loginDto.getTxtSenha()).getBytes("UTF-8"));
+			byte[] hash = m.digest();
+			StringBuilder sb = new StringBuilder();
+			for (byte b : hash) {
+				sb.append(String.format("%02x", b));
+			}
+			
+			TokenDto tokenDto = new TokenDto(null, sb.toString(), LocalDateTime.now(), loginDto.getCodUsuario());
+			
+			tokenService.salvar(tokenDto);
+		} catch (NoSuchAlgorithmException e) {
+			log.info(e.getMessage());
+		} catch (UnsupportedEncodingException uee) {
+			log.info(uee.getMessage());
+		}
 	}
 }

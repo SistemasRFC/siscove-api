@@ -22,4 +22,26 @@ public class TokenService {
 
 		return new EnvelopeResponse<TokenDto>(tokenDto);
 	}
+	
+	public EnvelopeResponse<TokenDto> getByToken(String txtToken){
+		
+		Token token = tokenDao.getByTxtToken(txtToken);
+		
+		TokenDto tokenDto = TokenDto.build(token);
+		
+		return new EnvelopeResponse<TokenDto>(tokenDto);
+	}
+	
+	public void excluiTokenByTxtToken(String txtToken) {
+		
+		Token token = tokenDao.getByTxtToken(txtToken);
+		
+		tokenDao.delete(token);
+	}
+	
+	public void excluitokenByCodUsuario(Integer codUsuario){
+		Token token = tokenDao.getByCodUsuario(codUsuario);
+		
+		tokenDao.delete(token);		
+	}
 }
