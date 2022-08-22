@@ -26,11 +26,11 @@ public class InterceptorConfig implements HandlerInterceptor{
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     	
     	log.info("Authorization: "+request.getHeader("authorization"));
-    	if (null!=request.getHeader("authorization")) {
+    	String txtToken = request.getHeader("authorization");
+    	if (null!=txtToken && (!"null".equals(txtToken))) {
 	    	if (request.getHeader("authorization").equals("getToken")) {
 	    		return true;
 	    	}else {
-	    		String txtToken = request.getHeader("authorization");
 		    	TokenDto tokenDto = tokenService.getByToken(txtToken).getObjeto();
 		    	if (null==tokenDto) {
 			        response.setContentType("application/json; charset=UTF-8");
@@ -46,6 +46,9 @@ public class InterceptorConfig implements HandlerInterceptor{
 				        response.getWriter().write("{ \"objeto\": null, \"retorno\": false, \"mensagem\": \"usuário não logado no sistema!\"}");
 				        response.setStatus(HttpServletResponse.SC_OK);
 				        return false;
+			    	}else {
+			    		tokenDto.setDtaToken(LocalDateTime.now());
+			    		tokenService.salvar(tokenDto);
 			    	}
 		    	}
 	    	}
