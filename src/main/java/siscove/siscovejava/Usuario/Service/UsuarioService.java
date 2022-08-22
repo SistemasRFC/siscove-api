@@ -48,4 +48,9 @@ public class UsuarioService {
 		}
 		return new EnvelopeResponse<List<UsuarioDto>>(listaUsuariosDto);
 	}
+
+	public EnvelopeResponse<List<UsuarioDto>> carregaComboUsuario() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
