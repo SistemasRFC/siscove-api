@@ -1,4 +1,4 @@
-package siscove.siscovejava.Menu.Dto;
+	package siscove.siscovejava.Menu.Dto;
 
 
 import org.springframework.stereotype.Component;
@@ -38,7 +38,7 @@ public class MenuDto {
 
 	public static MenuDto build(Menu menu) {
 		MenuDto menuDto = new MenuDto(
-		menu.getCodMenuW(),
+		menu.getCodMenuW(), 
 		menu.getDscMenuW(),
 		menu.getNmeController(),
 		menu.getIndMenuAtivoW(),
