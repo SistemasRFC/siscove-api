@@ -28,9 +28,6 @@ public class LoginService {
 	private UsuarioDao usuarioDao;
 	
 	@Autowired
-	private TokenDao tokenDao;
-	
-	@Autowired
 	private TokenService tokenService;
 	
 	public EnvelopeResponse<LoginDto> validaLogin(LoginDto loginDto) throws UnsupportedEncodingException {
