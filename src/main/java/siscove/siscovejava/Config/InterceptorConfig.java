@@ -21,10 +21,10 @@ public class InterceptorConfig implements HandlerInterceptor{
 	@Autowired
 	private TokenService tokenService;
 	
-	private final static long TEMPO_LIMITE = 15;
+	private final static Integer TEMPO_LIMITE = 7;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-    	
+    	tokenService.excluiTokensInvalidos(TEMPO_LIMITE);
     	log.info("Authorization: "+request.getHeader("authorization"));
     	String txtToken = request.getHeader("authorization");
     	if (null!=txtToken && (!"null".equals(txtToken))) {

@@ -49,20 +49,16 @@ public class LoginService {
 		Usuario usuario= usuarioDao.usuarioLogin(loginDto.getNmeUsuario(), senhaEncriptada);
 		
 		if (null!=usuario && usuario.getCodUsuario()>0) {
-			tokenService.excluitokenByCodUsuario(usuario.getCodUsuario());
 			loginDto.setCodUsuario(usuario.getCodUsuario());
-			this.salvarToken(loginDto);
-			Token token = tokenDao.getByCodUsuario(usuario.getCodUsuario());
-			if (null!=token) {
-				loginDto.setTxtToken(token.getTxtToken());
-			}
+			TokenDto tokenDto = this.salvarToken(loginDto);
+			loginDto.setTxtToken(tokenDto.getTxtToken());
 			return new EnvelopeResponse<LoginDto>(loginDto, true, "");
 		}
 	
 		return new EnvelopeResponse<LoginDto>(null, false, "Sem registros!");
 	}
 	
-	private void salvarToken(LoginDto loginDto) {
+	private TokenDto salvarToken(LoginDto loginDto) {
 		try {
 			MessageDigest m;
 			m = MessageDigest.getInstance("SHA-256");
@@ -75,11 +71,13 @@ public class LoginService {
 			
 			TokenDto tokenDto = new TokenDto(null, sb.toString(), LocalDateTime.now(), loginDto.getCodUsuario());
 			
-			tokenService.salvar(tokenDto);
+			return tokenService.salvar(tokenDto).getObjeto();
 		} catch (NoSuchAlgorithmException e) {
 			log.info(e.getMessage());
+			return null;
 		} catch (UnsupportedEncodingException uee) {
 			log.info(uee.getMessage());
+			return null;
 		}
 	}
 }

@@ -39,9 +39,13 @@ public class TokenService {
 		tokenDao.delete(token);
 	}
 	
-	public void excluitokenByCodUsuario(Integer codUsuario){
+	public void excluiTokenByCodUsuario(Integer codUsuario){
 		Token token = tokenDao.getByCodUsuario(codUsuario);
 		
 		tokenDao.delete(token);		
+	}
+	
+	public void excluiTokensInvalidos(Integer tempoLimite) {
+		tokenDao.excluiTokensInvalidos(tempoLimite);
 	}
 }
