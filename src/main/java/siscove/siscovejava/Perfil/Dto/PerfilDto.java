@@ -23,6 +23,6 @@ public class PerfilDto {
 				perfil.getCodPerfilW(),
 				perfil.getDscPerfilW(),
 				perfil.getIndAtivo());
-		return perfilDto;
+				return perfilDto;
 	}
 }
