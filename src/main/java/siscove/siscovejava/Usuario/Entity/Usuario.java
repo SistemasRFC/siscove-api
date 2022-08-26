@@ -7,9 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.Perfil.Entity.Perfil;
 
 @NoArgsConstructor
 @Data
@@ -48,8 +51,10 @@ public class Usuario{
 	@Column(name="COD_DEPOSITO")
 	private String codDeposito;
 	
-	@Column(name="COD_PERFIL_W")
-	private String codPerfilW;
+	@ManyToOne
+	@JoinColumn(name="COD_PERFIL_W", insertable = true, updatable = true)
+	private Perfil perfil;
+
 	
 	@Column(name="VLR_PORCENTAGEM_SERVICO")
 	private Float vlrPorcentagemServico;

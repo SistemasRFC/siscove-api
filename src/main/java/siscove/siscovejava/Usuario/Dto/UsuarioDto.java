@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.Perfil.Dto.PerfilDto;
+import siscove.siscovejava.Perfil.Entity.Perfil;
 import siscove.siscovejava.Usuario.Entity.Usuario;
 
 @Component
@@ -28,11 +30,11 @@ public class UsuarioDto {
 	private String txtEmail;
 	private LocalDate dtaInativo;
 	private String codDeposito;
-	private String codPerfilW;
 	private Float vlrPorcentagemServico;
 	private Float vlrPorcentagemVenda;
 	private Float vlrPorcentagemGerencia;
 	private String indAtivo;
+	private PerfilDto perfilDto;
 
 	public static Usuario parse(UsuarioDto usuarioDto) {
 		Usuario usuario = new Usuario();
@@ -57,11 +59,14 @@ public class UsuarioDto {
 		usuario.setTxtEmail(usuarioDto.getTxtEmail());
 		usuario.setDtaInativo(usuarioDto.getDtaInativo());
 		usuario.setCodDeposito(usuarioDto.getCodDeposito());
-		usuario.setCodPerfilW(usuarioDto.getCodPerfilW());
 		usuario.setVlrPorcentagemServico(usuarioDto.getVlrPorcentagemServico());
 		usuario.setVlrPorcentagemVenda(usuarioDto.getVlrPorcentagemVenda());
 		usuario.setVlrPorcentagemGerencia(usuarioDto.getVlrPorcentagemGerencia());
 		usuario.setIndAtivo(usuarioDto.getIndAtivo());
+		
+		Perfil perfil= new Perfil();
+		perfil.setCodPerfilW(usuarioDto.getPerfilDto().getCodPerfilW());
+		usuario.setPerfil(perfil);
 		return usuario;
 	}
 
@@ -77,11 +82,11 @@ public class UsuarioDto {
 		usuario.getTxtEmail(),
 		usuario.getDtaInativo(),
 		usuario.getCodDeposito(),
-		usuario.getCodPerfilW(),
 		usuario.getVlrPorcentagemServico(),
 		usuario.getVlrPorcentagemVenda(),
 		usuario.getVlrPorcentagemGerencia(),
-		usuario.getIndAtivo());
+		usuario.getIndAtivo(),
+		PerfilDto.build(usuario.getPerfil()));
 		return usuarioDto;
 	}
 }
