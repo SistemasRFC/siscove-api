@@ -27,11 +27,20 @@ public class MenuService {
 	}
 	
 	public EnvelopeResponse<List<MenuDto>> getListarMenu(){
-		List<Menu> listarMenu = (List<Menu>) menuDao.findAll();
+		List<Object[]> listarMenu = (List<Object[]>) menuDao.getListaMenus();
 		
 		List<MenuDto> listarMenuDto = new ArrayList<MenuDto>();
-		for (Menu menu : listarMenu) {
-			listarMenuDto.add(MenuDto.build(menu));
+		for (Object[] menu : listarMenu) {
+			listarMenuDto.add(new MenuDto(
+					Integer.valueOf(menu[0].toString()), 
+					menu[1].toString(), 
+					menu[2].toString(), 
+					menu[3].toString(), 
+					Integer.valueOf(menu[4].toString()), 
+					null==menu[5]?"":menu[5].toString(), 
+					null, 
+					null, 
+					null==menu[6]?"":menu[6].toString()));
 		}
 		return new EnvelopeResponse<List<MenuDto>>(listarMenuDto);
 	}
@@ -41,7 +50,7 @@ public class MenuService {
 		
 		List <MenuDto> listarAtivosDto = new ArrayList<MenuDto>();
 		for (Menu menu : listarAtivos) {
-			if (menu.getIndMenuAtivoW  ().equals("S")) 
+			if (menu.getIndMenuAtivoW().equals("S")) 
 			    listarAtivosDto.add(MenuDto.build(menu));
 		}
 		return new EnvelopeResponse<List<MenuDto>>(listarAtivosDto);

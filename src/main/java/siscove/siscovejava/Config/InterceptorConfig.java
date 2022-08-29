@@ -21,7 +21,7 @@ public class InterceptorConfig implements HandlerInterceptor{
 	@Autowired
 	private TokenService tokenService;
 	
-	private final static Integer TEMPO_LIMITE = 15;
+	private final static Integer TEMPO_LIMITE = 1500;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     	tokenService.excluiTokensInvalidos(TEMPO_LIMITE);

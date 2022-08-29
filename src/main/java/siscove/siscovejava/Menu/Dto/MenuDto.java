@@ -22,6 +22,7 @@ public class MenuDto {
 	private String nmeMethod;
 	private String dscCaminhoImagem;
 	private String indAtalho;
+	private String dscMenuPai;
 	
 	public static Menu parse(MenuDto menuDto) {
 		Menu menu = new Menu();
@@ -45,7 +46,8 @@ public class MenuDto {
 		menu.getCodMenuPaiW(),
 		menu.getNmeMethod(),
 		menu.getDscCaminhoImagem(),
-		menu.getIndAtalho());
+		menu.getIndAtalho(),
+		null);
 		return menuDto;
 	}
 
