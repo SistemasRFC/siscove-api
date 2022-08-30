@@ -46,6 +46,12 @@ public class UsuarioDto {
 				byte[] decodedValue = Base64.getEncoder().encode(usuarioDto.getTxtSenhaW().getBytes());
 				String senhaEncriptada = new String(decodedValue, StandardCharsets.UTF_8.toString());
 				usuario.setTxtSenhaW(senhaEncriptada);
+			}else {
+				if(usuarioDto.getCodUsuario()==null || usuarioDto.getCodUsuario()==0) {
+					byte[] decodedValue = Base64.getEncoder().encode("123459".getBytes());
+					String senhaEncriptada = new String(decodedValue, StandardCharsets.UTF_8.toString());
+					usuario.setTxtSenhaW(senhaEncriptada);
+				}
 			}
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block

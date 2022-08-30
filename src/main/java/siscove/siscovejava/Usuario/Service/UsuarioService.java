@@ -1,6 +1,9 @@
 package siscove.siscovejava.Usuario.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,12 +23,12 @@ public class UsuarioService {
 
 	public EnvelopeResponse<UsuarioDto> salvar(UsuarioDto usuarioDto) {
 		Usuario usuario = UsuarioDto.parse(usuarioDto);
-		
-		if (usuarioDto.getCodUsuario()!=null) {
+
+		if (usuarioDto.getCodUsuario() != null) {
 			Optional<Usuario> usuarioSenha = usuarioDao.findById(usuarioDto.getCodUsuario());
 			usuario.setTxtSenhaW(usuarioSenha.get().getTxtSenhaW());
 		}
-		
+
 		usuario = usuarioDao.save(usuario);
 
 		usuarioDto.setCodUsuario(usuario.getCodUsuario());
@@ -33,20 +36,20 @@ public class UsuarioService {
 		return new EnvelopeResponse<UsuarioDto>(usuarioDto);
 	}
 
-	public EnvelopeResponse<List<UsuarioDto>> getListaUsuarios(){
+	public EnvelopeResponse<List<UsuarioDto>> getListaUsuarios() {
 		List<Usuario> listaUsuarios = (List<Usuario>) usuarioDao.findAll();
-		
+
 		List<UsuarioDto> listaUsuariosDto = new ArrayList<UsuarioDto>();
 		for (Usuario usuario : listaUsuarios) {
 			listaUsuariosDto.add(UsuarioDto.build(usuario));
 		}
 		return new EnvelopeResponse<List<UsuarioDto>>(listaUsuariosDto);
-		
+
 	}
 
-	public EnvelopeResponse<List<UsuarioDto>> getListaUsuariosAtivos(){
+	public EnvelopeResponse<List<UsuarioDto>> getListaUsuariosAtivos() {
 		List<Usuario> listaUsuariosAtivos = (List<Usuario>) usuarioDao.findAll();
-		
+
 		List<UsuarioDto> listaUsuariosDto = new ArrayList<UsuarioDto>();
 		for (Usuario usuario : listaUsuariosAtivos) {
 			if (usuario.getIndAtivo().equals("S")) {
@@ -56,9 +59,25 @@ public class UsuarioService {
 		return new EnvelopeResponse<List<UsuarioDto>>(listaUsuariosDto);
 	}
 
+	public EnvelopeResponse<UsuarioDto> reniciar(Integer codUsuario) {
+		Usuario usuario = usuarioDao.findById(codUsuario).get();
+
+		try {
+			byte[] decodedValue = Base64.getEncoder().encode("123459".getBytes());
+			String senhaEncriptada;
+			senhaEncriptada = new String(decodedValue, StandardCharsets.UTF_8.toString());
+			usuario.setTxtSenhaW(senhaEncriptada);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		usuario = usuarioDao.save(usuario);
+		return new EnvelopeResponse<UsuarioDto>(UsuarioDto.build(usuario));
+	}
+
 	public EnvelopeResponse<List<UsuarioDto>> carregaComboUsuario() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 }
