@@ -24,6 +24,14 @@ public class MenuDto {
 	private String indAtalho;
 	private String dscMenuPai;
 	
+//	public MenuDto(Menu menu) {
+//		codMenuW = menu.getCodMenuW(); 
+//		dscMenuW = menu.getDscMenuW();
+//		nmeController = menu.getNmeController();
+//		indMenuAtivoW = menu.getIndMenuAtivoW();
+//		codMenuPaiW = menu.getCodMenuPaiW();
+//	}
+	
 	public static Menu parse(MenuDto menuDto) {
 		Menu menu = new Menu();
 		menu.setCodMenuW(menuDto.getCodMenuW());

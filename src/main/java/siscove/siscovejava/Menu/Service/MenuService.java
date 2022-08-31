@@ -20,8 +20,10 @@ public class MenuService {
 	public EnvelopeResponse<MenuDto> salvar(MenuDto menuDto) {
 
 		Menu menu = menuDao.save(MenuDto.parse(menuDto));
+		
+		menuDto = MenuDto.build(menu);
 
-		menuDto.setCodMenuW(menu.getCodMenuW());
+//		menuDto.setCodMenuW(menu.getCodMenuW());
 
 		return new EnvelopeResponse<MenuDto>(menuDto);
 	}
@@ -33,10 +35,10 @@ public class MenuService {
 		for (Object[] menu : listarMenu) {
 			listarMenuDto.add(new MenuDto(
 					Integer.valueOf(menu[0].toString()), 
-					menu[1].toString(), 
+					null==menu[1]?"":menu[1].toString(), 
 					menu[2].toString(), 
 					menu[3].toString(), 
-					Integer.valueOf(menu[4].toString()), 
+					Integer.valueOf(null==menu[4]?"0":menu[4].toString()), 
 					null==menu[5]?"":menu[5].toString(), 
 					null, 
 					null, 

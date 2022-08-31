@@ -2,9 +2,12 @@ package siscove.siscovejava.Menu.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +30,7 @@ public class Menu {
 	
 	@Column(name="IND_MENU_ATIVO_W")
 	private String indMenuAtivoW;
-	
+
 	@Column(name="COD_MENU_PAI_W")
 	private Integer codMenuPaiW;
 	
