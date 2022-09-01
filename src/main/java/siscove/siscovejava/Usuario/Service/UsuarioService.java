@@ -2,6 +2,7 @@ package siscove.siscovejava.Usuario.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,14 @@ public class UsuarioService {
 	private UsuarioDao usuarioDao;
 
 	public EnvelopeResponse<UsuarioDto> salvar(UsuarioDto usuarioDto) {
-
-		Usuario usuario = usuarioDao.save(UsuarioDto.parse(usuarioDto));
+		Usuario usuario = UsuarioDto.parse(usuarioDto);
+		
+		if (usuarioDto.getCodUsuario()!=null) {
+			Optional<Usuario> usuarioSenha = usuarioDao.findById(usuarioDto.getCodUsuario());
+			usuario.setTxtSenhaW(usuarioSenha.get().getTxtSenhaW());
+		}
+		
+		usuario = usuarioDao.save(usuario);
 
 		usuarioDto.setCodUsuario(usuario.getCodUsuario());
 
@@ -48,4 +55,10 @@ public class UsuarioService {
 		}
 		return new EnvelopeResponse<List<UsuarioDto>>(listaUsuariosDto);
 	}
+
+	public EnvelopeResponse<List<UsuarioDto>> carregaComboUsuario() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

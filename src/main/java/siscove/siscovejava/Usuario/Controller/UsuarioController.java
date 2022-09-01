@@ -26,12 +26,12 @@ public class UsuarioController extends BaseController{
 		return envLogin;
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET, consumes = { "*/*" })
+	@RequestMapping(value = "/listar", method = RequestMethod.GET, consumes = { "*/*" })
 	public EnvelopeResponse<List<UsuarioDto>> ListaUsuarios() {
 		return usuarioService.getListaUsuarios();
 	}
 
-	@RequestMapping(value = "/lista", method = RequestMethod.GET, consumes = { "*/*" })
+	@RequestMapping(value = "/listar/ativos", method = RequestMethod.GET, consumes = { "*/*" })
 	public EnvelopeResponse<List<UsuarioDto>> ListaUsuariosAtivos() {
 		return usuarioService.getListaUsuariosAtivos();
 	}

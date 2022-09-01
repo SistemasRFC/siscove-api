@@ -27,8 +27,10 @@ public class TokenService {
 		
 		Token token = tokenDao.getByTxtToken(txtToken);
 		
+		if(token==null) {
+			return new EnvelopeResponse<TokenDto>(null);
+		}
 		TokenDto tokenDto = TokenDto.build(token);
-		
 		return new EnvelopeResponse<TokenDto>(tokenDto);
 	}
 	
