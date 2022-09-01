@@ -28,4 +28,14 @@ public class PerfilService {
 		}
 		return new EnvelopeResponse<List<PerfilDto>>(listaPerfilDto);
 	}
+
+	public EnvelopeResponse<PerfilDto> salvar(PerfilDto perfilDto) {
+Perfil perfil = perfilDao.save(PerfilDto.parse(perfilDto));
+		
+		perfilDto = PerfilDto.build(perfil);
+
+
+		return new EnvelopeResponse<PerfilDto>(perfilDto);
+	}
+	
 }
