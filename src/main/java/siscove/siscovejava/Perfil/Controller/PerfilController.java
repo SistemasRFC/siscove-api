@@ -22,8 +22,8 @@ public class PerfilController extends BaseController {
 
 
 	@RequestMapping(value = "/listar/ativos", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<PerfilDto>> getListaPerfil() {
-		return perfilService.getListaPerfil();
+	public EnvelopeResponse<List<PerfilDto>> getListaPerfilAtivos() {
+		return perfilService.getListaPerfilAtivos();
 	}
 	
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, consumes = { "*/*" })
