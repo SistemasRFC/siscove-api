@@ -1,4 +1,4 @@
-package siscove.siscovejava.Menu.Dto;
+	package siscove.siscovejava.Menu.Dto;
 
 
 import org.springframework.stereotype.Component;
@@ -22,6 +22,15 @@ public class MenuDto {
 	private String nmeMethod;
 	private String dscCaminhoImagem;
 	private String indAtalho;
+	private String dscMenuPai;
+	
+//	public MenuDto(Menu menu) {
+//		codMenuW = menu.getCodMenuW(); 
+//		dscMenuW = menu.getDscMenuW();
+//		nmeController = menu.getNmeController();
+//		indMenuAtivoW = menu.getIndMenuAtivoW();
+//		codMenuPaiW = menu.getCodMenuPaiW();
+//	}
 	
 	public static Menu parse(MenuDto menuDto) {
 		Menu menu = new Menu();
@@ -38,20 +47,19 @@ public class MenuDto {
 
 	public static MenuDto build(Menu menu) {
 		MenuDto menuDto = new MenuDto(
-		menu.getCodMenuW(),
+		menu.getCodMenuW(), 
 		menu.getDscMenuW(),
 		menu.getNmeController(),
 		menu.getIndMenuAtivoW(),
 		menu.getCodMenuPaiW(),
 		menu.getNmeMethod(),
 		menu.getDscCaminhoImagem(),
-		menu.getIndAtalho());
+		menu.getIndAtalho(),
+		null);
 		return menuDto;
 	}
 
-		
-	
-	}
+}
 
 		
 	

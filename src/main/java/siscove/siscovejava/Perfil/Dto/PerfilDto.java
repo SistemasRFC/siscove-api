@@ -12,17 +12,16 @@ import siscove.siscovejava.Perfil.Entity.Perfil;
 @NoArgsConstructor
 @Data
 public class PerfilDto {
-	
+
 	private Integer codPerfilW;
 	private String dscPerfilW;
 	private String indAtivo;
 
 	public static PerfilDto build(Perfil perfil) {
 		PerfilDto perfilDto = new PerfilDto(
-				
-				perfil.getCodPerfilW(),
-				perfil.getDscPerfilW(),
-				perfil.getIndAtivo());
-				return perfilDto;
+
+				perfil.getCodPerfilW(), perfil.getDscPerfilW(), perfil.getIndAtivo());
+		return perfilDto;
 	}
+
 }

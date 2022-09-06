@@ -27,7 +27,7 @@ public class Menu {
 	
 	@Column(name="IND_MENU_ATIVO_W")
 	private String indMenuAtivoW;
-	
+
 	@Column(name="COD_MENU_PAI_W")
 	private Integer codMenuPaiW;
 	
