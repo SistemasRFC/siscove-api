@@ -57,7 +57,12 @@ public class MenuService {
 		return new EnvelopeResponse<List<MenuDto>>(listarAtivosDto);
 	}
 
-	
-	
+	public EnvelopeResponse<List<MenuDto>> ListarMenu(Integer codPerfilW) {
+		Menu menu = menuDao.findById(codPerfilW).get();
 
+		List<MenuDto> listaMenuDto = new ArrayList<MenuDto>();
+			listaMenuDto.add(MenuDto.build(menu));
+		
+		return new EnvelopeResponse<List<MenuDto>>(listaMenuDto);
+	}
 }
