@@ -17,7 +17,7 @@ public class DepositoService {
 	@Autowired
 	private DepositoDao depositoDao;
 
-	public EnvelopeResponse<List<DepositoDto>> getListaDeposito() {
+	public EnvelopeResponse<List<DepositoDto>> getListaDepositoAtivos() {
 		List<Deposito> listaDeposito = (List<Deposito>) depositoDao.findAll();
 
 		List<DepositoDto> listaDepositoDto = new ArrayList<DepositoDto>();
@@ -27,5 +27,25 @@ public class DepositoService {
 			}
 		}
 		return new EnvelopeResponse<List<DepositoDto>>(listaDepositoDto);
+	}
+	
+	public EnvelopeResponse<List<DepositoDto>> getListaDeposito(){
+		List<Deposito> listaDeposito = (List<Deposito>) depositoDao.findAll();
+		
+		List<DepositoDto> listaDepositoDto = new ArrayList<DepositoDto>();
+		for (Deposito deposito : listaDeposito) {
+			listaDepositoDto.add(DepositoDto.build(deposito));
+		}
+		return new EnvelopeResponse<List<DepositoDto>>(listaDepositoDto);  
+		
+	}
+
+	public EnvelopeResponse<DepositoDto> salvar(DepositoDto depositoDto) {
+Deposito deposito = depositoDao.save(DepositoDto.parse(depositoDto));
+		
+		depositoDto = DepositoDto.build(deposito);
+
+
+		return new EnvelopeResponse<DepositoDto>(depositoDto);
 	}
 }
