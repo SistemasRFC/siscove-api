@@ -23,7 +23,6 @@ public class MenuService {
 		
 		menuDto = MenuDto.build(menu);
 
-//		menuDto.setCodMenuW(menu.getCodMenuW());
 
 		return new EnvelopeResponse<MenuDto>(menuDto);
 	}

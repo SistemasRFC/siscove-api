@@ -24,4 +24,11 @@ public class PerfilDto {
 		return perfilDto;
 	}
 
+	public static Perfil parse(PerfilDto perfilDto) {
+		Perfil perfil = new Perfil();
+		perfil.setCodPerfilW(perfilDto.getCodPerfilW());
+		perfil.setDscPerfilW(perfilDto.getDscPerfilW());
+		perfil.setIndAtivo(perfilDto.getIndAtivo());
+		return perfil;
+	}
 }
