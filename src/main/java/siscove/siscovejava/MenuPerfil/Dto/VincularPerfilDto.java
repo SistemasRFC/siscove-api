@@ -1,5 +1,7 @@
 package siscove.siscovejava.MenuPerfil.Dto;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -12,8 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class VincularPerfilDto {
 
-	private Integer listaMenus;
+	private List<Integer> listaMenus;
 	private Integer codPerfilW;
-	
 
 }
