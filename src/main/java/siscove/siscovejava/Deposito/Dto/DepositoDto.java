@@ -16,8 +16,16 @@ public class DepositoDto {
 	private Integer codDeposito;
 	private String dscDeposito;
 	private Integer codClienteFinal;
+	private String dscClienteFinal;
 	private String indAtivo;
 
+	public DepositoDto(Integer codDeposito, String dscDeposito, Integer codClienteFinal, String indAtivo) {
+		this.codDeposito = codDeposito;
+		this.dscDeposito = dscDeposito;
+		this.codClienteFinal = codClienteFinal;
+		this.indAtivo = indAtivo;
+	}
+	
 	public static DepositoDto build(Deposito deposito) {
 		DepositoDto depositoDto = new DepositoDto(
 				
