@@ -21,40 +21,40 @@ public class DepositoService {
 
 	@Autowired
 	private ClienteFinalService clienteFinalService;
-	
+
 	public EnvelopeResponse<List<DepositoDto>> getListaDepositoAtivos() {
 		List<Deposito> listaDeposito = (List<Deposito>) depositoDao.findAll();
 
 		List<DepositoDto> listaDepositoDto = new ArrayList<DepositoDto>();
 		for (Deposito deposito : listaDeposito) {
-			if (null!=deposito.getIndAtivo() && deposito.getIndAtivo().equals("S")) {
+			if (null != deposito.getIndAtivo() && deposito.getIndAtivo().equals("S")) {
 				listaDepositoDto.add(DepositoDto.build(deposito));
 			}
 		}
 		return new EnvelopeResponse<List<DepositoDto>>(listaDepositoDto);
 	}
-	
-	public EnvelopeResponse<List<DepositoDto>> getListaDeposito(){
+
+	public EnvelopeResponse<List<DepositoDto>> getListaDeposito() {
 		List<Deposito> listaDeposito = (List<Deposito>) depositoDao.findAll();
-		
+
 		List<DepositoDto> listaDepositoDto = new ArrayList<DepositoDto>();
 		for (Deposito deposito : listaDeposito) {
-			DepositoDto dto  = DepositoDto.build(deposito);
-			
-			ClienteFinalDto clienteFinalDto = clienteFinalService.findByCodClienteFinal(deposito.getCodClienteFinal()).getObjeto();
+			DepositoDto dto = DepositoDto.build(deposito);
+
+			ClienteFinalDto clienteFinalDto = clienteFinalService.findByCodClienteFinal(deposito.getCodClienteFinal())
+					.getObjeto();
 			dto.setDscClienteFinal(clienteFinalDto.getNmeClienteFinal());
-			
+
 			listaDepositoDto.add(dto);
 		}
-		return new EnvelopeResponse<List<DepositoDto>>(listaDepositoDto);  
-		
+		return new EnvelopeResponse<List<DepositoDto>>(listaDepositoDto);
+
 	}
 
 	public EnvelopeResponse<DepositoDto> salvar(DepositoDto depositoDto) {
-Deposito deposito = depositoDao.save(DepositoDto.parse(depositoDto));
-		
-		depositoDto = DepositoDto.build(deposito);
+		Deposito deposito = depositoDao.save(DepositoDto.parse(depositoDto));
 
+		depositoDto = DepositoDto.build(deposito);
 
 		return new EnvelopeResponse<DepositoDto>(depositoDto);
 	}
