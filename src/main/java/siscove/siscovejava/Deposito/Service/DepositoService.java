@@ -41,9 +41,11 @@ public class DepositoService {
 		for (Deposito deposito : listaDeposito) {
 			DepositoDto dto = DepositoDto.build(deposito);
 
-			ClienteFinalDto clienteFinalDto = clienteFinalService.findByCodClienteFinal(deposito.getCodClienteFinal())
+			if(null != deposito.getCodClienteFinal()) {
+				ClienteFinalDto clienteFinalDto = clienteFinalService.findByCodClienteFinal(deposito.getCodClienteFinal())
 					.getObjeto();
-			dto.setDscClienteFinal(clienteFinalDto.getNmeClienteFinal());
+				dto.setDscClienteFinal(clienteFinalDto.getNmeClienteFinal());				
+			}
 
 			listaDepositoDto.add(dto);
 		}
