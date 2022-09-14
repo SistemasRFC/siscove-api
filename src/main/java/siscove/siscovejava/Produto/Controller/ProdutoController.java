@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import siscove.siscovejava.Config.response.BaseController;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
-import siscove.siscovejava.Produto.Dto.CadastroProdutosDto;
-import siscove.siscovejava.Produto.Service.CadastroProdutosService;
+import siscove.siscovejava.Produto.Dto.ProdutoDto;
+import siscove.siscovejava.Produto.Service.ProdutoService;
 
 @RestController
-@RequestMapping(value = "/cadastoprodutos")
-public class CadastroProdutosController extends BaseController {
+@RequestMapping(value = "/produtos")
+public class ProdutoController extends BaseController {
 
 	@Autowired
-	private CadastroProdutosService cadastroProdutosService;
+	private ProdutoService ProdutoService;
 	
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<CadastroProdutosDto>> ListarProdutos() {
-		return cadastroProdutosService.getListarProdutos();
+	public EnvelopeResponse<List<ProdutoDto>> getListarProdutos() {
+		return ProdutoService.getListarProdutos();
 	}
 }

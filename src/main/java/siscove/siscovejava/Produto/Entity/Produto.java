@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity (name = "EN_PRODUTO")
-public class CadastroProdutos {
+public class Produto {
 
 	@Id
 	@Column(name="COD_PRODUTO")

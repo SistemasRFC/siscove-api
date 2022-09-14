@@ -42,8 +42,7 @@ public class DepositoService {
 			DepositoDto dto = DepositoDto.build(deposito);
 
 			if(null != deposito.getCodClienteFinal()) {
-				ClienteFinalDto clienteFinalDto = clienteFinalService.findByCodClienteFinal(deposito.getCodClienteFinal())
-					.getObjeto();
+				ClienteFinalDto clienteFinalDto = clienteFinalService.findByCodClienteFinal(deposito.getCodClienteFinal()).getObjeto();
 				dto.setDscClienteFinal(clienteFinalDto.getNmeClienteFinal());				
 			}
 

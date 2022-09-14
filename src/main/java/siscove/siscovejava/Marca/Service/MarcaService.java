@@ -28,4 +28,8 @@ public class MarcaService {
 		}
 		return new EnvelopeResponse<List<MarcaDto>>(listarMarcaDto);
 	}
+
+	public EnvelopeResponse<MarcaDto> findByCodMarca(Integer codMarca) {
+		return new EnvelopeResponse<MarcaDto>(MarcaDto.build(marcaDao.findByCodMarca(codMarca)));
+	}
 }

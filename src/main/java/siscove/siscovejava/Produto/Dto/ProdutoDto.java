@@ -5,13 +5,13 @@ import org.springframework.stereotype.Component;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import siscove.siscovejava.Produto.Entity.CadastroProdutos;
+import siscove.siscovejava.Produto.Entity.Produto;
 
 @Component
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CadastroProdutosDto {
+public class ProdutoDto {
 
 	private Integer codProduto;
 	private String dscProduto;
@@ -36,16 +36,16 @@ public class CadastroProdutosDto {
 	private Integer codPisSituacaoTribuataria;
 	private Integer codCofinsSituacaoTributaria;
 
-	public static CadastroProdutosDto build(CadastroProdutos cadastroprodutos) {
-		CadastroProdutosDto cadastroprodutosDto = new CadastroProdutosDto(cadastroprodutos.getCodProduto(),
-				cadastroprodutos.getDscProduto(), cadastroprodutos.getIndAtivo());
-		return cadastroprodutosDto;
+	public static ProdutoDto build(Produto produto) {
+		ProdutoDto produtoDto = new ProdutoDto(produto.getCodProduto(),
+				produto.getDscProduto(), produto.getIndAtivo());
+		return produtoDto;
 	}
 
-	public CadastroProdutosDto(Integer codProduto2, String dscProduto2, String indAtivo2) {
-		this.codProduto=codProduto2;
-		this.dscProduto=dscProduto2;
-		this.indAtivo=indAtivo2;
+	public ProdutoDto(Integer codProduto, String dscProduto, String indAtivo) {
+		this.codProduto=codProduto;
+		this.dscProduto=dscProduto;
+		this.indAtivo=indAtivo;
 		
 	}
 }
