@@ -12,6 +12,7 @@ import siscove.siscovejava.Menu.Entity.Menu;
 import siscove.siscovejava.Menu.Repository.MenuDao;
 import siscove.siscovejava.MenuPerfil.Dto.VincularPerfilDto;
 import siscove.siscovejava.MenuPerfil.Entity.MenuPerfil;
+import siscove.siscovejava.MenuPerfil.Entity.MenuPerfilId;
 import siscove.siscovejava.MenuPerfil.Repository.MenuPerfilDao;
 
 @Service
@@ -43,9 +44,19 @@ public class MenuPerfilService {
 		return new EnvelopeResponse<List<MenuDto>>(listaMenuPerfilDto);
 	}
 
-	public EnvelopeResponse<VincularPerfilDto> vincular(VincularPerfilDto vincularPerfilDto) {
-		MenuPerfil menuperfil = menuPerfilDao.save((vincularPerfilDto));
+	public EnvelopeResponse<Boolean> vincular(VincularPerfilDto vincularPerfilDto) {
+		
+		menuPerfilDao.deleteByCodPerfil(vincularPerfilDto.getCodPerfilW());
+		
+		for (Integer menu : vincularPerfilDto.getListaMenus()) {
+			MenuPerfil menuPerfil = new MenuPerfil();
+			MenuPerfilId id = new MenuPerfilId();
+			id.setCodMenuW(menu);
+			id.setCodPerfilW(vincularPerfilDto.getCodPerfilW());
+			menuPerfil.setMenuPerfilId(id);
+			menuPerfilDao.save(menuPerfil);
+		}
 
-		return new EnvelopeResponse<VincularPerfilDto>(vincularPerfilDto);
+		return new EnvelopeResponse<Boolean>(true);
 	}
 }

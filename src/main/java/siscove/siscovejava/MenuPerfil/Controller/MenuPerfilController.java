@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import siscove.siscovejava.Config.response.BaseController;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.Menu.Dto.MenuDto;
-import siscove.siscovejava.MenuPerfil.Dto.MenuPerfilDto;
 import siscove.siscovejava.MenuPerfil.Dto.VincularPerfilDto;
 import siscove.siscovejava.MenuPerfil.Service.MenuPerfilService;
 
@@ -34,8 +33,8 @@ public class MenuPerfilController extends BaseController {
 	}
 
 	@RequestMapping(value = "/vincular", method = RequestMethod.POST, consumes = { "*/*" })
-	public EnvelopeResponse<VincularPerfilDto> vincular(@RequestBody MenuPerfilDto menuperfilDto) {
-		EnvelopeResponse<VincularPerfilDto> retorno = menuPerfilService.vincular(menuperfilDto);
+	public EnvelopeResponse<Boolean> vincular(@RequestBody VincularPerfilDto vincularperfilDto) {
+		return menuPerfilService.vincular(vincularperfilDto);
 	}
 
 }

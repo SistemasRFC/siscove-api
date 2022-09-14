@@ -1,10 +1,9 @@
 package siscove.siscovejava.MenuPerfil.Entity;
 
-import javax.persistence.Column;
+import java.io.Serializable;
+
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,15 +11,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity (name = "SE_MENU_PERFIL")
-public class MenuPerfil {
+public class MenuPerfil implements Serializable{
 
-	@Id
-	@Column(name="COD_PERFIL_W")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer codPerfilW;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
-	@Column(name="COD_MENU_W")
-	private Integer codMenuW;
+	@EmbeddedId
+	private MenuPerfilId menuPerfilId;
 	
 }
 
