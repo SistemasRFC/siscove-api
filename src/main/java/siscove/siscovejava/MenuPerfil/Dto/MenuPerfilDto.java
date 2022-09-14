@@ -19,8 +19,8 @@ public class MenuPerfilDto {
 	public static MenuPerfilDto build(MenuPerfil menuperfil) {
 		MenuPerfilDto menuperfilDto = new MenuPerfilDto(
 				
-				menuperfil.getCodMenuW(),
-				menuperfil.getCodPerfilW());
+				menuperfil.getMenuPerfilId().getCodMenuW(),
+				menuperfil.getMenuPerfilId().getCodPerfilW());
 				return menuperfilDto;
 	
 	}
