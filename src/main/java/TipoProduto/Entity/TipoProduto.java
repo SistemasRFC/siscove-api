@@ -1,4 +1,4 @@
-package Produto;
+package TipoProduto.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity (name = "EN_TIPO_PRODUTO")
-public class ProdutoEntity {
+public class TipoProduto {
 	
 	@Id
 	@Column(name="COD_TIPO_PRODUTO")
