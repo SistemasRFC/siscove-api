@@ -1,14 +1,11 @@
-package TipoProduto.Repository;
-
-import java.util.List;
+package siscove.siscovejava.TipoProduto.Repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import TipoProduto.Entity.TipoProduto;
+import siscove.siscovejava.TipoProduto.Entity.TipoProduto;
 
 @Repository(value = "TipoProdutoDao")
 public interface TipoProdutoDao extends CrudRepository<TipoProduto, Integer> {
 
-	public List<TipoProduto> getListarTipoProduto();
 }	

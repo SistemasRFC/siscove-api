@@ -1,4 +1,4 @@
-package TipoProduto.Service;
+package siscove.siscovejava.TipoProduto.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import TipoProduto.Dto.TipoProdutoDto;
-import TipoProduto.Entity.TipoProduto;
-import TipoProduto.Repository.TipoProdutoDao;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
+import siscove.siscovejava.TipoProduto.Dto.TipoProdutoDto;
+import siscove.siscovejava.TipoProduto.Entity.TipoProduto;
+import siscove.siscovejava.TipoProduto.Repository.TipoProdutoDao;
 
 @Service
 public class TipoProdutoService {
@@ -28,7 +28,7 @@ public class TipoProdutoService {
 	}
 	
 	public EnvelopeResponse<List<TipoProdutoDto>> getListarTipoProduto(){
-		List<TipoProduto> listarTipoProduto = (List<TipoProduto>) tipoProdutoDao.getListarTipoProduto();
+		List<TipoProduto> listarTipoProduto = (List<TipoProduto>) tipoProdutoDao.findAll();
 		
 		List<TipoProdutoDto> listarTipoProdutoDto = new ArrayList<TipoProdutoDto>();
 		for (TipoProduto tipoProduto : listarTipoProduto) {

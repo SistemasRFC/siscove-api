@@ -1,4 +1,4 @@
-package TipoProduto.Controller;
+package siscove.siscovejava.TipoProduto.Controller;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import TipoProduto.Dto.TipoProdutoDto;
-import TipoProduto.Service.TipoProdutoService;
 import siscove.siscovejava.Config.response.BaseController;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
+import siscove.siscovejava.TipoProduto.Dto.TipoProdutoDto;
+import siscove.siscovejava.TipoProduto.Service.TipoProdutoService;
 
 @RestController
 @RequestMapping(value = "/produto")

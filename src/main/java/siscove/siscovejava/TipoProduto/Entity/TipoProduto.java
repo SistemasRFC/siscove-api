@@ -1,4 +1,4 @@
-package TipoProduto.Entity;
+package siscove.siscovejava.TipoProduto.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

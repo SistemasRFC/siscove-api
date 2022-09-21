@@ -1,11 +1,11 @@
-package TipoProduto.Dto;
+package siscove.siscovejava.TipoProduto.Dto;
 
 import org.springframework.stereotype.Component;
 
-import TipoProduto.Entity.TipoProduto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.TipoProduto.Entity.TipoProduto;
 
 @Component
 @AllArgsConstructor
