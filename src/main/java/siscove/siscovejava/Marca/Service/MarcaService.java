@@ -30,6 +30,11 @@ public class MarcaService {
 	}
 
 	public EnvelopeResponse<MarcaDto> findByCodMarca(Integer codMarca) {
-		return new EnvelopeResponse<MarcaDto>(MarcaDto.build(marcaDao.findByCodMarca(codMarca)));
+		Marca marca=marcaDao.findByCodMarca(codMarca);
+		if (null != marca) {
+			return new EnvelopeResponse<MarcaDto>(MarcaDto.build(marca));
+			
+		}
+		return new EnvelopeResponse<MarcaDto>(null);
 	}
 }

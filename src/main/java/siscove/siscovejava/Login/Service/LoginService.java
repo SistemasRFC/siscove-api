@@ -14,8 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.Login.Dto.LoginDto;
 import siscove.siscovejava.Token.Dto.TokenDto;
-import siscove.siscovejava.Token.Entity.Token;
-import siscove.siscovejava.Token.Repository.TokenDao;
 import siscove.siscovejava.Token.Service.TokenService;
 import siscove.siscovejava.Usuario.Entity.Usuario;
 import siscove.siscovejava.Usuario.Repository.UsuarioDao;

@@ -17,35 +17,47 @@ public class ProdutoDto {
 	private String dscProduto;
 	private Float vlrProduto;
 	private Float vlrMinimo;
-	private String tpoProduto;
+	private String indTipoProduto;
 	private Integer codMarca;
 	private String dscMarca;
-	private String indAlinhamento;
 	private Integer codClienteFinal;
-	private Integer codTipoFinal;
 	private Integer codTipoProduto;
-	private Integer codNroAroPneu;
+	private Integer NroAroPneu;
 	private String indAtivo;
-	private Float vlrPorcentagem;
-	private String indTipoProduto;
+	private String indSituacaoProduto;
 	private String indComissaoGerencia;
-	private Integer codCfop;
-	private Integer codIcmsOrigem;
-	private Integer codNcm;
-	private Integer codIcmsSituacaoTributaria;
-	private Integer codPisSituacaoTribuataria;
-	private Integer codCofinsSituacaoTributaria;
+	private String indTipoRegistro;
 
 	public static ProdutoDto build(Produto produto) {
-		ProdutoDto produtoDto = new ProdutoDto(produto.getCodProduto(),
-				produto.getDscProduto(), produto.getIndAtivo());
+		ProdutoDto produtoDto = new ProdutoDto(produto.getCodProduto(), produto.getDscProduto(), produto.getIndAtivo(), produto.getIndComissaoGerencia());
+
 		return produtoDto;
 	}
 
-	public ProdutoDto(Integer codProduto, String dscProduto, String indAtivo) {
-		this.codProduto=codProduto;
-		this.dscProduto=dscProduto;
-		this.indAtivo=indAtivo;
+	public ProdutoDto(Integer codProduto, String dscProduto, String indAtivo , String indComissaoGerencia) {
+		this.codProduto = codProduto;
+		this.dscProduto = dscProduto;
+		this.indAtivo = indAtivo;
+		this.indComissaoGerencia = indComissaoGerencia;
+	}
+
+	public static Produto parse(ProdutoDto produtoDto) {
+		Produto produto = new Produto();
+		produto.setCodProduto(produtoDto.getCodProduto());
+		produto.setDscProduto(produtoDto.getDscProduto());
+		produto.setIndAtivo(produtoDto.getIndAtivo());
+		produto.setVlrProduto(produtoDto.getVlrProduto());
+		produto.setVlrMinimo(produtoDto.getVlrMinimo());
+		produto.setIndTipoRegistro(produtoDto.getIndTipoRegistro());
+		produto.setCodMarca(produtoDto.getCodMarca());
+		produto.setCodClienteFinal(produtoDto.getCodClienteFinal());
+		produto.setIndAtivo(produtoDto.getIndAtivo());
+		produto.setNroAroPneu(produtoDto.getNroAroPneu());
+		produto.setIndComissaoGerencia(produtoDto.getIndComissaoGerencia());
+		produto.setCodTipoProduto(produtoDto.getCodTipoProduto());
+		produto.setIndSituacaoProduto(produtoDto.getIndSituacaoProduto());
 		
+		return produto;
+
 	}
 }

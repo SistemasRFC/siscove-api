@@ -22,24 +22,32 @@ public class ProdutoService {
 	@Autowired
 	private MarcaService marcaSerivce;
 
-	public EnvelopeResponse<List<ProdutoDto>> getListarProdutos() {
-		List<Produto> listaProdutos = (List<Produto>) produtoDao.findAll();
+	public EnvelopeResponse<List<ProdutoDto>> getListarProdutos(String txtTermo) {
+		List<Produto> listaProdutos = (List<Produto>) produtoDao.findBydscProduto(txtTermo);
 
 		List<ProdutoDto> listarProdutosDto = new ArrayList<ProdutoDto>();
 		for (Produto produto : listaProdutos) {
 			ProdutoDto produtoDto = ProdutoDto.build(produto);
 
 			if (null != produto.getCodMarca()) {
-				MarcaDto marcaDto = marcaSerivce.findByCodMarca(produto.getCodMarca())
-						.getObjeto();
-				produtoDto.setDscMarca(marcaDto.getDscMarca());
+				MarcaDto marcaDto = marcaSerivce.findByCodMarca(produto.getCodMarca()).getObjeto();
+				if (null != marcaDto) {
+					produtoDto.setDscMarca(marcaDto.getDscMarca());
+				}
 			}
-
 			listarProdutosDto.add(produtoDto);
-
-			return new EnvelopeResponse<List<ProdutoDto>>(listarProdutosDto);
-
 		}
-		 return new EnvelopeResponse<List<ProdutoDto>>(listarProdutosDto);
+
+		return new EnvelopeResponse<List<ProdutoDto>>(listarProdutosDto);
+	}
+
+	public EnvelopeResponse<ProdutoDto> salvar(ProdutoDto produtoDto) {
+		Produto produto = ProdutoDto.parse(produtoDto);
+
+		produto = produtoDao.save(produto);
+
+		produtoDto.setCodProduto(produto.getCodProduto());
+
+		return new EnvelopeResponse<ProdutoDto>(produtoDto);
 	}
 }

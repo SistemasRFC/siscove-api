@@ -28,14 +28,12 @@ public class Produto {
 	@Column(name="VLR_MINIMO")
 	private Float vlrMinimo;
 	
-	@Column(name="TPO_PRODUTO")
-	private String tpoProduto;
+
+	@Column(name="IND_TIPO_REGISTRO")
+	private String indTipoRegistro;
 	
 	@Column(name="COD_MARCA")
 	private Integer codMarca;
-	
-	@Column(name="IND_ALINHAMENTO")
-	private String indAlinhamento;
 	
 	@Column(name="COD_CLIENTE_FINAL")
 	private Integer codClienteFinal;
@@ -49,30 +47,8 @@ public class Produto {
 	@Column(name="IND_ATIVO")
 	private String indAtivo;
 	
-	@Column(name="VLR_PORCENTAGEM")
-	private Float vlrPorcentagem;
+	@Column(name="IND_SITUACAO_PRODUTO")
+	private String indSituacaoProduto;
 	
-	@Column(name="IND_TIPO_PRODUTO")
-	private String indTipoProduto;
-
 	@Column(name="IND_COMISSAO_GERENCIA")
-	private String indComissaoGerencia;
-	
-	@Column(name="COD_CFOP")
-	private Integer codCfop;
-	
-	@Column(name="COD_ICMS_ORIGEM")
-	private Integer codIcmsOrigem;
-	
-	@Column(name="COD_NCM")
-	private Integer codNcm;
-	
-	@Column(name="COD_ICMS_SITUACAO_TRIBUTARIA")
-	private Integer codIcmsSituacaoTributaria;
-	
-	@Column(name="COD_PIS_SITUACAO_TRIBUTARIA")
-	private Integer codPisSituacaoTributaria;
-	
-	@Column(name="COD_COFINS_SITUACAO_TRIBUTARIA")
-	private Integer codCofinsSituacaoTributaria;
-}
+	private String indComissaoGerencia;}
