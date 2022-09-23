@@ -23,7 +23,7 @@ public class TipoProduto {
 	private String dscTipoProduto;
 	
 	@Column(name="COD_CLIENTE_FINAL")
-	private String codClienteFinal;
+	private Integer codClienteFinal;
 	
 	@Column(name="IND_ATIVO")
 	private String indAtivo;

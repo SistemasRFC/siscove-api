@@ -2,6 +2,9 @@ package siscove.siscovejava.TipoProduto.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +24,10 @@ public class TipoProdutoController extends BaseController {
 	private TipoProdutoService tipoProdutoService;
 
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, consumes = { "*/*" })
-	public EnvelopeResponse<TipoProdutoDto> salvarTipoProduto(@RequestBody TipoProdutoDto tipoProdutoDto) {
-		EnvelopeResponse<TipoProdutoDto> retorno = tipoProdutoService.salvar(tipoProdutoDto);
+	public EnvelopeResponse<TipoProdutoDto> salvarTipoProduto(HttpServletRequest request, @RequestBody TipoProdutoDto tipoProdutoDto) {
+		HttpSession session = request.getSession();
+		String token = session.getAttribute("token").toString();
+		EnvelopeResponse<TipoProdutoDto> retorno = tipoProdutoService.salvar(tipoProdutoDto, token);
 		return retorno;
 	}
 

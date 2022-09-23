@@ -7,9 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import siscove.siscovejava.Config.response.EnvelopeResponse;
+import siscove.siscovejava.Deposito.Dto.DepositoDto;
+import siscove.siscovejava.Deposito.Service.DepositoService;
 import siscove.siscovejava.TipoProduto.Dto.TipoProdutoDto;
 import siscove.siscovejava.TipoProduto.Entity.TipoProduto;
 import siscove.siscovejava.TipoProduto.Repository.TipoProdutoDao;
+import siscove.siscovejava.Token.Dto.TokenDto;
+import siscove.siscovejava.Token.Service.TokenService;
+import siscove.siscovejava.Usuario.Dto.UsuarioDto;
+import siscove.siscovejava.Usuario.Service.UsuarioService;
 
 @Service
 public class TipoProdutoService {
@@ -17,9 +23,27 @@ public class TipoProdutoService {
 	@Autowired
 	private TipoProdutoDao tipoProdutoDao;
 	
-	public EnvelopeResponse<TipoProdutoDto> salvar(TipoProdutoDto tipoProdutoDto) {
-
+	@Autowired
+	private TokenService tokenService;  
+	
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@Autowired
+	private DepositoService depositoService;
+	
+	public EnvelopeResponse<TipoProdutoDto> salvar(TipoProdutoDto tipoProdutoDto, String token) {
+		
+		TokenDto tokenDto = tokenService.getByToken(token).getObjeto();
+		
+		UsuarioDto usuarioDto = usuarioService.getUsuarioByCodigoUsuario(tokenDto.getCodUsuario()).getObjeto();
+		
+		DepositoDto depositoDto = depositoService.getDepositoByCodigoDeposito(usuarioDto.getCodDeposito()).getObjeto();
+		
+		tipoProdutoDto.setCodClienteFinal(depositoDto.getCodClienteFinal());
+		
 		TipoProduto tipoProduto = tipoProdutoDao.save(TipoProdutoDto.parse(tipoProdutoDto));
+		
 		
 		tipoProdutoDto = TipoProdutoDto.build(tipoProduto);
 

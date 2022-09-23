@@ -15,7 +15,7 @@ public class TipoProdutoDto {
 
 	private Integer codTipoProduto;
 	private String dscTipoProduto;
-	private String codClienteFinal;
+	private Integer codClienteFinal;
 	private String indAtivo;
 
 	public static TipoProduto parse(TipoProdutoDto tipoProdutoDto) {
