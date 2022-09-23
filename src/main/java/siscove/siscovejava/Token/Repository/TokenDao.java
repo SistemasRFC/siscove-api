@@ -5,7 +5,6 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import siscove.siscovejava.Token.Entity.Token;
@@ -18,6 +17,9 @@ public interface TokenDao extends CrudRepository<Token, Integer> {
 	
 	@Query(value="SELECT T.* FROM se_token T WHERE T.cod_usuario = :codUsuario", nativeQuery=true)
 	public Token getByCodUsuario(Integer codUsuario);
+	
+	@Query(value="SELECT T.* FROM se_token T WHERE T.cod_cliente_final = :codClienteFinal", nativeQuery=true)
+	public Token getByCodClienteFinal(Integer codClienteFinal);
 	
 	@Transactional	
 	@Modifying

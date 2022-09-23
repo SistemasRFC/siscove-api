@@ -1,4 +1,4 @@
-	package siscove.siscovejava.Menu.Dto;
+package siscove.siscovejava.Menu.Dto;
 
 
 import org.springframework.stereotype.Component;

@@ -49,7 +49,7 @@ public class Usuario{
 	private LocalDate dtaInativo;
 	
 	@Column(name="COD_DEPOSITO")
-	private String codDeposito;
+	private Integer codDeposito;
 	
 	@ManyToOne
 	@JoinColumn(name="COD_PERFIL_W", insertable = true, updatable = true)

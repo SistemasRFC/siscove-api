@@ -33,7 +33,10 @@ public class DepositoService {
 		}
 		return new EnvelopeResponse<List<DepositoDto>>(listaDepositoDto);
 	}
-
+	
+	public EnvelopeResponse<DepositoDto> getDepositoByCodigoDeposito(Integer codigoDeposito){
+		return new EnvelopeResponse<DepositoDto>(DepositoDto.build(depositoDao.findById(codigoDeposito).get()));
+  }
 	public EnvelopeResponse<List<DepositoDto>> getListaDeposito() {
 		List<Deposito> listaDeposito = (List<Deposito>) depositoDao.findAll();
 

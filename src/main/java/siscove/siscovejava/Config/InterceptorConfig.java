@@ -5,6 +5,7 @@ import java.time.temporal.ChronoUnit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,10 +26,11 @@ public class InterceptorConfig implements HandlerInterceptor{
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     	tokenService.excluiTokensInvalidos(TEMPO_LIMITE);
-    	log.info("Authorization: "+request.getHeader("authorization"));
-    	String txtToken = request.getHeader("authorization");
+    	log.info("Authorization: "+request.getHeader("Authorization"));
+    	HttpSession session = request.getSession();
+    	String txtToken = request.getHeader("Authorization");
     	if (null!=txtToken && (!"null".equals(txtToken))) {
-	    	if (request.getHeader("authorization").equals("getToken")) {
+	    	if (request.getHeader("Authorization").equals("getToken")) {
 	    		return true;
 	    	}else {
 		    	TokenDto tokenDto = tokenService.getByToken(txtToken).getObjeto();
@@ -47,6 +49,7 @@ public class InterceptorConfig implements HandlerInterceptor{
 				        response.setStatus(HttpServletResponse.SC_OK);
 				        return false;
 			    	}else {
+			    		session.setAttribute("token", txtToken);
 			    		tokenDto.setDtaToken(LocalDateTime.now());
 			    		tokenService.salvar(tokenDto);
 			    	}
