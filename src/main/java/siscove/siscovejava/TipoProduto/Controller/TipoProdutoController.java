@@ -17,7 +17,7 @@ import siscove.siscovejava.TipoProduto.Dto.TipoProdutoDto;
 import siscove.siscovejava.TipoProduto.Service.TipoProdutoService;
 
 @RestController
-@RequestMapping(value = "/produto")
+@RequestMapping(value = "tipo/produto")
 public class TipoProdutoController extends BaseController {
 
 	@Autowired
