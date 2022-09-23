@@ -1,4 +1,4 @@
-package siscove.siscovejava.Usuario.Service;
+ package siscove.siscovejava.Usuario.Service;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -80,4 +80,8 @@ public class UsuarioService {
 		return null;
 	}
 
+	public EnvelopeResponse<UsuarioDto> getUsuarioByCodigoUsuario(Integer codigoUsuario){
+		Usuario usuario = usuarioDao.findById(codigoUsuario).get();
+		return new EnvelopeResponse<UsuarioDto>(UsuarioDto.build(usuario));
+	}
 }

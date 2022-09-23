@@ -29,7 +29,7 @@ public class UsuarioDto {
 	private String nroTelCelular;
 	private String txtEmail;
 	private LocalDate dtaInativo;
-	private String codDeposito;
+	private Integer codDeposito;
 	private Float vlrPorcentagemServico;
 	private Float vlrPorcentagemVenda;
 	private Float vlrPorcentagemGerencia;
