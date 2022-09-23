@@ -22,24 +22,33 @@ public class ProdutoDto {
 	private String dscMarca;
 	private Integer codClienteFinal;
 	private Integer codTipoProduto;
-	private Integer NroAroPneu;
+	private Integer nroAroPneu;
 	private String indAtivo;
 	private String indSituacaoProduto;
 	private String indComissaoGerencia;
 	private String indTipoRegistro;
 
 	public static ProdutoDto build(Produto produto) {
-		ProdutoDto produtoDto = new ProdutoDto(produto.getCodProduto(), produto.getDscProduto(), produto.getIndAtivo(), produto.getIndComissaoGerencia());
+		ProdutoDto produtoDto = new ProdutoDto(
+				produto.getCodProduto(), 
+				produto.getDscProduto(),
+				produto.getVlrMinimo(),
+				produto.getVlrProduto(),
+				produto.getIndTipoRegistro(),
+				produto.getCodMarca(),
+				produto.getDscProduto(),
+				produto.getCodClienteFinal(),
+				produto.getCodTipoProduto(),
+				produto.getNroAroPneu(),
+				produto.getIndAtivo(),
+				produto.getIndSituacaoProduto(),
+				produto.getIndComissaoGerencia(), 
+				produto.getIndTipoRegistro());
+				
 
 		return produtoDto;
 	}
 
-	public ProdutoDto(Integer codProduto, String dscProduto, String indAtivo , String indComissaoGerencia) {
-		this.codProduto = codProduto;
-		this.dscProduto = dscProduto;
-		this.indAtivo = indAtivo;
-		this.indComissaoGerencia = indComissaoGerencia;
-	}
 
 	public static Produto parse(ProdutoDto produtoDto) {
 		Produto produto = new Produto();
