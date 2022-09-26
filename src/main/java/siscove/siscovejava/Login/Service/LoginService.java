@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
+import siscove.siscovejava.Deposito.Dto.DepositoDto;
+import siscove.siscovejava.Deposito.Entity.Deposito;
+import siscove.siscovejava.Deposito.Service.DepositoService;
 import siscove.siscovejava.Login.Dto.LoginDto;
 import siscove.siscovejava.Token.Dto.TokenDto;
 import siscove.siscovejava.Token.Service.TokenService;
@@ -27,6 +30,9 @@ public class LoginService {
 	
 	@Autowired
 	private TokenService tokenService;
+	
+	@Autowired
+	private DepositoService depositoService;
 	
 	public EnvelopeResponse<LoginDto> validaLogin(LoginDto loginDto) throws UnsupportedEncodingException {
 		
@@ -45,6 +51,8 @@ public class LoginService {
 		
 		if (null!=usuario && usuario.getCodUsuario()>0) {
 			loginDto.setCodUsuario(usuario.getCodUsuario());
+			DepositoDto dep = depositoService.getDepositoByCodigoDeposito(usuario.getCodDeposito()).getObjeto();
+			loginDto.setCodClienteFinal(dep.getCodClienteFinal());
 			TokenDto tokenDto = this.salvarToken(loginDto);
 			loginDto.setTxtToken(tokenDto.getTxtToken());
 			return new EnvelopeResponse<LoginDto>(loginDto, true, "");
@@ -64,7 +72,7 @@ public class LoginService {
 				sb.append(String.format("%02x", b));
 			}
 			
-			TokenDto tokenDto = new TokenDto(null, sb.toString(), LocalDateTime.now(), loginDto.getCodUsuario());
+			TokenDto tokenDto = new TokenDto(null, sb.toString(), LocalDateTime.now(), loginDto.getCodUsuario(), loginDto.getCodClienteFinal());
 			
 			return tokenService.salvar(tokenDto).getObjeto();
 		} catch (NoSuchAlgorithmException e) {
