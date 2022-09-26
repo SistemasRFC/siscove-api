@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import siscove.siscovejava.TipoPagamento.Entity.TipoPagamento;
-import siscove.siscovejava.TipoProduto.Dto.TipoProdutoDto;
-import siscove.siscovejava.TipoProduto.Entity.TipoProduto;
 
 @Component
 @AllArgsConstructor
@@ -22,19 +20,24 @@ public class TipoPagamentoDto {
 
 	public static TipoPagamento parse(TipoPagamentoDto tipoPagamentoDto) {
 		TipoPagamento tipoPagamento = new TipoPagamento();
-		tipoPagamento.setCodTipoProduto(tipoPagamentoDto.getCodTipoProduto());
-		tipoPagamento.setDscTipoProduto(tipoPagamentoDto.getDscTipoProduto());
-		tipoPagamento.setCodClienteFinal(tipoPagamentoDto.getCodClienteFinal());
+		tipoPagamento.setCodTipoPagamento(tipoPagamentoDto.getCodTipoPagamento());
+		tipoPagamento.setDscTipoPagamento(tipoPagamentoDto.getDscTipoPagamento());
+		tipoPagamento.setVlrPorcentagem(tipoPagamentoDto.getVlrPorcentagem());
 		tipoPagamento.setIndAtivo(tipoPagamentoDto.getIndAtivo());
 		return tipoPagamento;
 	}
 
-	public static TipoProdutoDto build(TipoProduto tipoProduto) {
-		TipoProdutoDto tipoProdutoDto = new TipoProdutoDto(
-		tipoProduto.getCodTipoProduto(), 
-		tipoProduto.getDscTipoProduto(),
-		tipoProduto.getCodClienteFinal(),
-		tipoProduto.getIndAtivo());
-		return tipoProdutoDto;
+	public static TipoPagamentoDto build(TipoPagamento tipoPagamento) {
+		TipoPagamentoDto tipoPagamentoDto = new TipoPagamentoDto(
+				tipoPagamento.getCodTipoPagamento(), 
+				tipoPagamento.getDscTipoPagamento(),
+				tipoPagamento.getVlrPorcentagem(),
+				tipoPagamento.getIndAtivo());
+		return tipoPagamentoDto;
+	}
+
+	public TipoPagamentoDto(Integer codTipoPagamento, String dscTipoPagamento, Float vlrPorcentagem,
+			String indAtivo) {
 	}
 }
+
