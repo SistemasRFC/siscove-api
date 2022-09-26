@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.ClienteFinal.Entity.ClienteFinal;
 import siscove.siscovejava.Usuario.Entity.Usuario;
 
 @NoArgsConstructor
@@ -33,5 +34,10 @@ public class Token{
 	@ManyToOne
 	@JoinColumn(name="COD_USUARIO", insertable = true, updatable = true)
 	private Usuario usuario;
+	
+	@ManyToOne
+	@JoinColumn(name="COD_CLIENTE_FINAL", insertable = true, updatable = true)
+	private ClienteFinal clienteFinal;
+	
 
 }

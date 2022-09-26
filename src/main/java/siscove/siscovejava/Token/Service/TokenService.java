@@ -4,18 +4,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import siscove.siscovejava.Config.response.EnvelopeResponse;
+import siscove.siscovejava.Deposito.Dto.DepositoDto;
+import siscove.siscovejava.Deposito.Service.DepositoService;
 import siscove.siscovejava.Token.Dto.TokenDto;
 import siscove.siscovejava.Token.Entity.Token;
 import siscove.siscovejava.Token.Repository.TokenDao;
+import siscove.siscovejava.Usuario.Dto.UsuarioDto;
+import siscove.siscovejava.Usuario.Service.UsuarioService;
 
 @Service
 public class TokenService {
 
 	@Autowired
 	private TokenDao tokenDao;
+	
+	@Autowired
+	private DepositoService depositoService;
+	
+	@Autowired
+	private UsuarioService usuarioService;
 
 	public EnvelopeResponse<TokenDto> salvar(TokenDto tokenDto) {
 
+		UsuarioDto usuarioDto = usuarioService.getUsuarioByCodigoUsuario(tokenDto.getCodUsuario()).getObjeto();
+		
+		DepositoDto depositoDto = depositoService.getDepositoByCodigoDeposito(usuarioDto.getCodDeposito()).getObjeto();
+		
+		tokenDto.setCodClienteFinal(depositoDto.getCodClienteFinal());
+		
 		Token token = tokenDao.save(TokenDto.parse(tokenDto));
 
 		tokenDto.setCodToken(token.getCodToken());

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.ClienteFinal.Entity.ClienteFinal;
 import siscove.siscovejava.Token.Entity.Token;
 import siscove.siscovejava.Usuario.Entity.Usuario;
 
@@ -20,6 +21,7 @@ public class TokenDto {
 	private String txtToken;
 	private LocalDateTime dtaToken;
 	private Integer codUsuario;
+	private Integer codClienteFinal;
 
 	public static Token parse(TokenDto tokenDto) {
 		Token token = new Token();
@@ -29,11 +31,15 @@ public class TokenDto {
 		
 		Usuario usuario= new Usuario();
 		usuario.setCodUsuario(tokenDto.getCodUsuario());
-		token.setUsuario(usuario);	
+		token.setUsuario(usuario);
+		
+		ClienteFinal clienteFinal = new ClienteFinal();
+		clienteFinal.setCodClienteFinal(tokenDto.getCodClienteFinal());
+		
 		return token;
 	}
 	
 	public static TokenDto build(Token token) {
-		return new TokenDto(token.getCodToken(), token.getTxtToken(), token.getDtaToken(), token.getUsuario().getCodUsuario());
+		return new TokenDto(token.getCodToken(), token.getTxtToken(), token.getDtaToken(), token.getUsuario().getCodUsuario(), token.getClienteFinal().getCodClienteFinal());
 	}
 }
