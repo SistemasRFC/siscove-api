@@ -16,6 +16,6 @@ public class LoginDto {
 	private String nmeUsuario;
 	private String txtSenha;
 	private String txtToken;
-	
+	private Integer codClienteFinal;
 	
 }
