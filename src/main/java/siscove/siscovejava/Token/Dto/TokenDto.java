@@ -35,6 +35,7 @@ public class TokenDto {
 		
 		ClienteFinal clienteFinal = new ClienteFinal();
 		clienteFinal.setCodClienteFinal(tokenDto.getCodClienteFinal());
+		token.setClienteFinal(clienteFinal);
 		
 		return token;
 	}
