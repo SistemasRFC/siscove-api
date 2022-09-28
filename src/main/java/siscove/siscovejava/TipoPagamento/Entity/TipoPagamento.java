@@ -19,13 +19,13 @@ public class TipoPagamento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codTipoPagamento;
 	
-	@Column(name="DSC_TIPO_PRODUTO")
+	@Column(name="DSC_TIPO_PAGAMENTO")
 	private String dscTipoPagamento;
-	
-	@Column(name="VLR_PORCENTAGEM")
-	private Float vlrPorcentagem;
 	
 	@Column(name="IND_ATIVO")
 	private String indAtivo;
 
+	@Column(name="VLR_PORCENTAGEM")
+	private Float vlrPorcentagem;
+	
 }

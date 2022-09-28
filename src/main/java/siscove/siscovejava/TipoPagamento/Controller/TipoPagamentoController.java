@@ -14,16 +14,16 @@ import siscove.siscovejava.TipoPagamento.Dto.TipoPagamentoDto;
 import siscove.siscovejava.TipoPagamento.Service.TipoPagamentoService;
 
 @RestController
-@RequestMapping(value = "tipo/pagamento")
+@RequestMapping(value = "/tipo/pagamento")
 public class TipoPagamentoController extends BaseController {
 
 	@Autowired
 	private TipoPagamentoService tipoPagamentoService;
 
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, consumes = { "*/*" })
-	public EnvelopeResponse<TipoPagamentoDto> salvar(@RequestBody TipoPagamentoDto tipoPagamentoDto) {
-		EnvelopeResponse<TipoPagamentoDto> envLogin = tipoPagamentoService.salvar(tipoPagamentoDto);
-		return envLogin;
+	public EnvelopeResponse<TipoPagamentoDto> salvarTipoPagamento(@RequestBody TipoPagamentoDto tipoPagamentoDto) {
+		EnvelopeResponse<TipoPagamentoDto> retorno = tipoPagamentoService.salvar(tipoPagamentoDto);
+		return retorno;
 	}
 
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, consumes = { "*/*" })

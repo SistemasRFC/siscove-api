@@ -29,15 +29,11 @@ public class TipoPagamentoDto {
 
 	public static TipoPagamentoDto build(TipoPagamento tipoPagamento) {
 		TipoPagamentoDto tipoPagamentoDto = new TipoPagamentoDto(
-				tipoPagamento.getCodTipoPagamento(), 
-				tipoPagamento.getDscTipoPagamento(),
-				tipoPagamento.getVlrPorcentagem(),
-				tipoPagamento.getIndAtivo());
+		tipoPagamento.getCodTipoPagamento(), 
+		tipoPagamento.getDscTipoPagamento(),
+		tipoPagamento.getIndAtivo(),
+		tipoPagamento.getVlrPorcentagem());
 		return tipoPagamentoDto;
-	}
-
-	public TipoPagamentoDto(Integer codTipoPagamento, String dscTipoPagamento, Float vlrPorcentagem,
-			String indAtivo) {
 	}
 }
 

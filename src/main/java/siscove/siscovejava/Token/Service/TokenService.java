@@ -17,20 +17,8 @@ public class TokenService {
 
 	@Autowired
 	private TokenDao tokenDao;
-	
-	@Autowired
-	private DepositoService depositoService;
-	
-	@Autowired
-	private UsuarioService usuarioService;
 
 	public EnvelopeResponse<TokenDto> salvar(TokenDto tokenDto) {
-
-		UsuarioDto usuarioDto = usuarioService.getUsuarioByCodigoUsuario(tokenDto.getCodUsuario()).getObjeto();
-		
-		DepositoDto depositoDto = depositoService.getDepositoByCodigoDeposito(usuarioDto.getCodDeposito()).getObjeto();
-		
-		tokenDto.setCodClienteFinal(depositoDto.getCodClienteFinal());
 		
 		Token token = tokenDao.save(TokenDto.parse(tokenDto));
 
