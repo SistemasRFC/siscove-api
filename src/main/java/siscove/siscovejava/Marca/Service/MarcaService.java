@@ -30,11 +30,36 @@ public class MarcaService {
 	}
 
 	public EnvelopeResponse<MarcaDto> findByCodMarca(Integer codMarca) {
-		Marca marca=marcaDao.findByCodMarca(codMarca);
+		Marca marca = marcaDao.findByCodMarca(codMarca);
 		if (null != marca) {
 			return new EnvelopeResponse<MarcaDto>(MarcaDto.build(marca));
-			
+
 		}
 		return new EnvelopeResponse<MarcaDto>(null);
 	}
+
+	public EnvelopeResponse<MarcaDto> getMarcaByCodigoMarca(Integer codigoMarca) {
+		return new EnvelopeResponse<MarcaDto>(MarcaDto.build(marcaDao.findById(codigoMarca).get()));
+	}
+
+	public EnvelopeResponse<List<MarcaDto>> getListaMarca() {
+		List<Marca> listaMarca = (List<Marca>) marcaDao.findAll();
+
+		List<MarcaDto> listaMarcaDto = new ArrayList<MarcaDto>();
+		for (Marca marca : listaMarca) {
+			MarcaDto dto = MarcaDto.build(marca);
+			listaMarcaDto.add(dto);
+		}
+
+		return new EnvelopeResponse<List<MarcaDto>>(listaMarcaDto);
+	}
+
+	public EnvelopeResponse<MarcaDto> salvar(MarcaDto marcaDto) {
+		Marca marca = marcaDao.save(MarcaDto.parse(marcaDto));
+
+		marcaDto = MarcaDto.build(marca);
+
+		return new EnvelopeResponse<MarcaDto>(marcaDto);
+	}
+
 }
