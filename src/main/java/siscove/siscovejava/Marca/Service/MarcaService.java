@@ -10,12 +10,17 @@ import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.Marca.Dto.MarcaDto;
 import siscove.siscovejava.Marca.Entity.Marca;
 import siscove.siscovejava.Marca.Repository.MarcaDao;
+import siscove.siscovejava.Token.Dto.TokenDto;
+import siscove.siscovejava.Token.Service.TokenService;
 
 @Service
 public class MarcaService {
 
 	@Autowired
 	private MarcaDao marcaDao;
+	
+	@Autowired
+	private TokenService tokenService;  
 
 	public EnvelopeResponse<List<MarcaDto>> getListarMarcasAtivas() {
 		List<Marca> listarMarcasAtivas = (List<Marca>) marcaDao.findAll();
@@ -54,7 +59,11 @@ public class MarcaService {
 		return new EnvelopeResponse<List<MarcaDto>>(listaMarcaDto);
 	}
 
-	public EnvelopeResponse<MarcaDto> salvar(MarcaDto marcaDto) {
+	public EnvelopeResponse<MarcaDto> salvar(MarcaDto marcaDto, String token) {
+		TokenDto tokenDto = tokenService.getByToken(token).getObjeto();
+		
+		marcaDto.setCodClienteFinal(tokenDto.getCodClienteFinal())
+		;
 		Marca marca = marcaDao.save(MarcaDto.parse(marcaDto));
 
 		marcaDto = MarcaDto.build(marca);
