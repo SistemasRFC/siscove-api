@@ -17,6 +17,15 @@ public class MarcaDto {
 	private String dscMarca;
 	private Integer codClienteFinal;
 	private String indAtiva;
+	public static Marca parse(MarcaDto marcaDto) {
+		Marca marca = new Marca();
+		marca.setCodMarca(marcaDto.getCodMarca());
+		marca.setDscMarca(marcaDto.getDscMarca());
+		marca.setCodClienteFinal(marcaDto.getCodClienteFinal());
+		marca.setIndAtiva(marcaDto.getIndAtiva());
+		return marca;
+		
+	} 
 
 	public static MarcaDto build(Marca marca) {
 		MarcaDto marcaDto = new MarcaDto(
