@@ -20,7 +20,7 @@ public class TokenService {
 
 	public EnvelopeResponse<TokenDto> salvar(TokenDto tokenDto) {
 
-		Token token = tokenDao.save(TokenDto.parse(tokenDto));
+		Token token = tokenDao.save(TokenDto.parse(tokenDto)); 
 
 		tokenDto.setCodToken(token.getCodToken());
 

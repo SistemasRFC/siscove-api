@@ -41,6 +41,11 @@ public class TokenDto {
 	}
 	
 	public static TokenDto build(Token token) {
+		if (null==token.getClienteFinal()) {
+			ClienteFinal clienteFinal = new ClienteFinal();
+			token.setClienteFinal(clienteFinal);
+		}
+		
 		return new TokenDto(token.getCodToken(), token.getTxtToken(), token.getDtaToken(), token.getUsuario().getCodUsuario(), token.getClienteFinal().getCodClienteFinal());
 	}
 }
