@@ -12,7 +12,6 @@ import siscove.siscovejava.ClienteFinal.Dto.ClienteFinalDto;
 import siscove.siscovejava.ClienteFinal.Service.ClienteFinalService;
 import siscove.siscovejava.Config.response.BaseController;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
-import siscove.siscovejava.Menu.Dto.MenuDto;
 
 @RestController
 @RequestMapping(value = "/clienteFinal")
@@ -22,8 +21,8 @@ public class ClienteFinalController extends BaseController {
 	private ClienteFinalService clienteFinalService;
 	
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<ClienteFinalDto>> ListarClientFinal() {
-		return clienteFinalService.getListarCLienteFinal();
+	public EnvelopeResponse<List<ClienteFinalDto>> ListaClientFinal() {
+		return clienteFinalService.getListaClienteFinal();
 	}
 
 	@RequestMapping(value = "/listar/ativos", method = RequestMethod.GET, consumes = { "*/*" })
