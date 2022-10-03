@@ -69,7 +69,7 @@ public class Cliente {
 	@Column(name="NRO_IE")
 	private String nroIe;
 
-	@Column(name="COD_CLEINTE_FINAL")
+	@Column(name="COD_CLIENTE_FINAL")
 	private Integer codClienteFinal;
 
 	@Column(name="DTA_NASCIMENTO")

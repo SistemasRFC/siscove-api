@@ -21,14 +21,9 @@ public class ClienteController extends BaseController {
 	private ClienteService clienteService;
 
 	
-	@RequestMapping(value = "/listar/ativos", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<ClienteDto>> getListaClienteAtivos() {
-		return clienteService.getListaClienteAtivos();
-	}
-	
-	@RequestMapping(value = "/listar", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<ClienteDto>> ListarCliente() {
-		return clienteService.getListaCliente();
+	@RequestMapping(value = "/listar/byTermo", method = RequestMethod.POST, consumes = { "*/*" })
+	public EnvelopeResponse<List<ClienteDto>> getListarClientes(@RequestBody String txtTermo) {
+		return clienteService.getListarClientes(txtTermo);
 	}
 	
 	@RequestMapping(value="/salvar", method = RequestMethod.POST, consumes = {"*/*"})

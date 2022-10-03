@@ -17,26 +17,16 @@ public class ClienteService {
 	@Autowired
 	private ClienteDao clienteDao;
 
-	public EnvelopeResponse<List<ClienteDto>> getListaClienteAtivos() {
-		List<Cliente> listaCliente = (List<Cliente>) clienteDao.findAll();
+	public EnvelopeResponse<List<ClienteDto>> getListarClientes(String txtTermo) {
+		List<Cliente> listarClientes = (List<Cliente>) clienteDao.findBydscCliente(txtTermo);
 
-		List<ClienteDto> listaClienteDto = new ArrayList<ClienteDto>();
-		for (Cliente cliente : listaCliente) {
-			listaClienteDto.add(ClienteDto.build(cliente));
-
+		List<ClienteDto> listarClientesDto = new ArrayList<ClienteDto>();
+		for (Cliente cliente : listarClientes) {
+			ClienteDto clienteDto = ClienteDto.build(cliente);
+			listarClientesDto.add(clienteDto);
 		}
-		return new EnvelopeResponse<List<ClienteDto>>(listaClienteDto);
-	}
-
-	public EnvelopeResponse<List<ClienteDto>> getListaCliente() {
-		List<Cliente> listaCliente = (List<Cliente>) clienteDao.findAll();
-
-		List<ClienteDto> listaClienteDto = new ArrayList<ClienteDto>();
-		for (Cliente cliente : listaCliente) {
-			listaClienteDto.add(ClienteDto.build(cliente));
-		}
-		return new EnvelopeResponse<List<ClienteDto>>(listaClienteDto);
-
+		
+		return new EnvelopeResponse<List<ClienteDto>>(listarClientesDto);
 	}
 
 	public EnvelopeResponse<ClienteDto> salvar(ClienteDto clienteDto) {
