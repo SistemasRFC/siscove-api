@@ -58,10 +58,12 @@ public class FornecedorDto {
 		fornecedor.setCodClienteFinal(fornecedorDto.getCodClienteFinal());
 		fornecedor.setIndAtivo(fornecedorDto.getIndAtivo());
 		fornecedor.setNroCnpj(fornecedorDto.getNroCnpj());
+		fornecedor.setTxtComplemento(fornecedorDto.getTxtComplemento());
 		fornecedor.setTxtLogradouro(fornecedorDto.getTxtLogradouro());
 		fornecedor.setNmeBairro(fornecedorDto.getNmeBairro());
 		fornecedor.setTxtLocalidade(fornecedorDto.getTxtLocalidade());
 		fornecedor.setSglUf(fornecedorDto.getSglUf());
+		fornecedor.setNroIe(fornecedorDto.getNroIe());
 		fornecedor.setNroCep(fornecedorDto.getNroCep());
 		
 		return fornecedor;

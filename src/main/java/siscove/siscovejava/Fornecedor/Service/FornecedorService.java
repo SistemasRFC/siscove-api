@@ -40,8 +40,6 @@ public class FornecedorService {
 		return new EnvelopeResponse<List<FornecedorDto>>(listarAtivosDto);
 	}
 
-
-
 	public EnvelopeResponse<FornecedorDto> salvar(FornecedorDto fornecedorDto) {
 		Fornecedor fornecedor = fornecedorDao.save(FornecedorDto.parse(fornecedorDto));
 
