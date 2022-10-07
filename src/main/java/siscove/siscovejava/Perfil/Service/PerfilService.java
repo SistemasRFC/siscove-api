@@ -28,25 +28,24 @@ public class PerfilService {
 		}
 		return new EnvelopeResponse<List<PerfilDto>>(listaPerfilDto);
 	}
-	
-	public EnvelopeResponse<List<PerfilDto>> getListaPerfil(){
+
+	public EnvelopeResponse<List<PerfilDto>> getListaPerfil() {
 		List<Perfil> listaPerfil = (List<Perfil>) perfilDao.findAll();
-		
+
 		List<PerfilDto> listaPerfilDto = new ArrayList<PerfilDto>();
 		for (Perfil perfil : listaPerfil) {
 			listaPerfilDto.add(PerfilDto.build(perfil));
 		}
-		return new EnvelopeResponse<List<PerfilDto>>(listaPerfilDto);  
-		
+		return new EnvelopeResponse<List<PerfilDto>>(listaPerfilDto);
+
 	}
 
 	public EnvelopeResponse<PerfilDto> salvar(PerfilDto perfilDto) {
-Perfil perfil = perfilDao.save(PerfilDto.parse(perfilDto));
-		
-		perfilDto = PerfilDto.build(perfil);
+		Perfil perfil = perfilDao.save(PerfilDto.parse(perfilDto));
 
+		perfilDto = PerfilDto.build(perfil);
 
 		return new EnvelopeResponse<PerfilDto>(perfilDto);
 	}
-	
+
 }
