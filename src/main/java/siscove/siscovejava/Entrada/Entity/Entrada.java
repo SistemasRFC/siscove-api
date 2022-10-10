@@ -13,37 +13,37 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-@Entity (name = "EN_ENTRADA_ESTOQUE")
+@Entity(name = "EN_ENTRADA")
 
 public class Entrada {
-	
+
 	@Id
-	@Column(name="NRO_SEQUENCIAL")
+	@Column(name = "NRO_SEQUENCIAL")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer nroSequencial;
-	
-	@Column(name="NRO_NOTA_FISCAL")
+
+	@Column(name = "NRO_NOTA_FISCAL")
 	private String nroNotaFiscal;
 
-	@Column(name="DTA_ENTRADA")
+	@Column(name = "DTA_ENTRADA")
 	private LocalDate dtaEntrada;
 
-	@Column(name="COD_FORNECEDOR")
+	@Column(name = "COD_FORNECEDOR")
 	private Integer codFornecedor;
-	
-	@Column(name="COD_DEPOSITO")
+
+	@Column(name = "COD_DEPOSITO")
 	private Integer codDeposito;
-	
-	@Column(name="COD_USUARIO")
+
+	@Column(name = "COD_USUARIO")
 	private Integer codUsuario;
-	
-	@Column(name="TXT_OBSERVACAO")
+
+	@Column(name = "TXT_OBSERVACAO")
 	private String txtObservacao;
-	
-	@Column(name="IND_ENTRADA")
+
+	@Column(name = "IND_ENTRADA")
 	private String indEntrada;
-	
-	@Column(name="COD_CLIENTE_FINAL")
+
+	@Column(name = "COD_CLIENTE_FINAL")
 	private Integer codClienteFinal;
-	
+
 }
