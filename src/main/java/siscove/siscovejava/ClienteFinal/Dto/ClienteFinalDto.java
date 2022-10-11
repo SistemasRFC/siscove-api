@@ -17,8 +17,8 @@ public class ClienteFinalDto {
 	private String nmeClienteFinal;
 	private String dscCaminhoLogo;
 	private String indTipoCliente;
-	private Integer nroCpf;
-	private Integer nroCnpj;
+	private String nroCpf;
+	private String nroCnpj;
 	private String indAtivo;
 
 	public static ClienteFinalDto build(ClienteFinal clienteFinal) {

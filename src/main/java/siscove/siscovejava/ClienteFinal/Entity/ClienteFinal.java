@@ -29,10 +29,10 @@ public class ClienteFinal {
 	private String indTipoCliente;
 	
 	@Column(name="NRO_CPF")
-	private Integer nroCpf;
+	private String nroCpf;
 	
 	@Column(name="NRO_CNPJ")
-	private Integer nroCnpj;
+	private String nroCnpj;
 	
 	
 	@Column(name="IND_ATIVO")
