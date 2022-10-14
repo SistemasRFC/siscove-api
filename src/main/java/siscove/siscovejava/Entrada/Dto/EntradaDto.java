@@ -24,7 +24,7 @@ public class EntradaDto {
 	private String txtObservacao;
 	private String indEntrada;
 	private Integer codClienteFinal;
-
+	
 	public static EntradaDto build(Entrada entrada) {
 		EntradaDto entradaDto = new EntradaDto(
 
@@ -36,7 +36,8 @@ public class EntradaDto {
 				entrada.getCodUsuario(), 
 				entrada.getTxtObservacao(), 
 				entrada.getIndEntrada(), 
-				entrada.getCodClienteFinal()); 
+				entrada.getCodClienteFinal());
+				
 				return entradaDto;
 	}
 
@@ -51,6 +52,7 @@ public class EntradaDto {
 		entrada.setTxtObservacao(entradaDto.getTxtObservacao());
 		entrada.setIndEntrada(entradaDto.getIndEntrada());
 		entrada.setCodClienteFinal(entradaDto.getCodClienteFinal());
+
 		return entrada;
 	}
 }

@@ -47,15 +47,4 @@ public class EntradaService {
 
 		return new EnvelopeResponse<EntradaDto>(entradaDto);
 	}
-	public EnvelopeResponse<List<EntradaDto>> getListarEntradas(String txtTermo) {
-		List<Entrada> listarEntradas = (List<Entrada>) entradaDao.findBydscCliente(txtTermo);
-
-		List<EntradaDto> listarEntradasDto = new ArrayList<EntradaDto>();
-		for (Entrada entrada : listarEntradas) {
-			EntradaDto entradaDto = EntradaDto.build(entrada);
-			listarEntradasDto.add(entradaDto);
-		}
-		
-		return new EnvelopeResponse<List<EntradaDto>>(listarClientesDto);
-	}
 }

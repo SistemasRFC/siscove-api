@@ -43,9 +43,5 @@ public class EntradaController extends BaseController {
 		List<String> retorno = new ArrayList<String>();
 		return retorno;
 	}
-	@RequestMapping(value = "/listar/byTermo", method = RequestMethod.POST, consumes = { "*/*" })
-	public EnvelopeResponse<List<EntradaDto>> getListarEntradas(@RequestBody String txtTermo) {
-		return entradaService.getListarEntradas(txtTermo);
-	}
 	
 }

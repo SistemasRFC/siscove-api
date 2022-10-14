@@ -45,5 +45,6 @@ public class Entrada {
 
 	@Column(name = "COD_CLIENTE_FINAL")
 	private Integer codClienteFinal;
+	
 
 }

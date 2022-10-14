@@ -17,15 +17,6 @@ public class EntradaEstoqueService {
 	@Autowired
 	private EntradaEstoqueDao entradaEstoqueDao;
 
-	public EnvelopeResponse<EntradaEstoqueDto> salvar(EntradaEstoqueDto entradaEstoqueDto) {
-
-		EntradaEstoque entradaEstoque = entradaEstoqueDao.save(EntradaEstoqueDto.parse(entradaEstoqueDto));
-
-		entradaEstoqueDto = EntradaEstoqueDto.build(entradaEstoque);
-
-		return new EnvelopeResponse<EntradaEstoqueDto>(entradaEstoqueDto);
-	}
-
 	public EnvelopeResponse<List<EntradaEstoqueDto>> getListarEntradaEstoque() {
 		List<EntradaEstoque> listarEntradaEstoque = (List<EntradaEstoque>) entradaEstoqueDao.findAll();
 
