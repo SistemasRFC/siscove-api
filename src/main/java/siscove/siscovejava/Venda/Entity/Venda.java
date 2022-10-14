@@ -31,6 +31,42 @@ public class Venda {
 	private Integer codCliente;
 	
 	@Column(name="COD_USUARIO")
-	private Integer codUsurio;
-
+	private Integer codUsuario;
+	
+	@Column(name="VLR_DESCONTO")
+	private Float vlrDesconto;
+	
+	@Column(name="DSC_VEICULO")
+	private String dscVeiculo;
+	
+	@Column(name="NRO_PLACA")
+	private String nroPlaca;
+	
+	@Column(name="DTA_FECHAMENTO")
+	private LocalDateTime dtaFechamento;
+	
+	@Column(name="COD_VEICULO")
+	private Integer codVeiculo;
+	
+	@Column(name="TXT_OBSERVACAO")
+	private String txtObservacao;
+	
+	@Column(name="TXT_JUSTIFICATIVA")
+	private String txtJustificativa;
+	
+	@Column(name="COD_CLIENTE_FINAL")
+	private Integer codClienteFinal;
+	
+	@Column(name="VLR_IMPOSTO_PRODUTO")
+	private Float vlrImpostoProduto;
+	
+	@Column(name="VLR_IMPOSTO_SERVICO")
+	private Float vlrImpostoServico;
+	
+	@Column(name="VLR_KM_RODADO")
+	private Integer vlrKmRodado;
+	
+	@Column(name="COD_USUARIO_FECHAMENTO")
+	private Integer codUsuarioFechamento;
 }
+
