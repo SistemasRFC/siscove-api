@@ -18,7 +18,6 @@ public class VendaProdutoDto {
 	private Integer codVenda;
 	private Integer nroSequencial;
 	private Integer codProduto;
-	private String indProduto;
 	private Float vlrVenda;
 	private Integer qtdVendida;
 	private Float vlrDesconto;
@@ -32,8 +31,7 @@ public class VendaProdutoDto {
 
 				vendaProduto.getCodVenda(), 
 				vendaProduto.getNroSequencial(), 
-				vendaProduto.getCodProduto(), 
-				vendaProduto.getIndProduto(), 
+				vendaProduto.getCodProduto(),  
 				vendaProduto.getVlrVenda(), 
 				vendaProduto.getQtdVendida(), 
 				vendaProduto.getVlrDesconto(), 
@@ -53,7 +51,6 @@ public class VendaProdutoDto {
 		vendaProduto.setCodVenda(vendaProdutoDto.getCodVenda());
 		vendaProduto.setNroSequencial(vendaProdutoDto.getNroSequencial());
 		vendaProduto.setCodProduto(vendaProdutoDto.getCodProduto());
-		vendaProduto.setIndProduto(vendaProdutoDto.getIndProduto());
 		vendaProduto.setVlrVenda(vendaProdutoDto.getVlrVenda());
 		vendaProduto.setQtdVendida(vendaProdutoDto.getQtdVendida());
 		vendaProduto.setVlrDesconto(vendaProdutoDto.getVlrDesconto());

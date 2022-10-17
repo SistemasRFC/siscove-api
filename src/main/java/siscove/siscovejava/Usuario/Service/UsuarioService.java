@@ -75,13 +75,19 @@ public class UsuarioService {
 		return new EnvelopeResponse<UsuarioDto>(UsuarioDto.build(usuario));
 	}
 
-	public EnvelopeResponse<List<UsuarioDto>> carregaComboUsuario() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public EnvelopeResponse<UsuarioDto> getUsuarioByCodigoUsuario(Integer codigoUsuario){
 		Usuario usuario = usuarioDao.findById(codigoUsuario).get();
 		return new EnvelopeResponse<UsuarioDto>(UsuarioDto.build(usuario));
+	}
+
+	public EnvelopeResponse<List<UsuarioDto>> getListaVendedores() {
+		List<Usuario> listaVendedores = usuarioDao.getListaVendedores();
+		
+		List<UsuarioDto> listaVendedoresDto = new ArrayList<UsuarioDto>();
+		for (Usuario vendedor : listaVendedores) {
+			listaVendedoresDto.add(UsuarioDto.build(vendedor));
+		}
+		
+		return new EnvelopeResponse<List<UsuarioDto>>(listaVendedoresDto);
 	}
 }

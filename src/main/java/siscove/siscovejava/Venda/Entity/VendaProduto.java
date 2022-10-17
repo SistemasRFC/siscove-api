@@ -27,9 +27,6 @@ public class VendaProduto {
 	@Column(name="COD_PRODUTO")
 	private Integer codProduto;
 	
-	@Column(name="IND_PRODUTO")
-	private String indProduto;
-	
 	@Column(name="VLR_VENDA")
 	private Float vlrVenda;
 	

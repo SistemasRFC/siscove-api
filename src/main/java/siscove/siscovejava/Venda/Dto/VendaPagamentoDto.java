@@ -37,7 +37,7 @@ public class VendaPagamentoDto {
 				vendaPagamento.getValorPagamento(), 
 				vendaPagamento.getNroCheque(), 
 				vendaPagamento.getNroBanco(), 
-				vendaPagamento.getNroBanco(), 
+				vendaPagamento.getNmeProprietario(), 
 				vendaPagamento.getCodTipoPagamento(), 
 				vendaPagamento.getDscMercadoria(), 
 				vendaPagamento.getNroSequencialEntrada(), 
@@ -48,13 +48,14 @@ public class VendaPagamentoDto {
 	}
 
 	public static VendaPagamento parse(VendaPagamentoDto vendaPagamentoDto) {
-		vendaPagamento vendaPagamento = new VendaPagamento();
+		VendaPagamento vendaPagamento = new VendaPagamento();
 		vendaPagamento.setNroSequencial(vendaPagamentoDto.getNroSequencial());
 		vendaPagamento.setCodVenda(vendaPagamentoDto.getCodVenda());
 		vendaPagamento.setDtaPagamento(vendaPagamentoDto.getDtaPagamento());
 		vendaPagamento.setValorPagamento(vendaPagamentoDto.getValorPagamento());
 		vendaPagamento.setNroCheque(vendaPagamentoDto.getNroCheque());
 		vendaPagamento.setNroBanco(vendaPagamentoDto.getNroBanco());
+		vendaPagamento.setNmeProprietario(vendaPagamentoDto.getNmeProprietario());
 		vendaPagamento.setCodTipoPagamento(vendaPagamentoDto.getCodTipoPagamento());
 		vendaPagamento.setDscMercadoria(vendaPagamentoDto.getDscMercadoria());
 		vendaPagamento.setNroSequencialEntrada(vendaPagamentoDto.getNroSequencialEntrada());
