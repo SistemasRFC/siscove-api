@@ -7,9 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.Deposito.Entity.Deposito;
+import siscove.siscovejava.Fornecedor.Entity.Fornecedor;
 
 @NoArgsConstructor
 @Data
@@ -28,12 +32,6 @@ public class Entrada {
 	@Column(name = "DTA_ENTRADA")
 	private LocalDate dtaEntrada;
 
-	@Column(name = "COD_FORNECEDOR")
-	private Integer codFornecedor;
-
-	@Column(name = "COD_DEPOSITO")
-	private Integer codDeposito;
-
 	@Column(name = "COD_USUARIO")
 	private Integer codUsuario;
 
@@ -46,5 +44,11 @@ public class Entrada {
 	@Column(name = "COD_CLIENTE_FINAL")
 	private Integer codClienteFinal;
 	
-
+	@ManyToOne
+	@JoinColumn(name="COD_FORNECEDOR", insertable = true, updatable = true)
+	private Fornecedor fornecedor;
+	
+	@ManyToOne
+	@JoinColumn(name="COD_DEPOSITO", insertable = true, updatable = true)
+	private Deposito deposito;
 }

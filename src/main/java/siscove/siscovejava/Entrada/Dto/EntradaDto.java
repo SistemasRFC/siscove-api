@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.Deposito.Entity.Deposito;
 import siscove.siscovejava.Entrada.Entity.Entrada;
+import siscove.siscovejava.Fornecedor.Entity.Fornecedor;
 
 @Component
 @AllArgsConstructor
@@ -28,11 +30,12 @@ public class EntradaDto {
 	public static EntradaDto build(Entrada entrada) {
 		EntradaDto entradaDto = new EntradaDto(
 
+				
 				entrada.getNroSequencial(), 
 				entrada.getNroNotaFiscal(), 
 				entrada.getDtaEntrada(), 
-				entrada.getCodFornecedor(), 
-				entrada.getCodDeposito(), 
+				entrada.getFornecedor().getCodFornecedor(),
+				entrada.getDeposito().getCodDeposito(),
 				entrada.getCodUsuario(), 
 				entrada.getTxtObservacao(), 
 				entrada.getIndEntrada(), 
@@ -46,12 +49,18 @@ public class EntradaDto {
 		entrada.setNroSequencial(entradaDto.getNroSequencial());
 		entrada.setNroNotaFiscal(entradaDto.getNroNotaFiscal());
 		entrada.setDtaEntrada(entradaDto.getDtaEntrada());
-		entrada.setCodFornecedor(entradaDto.getCodFornecedor());
-		entrada.setCodDeposito(entradaDto.getCodDeposito());
 		entrada.setCodUsuario(entradaDto.getCodUsuario());
 		entrada.setTxtObservacao(entradaDto.getTxtObservacao());
 		entrada.setIndEntrada(entradaDto.getIndEntrada());
 		entrada.setCodClienteFinal(entradaDto.getCodClienteFinal());
+		
+		Fornecedor fornecedor= new Fornecedor();
+		fornecedor.setCodFornecedor(entradaDto.getCodFornecedor());
+		entrada.setFornecedor(fornecedor);
+		
+		Deposito deposito= new Deposito();
+		deposito.setCodDeposito(entradaDto.getCodDeposito());
+		entrada.setDeposito(deposito);
 
 		return entrada;
 	}
