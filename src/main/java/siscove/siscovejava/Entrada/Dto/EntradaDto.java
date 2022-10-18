@@ -20,8 +20,8 @@ public class EntradaDto {
 	private Integer nroSequencial;
 	private String nroNotaFiscal;
 	private LocalDate dtaEntrada;
-	private Integer codFornecedor;
-	private Integer codDeposito;
+	private Fornecedor fornecedor;
+	private Deposito deposito;
 	private Integer codUsuario;
 	private String txtObservacao;
 	private String indEntrada;
@@ -34,8 +34,8 @@ public class EntradaDto {
 				entrada.getNroSequencial(), 
 				entrada.getNroNotaFiscal(), 
 				entrada.getDtaEntrada(), 
-				entrada.getFornecedor().getCodFornecedor(),
-				entrada.getDeposito().getCodDeposito(),
+				entrada.getFornecedor(),
+				entrada.getDeposito(),
 				entrada.getCodUsuario(), 
 				entrada.getTxtObservacao(), 
 				entrada.getIndEntrada(), 
@@ -54,12 +54,10 @@ public class EntradaDto {
 		entrada.setIndEntrada(entradaDto.getIndEntrada());
 		entrada.setCodClienteFinal(entradaDto.getCodClienteFinal());
 		
-		Fornecedor fornecedor= new Fornecedor();
-		fornecedor.setCodFornecedor(entradaDto.getCodFornecedor());
+		Fornecedor fornecedor= entradaDto.getFornecedor();
 		entrada.setFornecedor(fornecedor);
 		
-		Deposito deposito= new Deposito();
-		deposito.setCodDeposito(entradaDto.getCodDeposito());
+		Deposito deposito= entradaDto.getDeposito();
 		entrada.setDeposito(deposito);
 
 		return entrada;
