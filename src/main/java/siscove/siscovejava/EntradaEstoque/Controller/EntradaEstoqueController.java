@@ -20,8 +20,11 @@ public class EntradaEstoqueController extends BaseController {
 	private EntradaEstoqueService entradaEstoqueService;
 
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<EntradaEstoqueDto>> ListarEntradaEstoque() {
+	public EnvelopeResponse<List<EntradaEstoqueDto>> getListarEntradaEstoque() {
 		return entradaEstoqueService.getListarEntradaEstoque();
 	}
-
+	//@RequestMapping(value = "/calcular", method = RequestMethod.GET, consumes = { "*/*" })
+	//public EnvelopeResponse<List<EntradaEstoqueDto>> getCalcular() {
+	//	return entradaEstoqueService.getCalcular();
+	//}
 }

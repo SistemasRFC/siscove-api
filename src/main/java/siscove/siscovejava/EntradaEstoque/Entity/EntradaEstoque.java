@@ -7,9 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.Produto.Entity.Produto;
 
 @NoArgsConstructor
 @Data
@@ -23,9 +26,10 @@ public class EntradaEstoque {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer nroSequencial;
 
-	@Column(name = "COD_PRODUTO")
-	private Integer codProduto;
-
+	@ManyToOne
+	@JoinColumn(name="COD_PRODUTO", insertable = true, updatable = true)
+	private Produto produto;
+	
 	@Column(name = "DTA_ENTRADA_PRODUTO")
 	private LocalDate dtaEntradaProduto;
 
