@@ -90,15 +90,5 @@ public class UsuarioService {
 		
 		return new EnvelopeResponse<List<UsuarioDto>>(listaVendedoresDto);
 	}
-	
-	public EnvelopeResponse<List<UsuarioDto>> getListaVendasAbertas() {
-		List<Usuario> listaVendasAbertas = usuarioDao.getListaVendasAbertas();
 		
-		List<UsuarioDto> listaVendasAbertasDto = new ArrayList<UsuarioDto>();
-		for (Usuario vendas : listaVendasAbertas) {
-			listaVendasAbertasDto.add(UsuarioDto.build(vendas));
-		}
-		
-		return new EnvelopeResponse<List<UsuarioDto>>(listaVendasAbertasDto);
-	}
 }
