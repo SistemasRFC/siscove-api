@@ -7,9 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.Produto.Entity.Produto;
 
 @NoArgsConstructor
 @Data
@@ -26,6 +29,10 @@ public class VendaProduto {
 	
 	@Column(name="COD_PRODUTO")
 	private Integer codProduto;
+	
+	@OneToMany
+	@JoinColumn(name="COD_PRODUTO", insertable = false, updatable = false)
+	private Produto produto;
 	
 	@Column(name="VLR_VENDA")
 	private Float vlrVenda;

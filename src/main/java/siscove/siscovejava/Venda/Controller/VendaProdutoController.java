@@ -1,6 +1,9 @@
 package siscove.siscovejava.Venda.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +24,11 @@ public class VendaProdutoController {
 	public EnvelopeResponse<VendaProdutoDto> salvarVendaProduto(@RequestBody VendaProdutoDto vendaProdutoDto){
 		EnvelopeResponse<VendaProdutoDto> retorno = vendaProdutoService.salvar(vendaProdutoDto);
 		return retorno;
+	}
+	
+	@RequestMapping(value = "/listar/{codVenda}", method = RequestMethod.GET, consumes = { "*/*" })
+	public EnvelopeResponse<List<VendaProdutoDto>> ListarVendasProduto(@PathVariable Integer codVenda) {
+		return vendaProdutoService.getListarVendasProduto(codVenda);
 	}
 
 }

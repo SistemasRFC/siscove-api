@@ -1,5 +1,8 @@
 package siscove.siscovejava.Venda.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import siscove.siscovejava.Config.response.EnvelopeResponse;
@@ -17,8 +20,19 @@ public class VendaProdutoService {
 		
 		vendaProdutoDto = VendaProdutoDto.build(vendaProduto);
 
-	return new EnvelopeResponse<VendaProdutoDto>(vendaProdutoDto);
+		return new EnvelopeResponse<VendaProdutoDto>(vendaProdutoDto);
 	
+	}
+	
+	public EnvelopeResponse<List<VendaProdutoDto>> getListarVendasProduto(Integer codVenda) {
+		List<VendaProduto> listaVendasProduto = vendaProdutoDao.findByCodVenda(codVenda);
+		
+		List<VendaProdutoDto> listaVendasProdutoDto = new ArrayList<VendaProdutoDto>();
+		for (VendaProduto venda : listaVendasProduto) {
+			listaVendasProdutoDto.add(VendaProdutoDto.build(venda));
+		}
+		
+		return new EnvelopeResponse<List<VendaProdutoDto>>(listaVendasProdutoDto);
 	}
 
 }

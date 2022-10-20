@@ -25,13 +25,13 @@ public class VendaController {
 		return retorno;
 	}
 	
-	@RequestMapping(value = "/listar/venda/aberta", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<VendaDto>> ListaVendaAberta() {
+	@RequestMapping(value = "/listar/vendas/abertas", method = RequestMethod.GET, consumes = { "*/*" })
+	public EnvelopeResponse<List<VendaDto>> ListaVendasAbertas() {
 		return vendaService.getListaVendasAbertas();
 	}
 	
-	@RequestMapping(value = "/listar/venda/fechada", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<VendaDto>> ListaVendaFechadas() {
+	@RequestMapping(value = "/listar/vendas/fechadas", method = RequestMethod.GET, consumes = { "*/*" })
+	public EnvelopeResponse<List<VendaDto>> ListaVendasFechadas() {
 		return vendaService.getListaVendasFechadas();
 	}
 

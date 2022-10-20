@@ -25,7 +25,7 @@ public class VendaService {
 	}
 	
 	public EnvelopeResponse<List<VendaDto>> getListaVendasAbertas() {
-		List<Venda> listaVendasAbertas = vendaDao.getListaVendasAbertas();
+		List<Venda> listaVendasAbertas = vendaDao.findByNroStatusVenda("A");
 		
 		List<VendaDto> listaVendasAbertasDto = new ArrayList<VendaDto>();
 		for (Venda vendas : listaVendasAbertas) {
@@ -36,7 +36,7 @@ public class VendaService {
 	}
 	
 	public EnvelopeResponse<List<VendaDto>> getListaVendasFechadas() {
-		List<Venda> listaVendasFechadas = vendaDao.getListaVendasFechadas();
+		List<Venda> listaVendasFechadas = vendaDao.findByNroStatusVenda("F");
 		
 		List<VendaDto> listaVendasFechadasDto = new ArrayList<VendaDto>();
 		for (Venda vendas : listaVendasFechadas) {

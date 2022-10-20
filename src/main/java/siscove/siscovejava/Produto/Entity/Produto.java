@@ -5,9 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.Marca.Entity.Marca;
 
 @NoArgsConstructor
 @Data
@@ -27,13 +30,16 @@ public class Produto {
 	
 	@Column(name="VLR_MINIMO")
 	private Float vlrMinimo;
-	
 
 	@Column(name="IND_TIPO_REGISTRO")
 	private String indTipoRegistro;
 	
 	@Column(name="COD_MARCA")
 	private Integer codMarca;
+	
+	@OneToMany
+	@JoinColumn(name="COD_MARCA", insertable = false, updatable = false)
+	private Marca marca;
 	
 	@Column(name="COD_CLIENTE_FINAL")
 	private Integer codClienteFinal;

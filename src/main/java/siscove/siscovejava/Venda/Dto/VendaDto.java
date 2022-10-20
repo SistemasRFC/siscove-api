@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.Cliente.Entity.Cliente;
+import siscove.siscovejava.Usuario.Entity.Usuario;
 import siscove.siscovejava.Venda.Entity.Venda;
 
 
@@ -19,8 +21,8 @@ import siscove.siscovejava.Venda.Entity.Venda;
 		private Integer codVenda;
 		private LocalDateTime dtaVenda;
 		private String nroStatusVenda;
-		private Integer codCliente;
-		private Integer codUsuario;
+		private Cliente cliente;
+		private Usuario vendedor;
 		private Float vlrDesconto;
 		private String dscVeiculo;
 		private String nroPlaca;
@@ -40,8 +42,8 @@ import siscove.siscovejava.Venda.Entity.Venda;
 					venda.getCodVenda(), 
 					venda.getDtaVenda(), 
 					venda.getNroStatusVenda(), 
-					venda.getCodCliente(), 
-					venda.getCodUsuario(), 
+					venda.getCliente(), 
+					venda.getVendedor(), 
 					venda.getVlrDesconto(), 
 					venda.getDscVeiculo(), 
 					venda.getNroPlaca(), 
@@ -62,11 +64,10 @@ import siscove.siscovejava.Venda.Entity.Venda;
 
 		public static Venda parse(VendaDto vendaDto) {
 			Venda venda = new Venda();
-			venda.setCodCliente(vendaDto.getCodCliente());
+			venda.setCodCliente(vendaDto.getCliente().getCodCliente());
 			venda.setDtaVenda(vendaDto.getDtaVenda());
 			venda.setNroStatusVenda(vendaDto.getNroStatusVenda());
-			venda.setCodCliente(vendaDto.getCodCliente());
-			venda.setCodUsuario(vendaDto.getCodUsuario());
+			venda.setCodVendedor(vendaDto.getVendedor().getCodUsuario());
 			venda.setVlrDesconto(vendaDto.getVlrDesconto());
 			venda.setDscVeiculo(vendaDto.getDscVeiculo());
 			venda.setNroPlaca(vendaDto.getNroPlaca());

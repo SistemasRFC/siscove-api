@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,8 @@ import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.Cliente.Entity.Cliente;
+import siscove.siscovejava.Usuario.Entity.Usuario;
 
 @NoArgsConstructor
 @Data
@@ -28,12 +31,20 @@ public class Venda {
 	
 	@Column(name="NRO_STATUS_VENDA")
 	private String nroStatusVenda;
-	
+
 	@Column(name="COD_CLIENTE")
 	private Integer codCliente;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name="COD_CLIENTE", insertable = false, updatable = false)
+	private Cliente cliente;
 	
 	@Column(name="COD_USUARIO")
-	private Integer codUsuario;
+	private Integer codVendedor;
+	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name="COD_USUARIO", insertable = false, updatable = false)
+	private Usuario vendedor;
 	
 	@Column(name="VLR_DESCONTO")
 	private Float vlrDesconto;
@@ -71,11 +82,11 @@ public class Venda {
 	@Column(name="COD_USUARIO_FECHAMENTO")
 	private Integer codUsuarioFechamento;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name="COD_VENDA", insertable = true, updatable = true)
 	private VendaPagamento vendaPagamento;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name="COD_VENDA", insertable = true, updatable = true)
 	private VendaProduto vendaProduto;
 }
