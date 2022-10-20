@@ -23,8 +23,8 @@ public class EntradaEstoqueController extends BaseController {
 	public EnvelopeResponse<List<EntradaEstoqueDto>> getListarEntradaEstoque() {
 		return entradaEstoqueService.getListarEntradaEstoque();
 	}
-	//@RequestMapping(value = "/calcular", method = RequestMethod.GET, consumes = { "*/*" })
-	//public EnvelopeResponse<List<EntradaEstoqueDto>> getCalcular() {
-	//	return entradaEstoqueService.getCalcular();
-	//}
+	@RequestMapping(value = "/calcular", method = RequestMethod.GET, consumes = { "*/*" })
+	public EnvelopeResponse<List<EntradaEstoqueDto>> getCalcular() {
+		return entradaEstoqueService.getCalcular();
+	}
 }

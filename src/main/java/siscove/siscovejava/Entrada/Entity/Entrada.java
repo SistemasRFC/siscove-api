@@ -1,6 +1,7 @@
 package siscove.siscovejava.Entrada.Entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import siscove.siscovejava.Deposito.Entity.Deposito;
+import siscove.siscovejava.EntradaEstoque.Entity.EntradaEstoque;
 import siscove.siscovejava.Fornecedor.Entity.Fornecedor;
 
 @NoArgsConstructor
@@ -51,4 +54,9 @@ public class Entrada {
 	@ManyToOne
 	@JoinColumn(name="COD_DEPOSITO", insertable = true, updatable = true)
 	private Deposito deposito;
+	
+	@OneToMany
+	@JoinColumn(name="NRO_SEQUENCIAL", insertable = true, updatable = true)
+	private List<EntradaEstoque> listaEntradaEstoque;
+	
 }

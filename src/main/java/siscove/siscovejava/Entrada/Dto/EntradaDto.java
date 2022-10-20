@@ -1,6 +1,8 @@
 package siscove.siscovejava.Entrada.Dto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -9,6 +11,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import siscove.siscovejava.Deposito.Entity.Deposito;
 import siscove.siscovejava.Entrada.Entity.Entrada;
+import siscove.siscovejava.EntradaEstoque.Dto.EntradaEstoqueDto;
+import siscove.siscovejava.EntradaEstoque.Entity.EntradaEstoque;
 import siscove.siscovejava.Fornecedor.Entity.Fornecedor;
 
 @Component
@@ -26,11 +30,18 @@ public class EntradaDto {
 	private String txtObservacao;
 	private String indEntrada;
 	private Integer codClienteFinal;
+	private List<EntradaEstoqueDto> listaEntradaEstoque;
+	private float vlrTotal;
 	
 	public static EntradaDto build(Entrada entrada) {
+		List<EntradaEstoqueDto> listarEntradaEstoqueDto = new ArrayList<EntradaEstoqueDto>();
+		float vlrTotal =0;
+		for (EntradaEstoque entradaEstoque : entrada.getListaEntradaEstoque()) {
+			listarEntradaEstoqueDto.add(EntradaEstoqueDto.build(entradaEstoque));
+			vlrTotal += entradaEstoque.getVlrUnitario()* entradaEstoque.getQtdEntrada();
+		}
+		
 		EntradaDto entradaDto = new EntradaDto(
-
-				
 				entrada.getNroSequencial(), 
 				entrada.getNroNotaFiscal(), 
 				entrada.getDtaEntrada(), 
@@ -39,7 +50,9 @@ public class EntradaDto {
 				entrada.getCodUsuario(), 
 				entrada.getTxtObservacao(), 
 				entrada.getIndEntrada(), 
-				entrada.getCodClienteFinal());
+				entrada.getCodClienteFinal(),
+				listarEntradaEstoqueDto,
+				vlrTotal); 
 				
 				return entradaDto;
 	}
