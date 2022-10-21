@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,14 +35,14 @@ public class Venda {
 	@Column(name="COD_CLIENTE")
 	private Integer codCliente;
 
-	@OneToMany(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="COD_CLIENTE", insertable = false, updatable = false)
 	private Cliente cliente;
 	
 	@Column(name="COD_USUARIO")
 	private Integer codVendedor;
 	
-	@OneToMany(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="COD_USUARIO", insertable = false, updatable = false)
 	private Usuario vendedor;
 	
@@ -82,12 +82,12 @@ public class Venda {
 	@Column(name="COD_USUARIO_FECHAMENTO")
 	private Integer codUsuarioFechamento;
 	
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="COD_VENDA", insertable = true, updatable = true)
-	private VendaPagamento vendaPagamento;
-	
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="COD_VENDA", insertable = true, updatable = true)
-	private VendaProduto vendaProduto;
+//	@OneToMany(fetch = FetchType.LAZY)
+//	@JoinColumn(name="COD_VENDA", insertable = true, updatable = true)
+//	private VendaPagamento vendaPagamento;
+//	
+//	@OneToMany(fetch = FetchType.LAZY)
+//	@JoinColumn(name="COD_VENDA", insertable = true, updatable = true)
+//	private VendaProduto vendaProduto;
 }
 

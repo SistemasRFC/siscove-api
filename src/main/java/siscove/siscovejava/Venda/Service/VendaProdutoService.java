@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.Venda.Dto.VendaProdutoDto;
 import siscove.siscovejava.Venda.Entity.VendaProduto;
 import siscove.siscovejava.Venda.Repository.VendaProdutoDao;
 
+@Service
 public class VendaProdutoService {
 	
 	@Autowired

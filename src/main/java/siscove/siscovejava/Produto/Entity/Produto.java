@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,7 +37,7 @@ public class Produto {
 	@Column(name="COD_MARCA")
 	private Integer codMarca;
 	
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name="COD_MARCA", insertable = false, updatable = false)
 	private Marca marca;
 	
