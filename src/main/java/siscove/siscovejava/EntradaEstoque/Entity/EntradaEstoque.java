@@ -3,6 +3,7 @@ package siscove.siscovejava.EntradaEstoque.Entity;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.MenuPerfil.Entity.MenuPerfilId;
 import siscove.siscovejava.Produto.Entity.Produto;
 
 @NoArgsConstructor
@@ -21,14 +23,8 @@ import siscove.siscovejava.Produto.Entity.Produto;
 public class EntradaEstoque {
 
 
-	@Id
-	@Column(name = "NRO_SEQUENCIAL")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer nroSequencial;
-
-	@ManyToOne
-	@JoinColumn(name="COD_PRODUTO", insertable = true, updatable = true)
-	private Produto produto;
+	@EmbeddedId
+	private EntradaEstoqueId id;
 	
 	@Column(name = "DTA_ENTRADA_PRODUTO")
 	private LocalDate dtaEntradaProduto;

@@ -22,7 +22,7 @@ public class EntradaService {
 
 		List<EntradaDto> listaEntradaDto = new ArrayList<EntradaDto>();
 		for (Entrada entrada : listaEntrada) {
-			if (entrada.getIndEntrada().equals("S")) {
+			if (entrada.getIndEntrada().equals("A")) {
 				listaEntradaDto.add(EntradaDto.build(entrada));
 			}
 		}

@@ -41,4 +41,17 @@ public class EntradaEstoqueService {
 		}
 		return new EnvelopeResponse<List<EntradaEstoqueDto>>(listarEntradaEstoqueDto);
 	}
+	
+	public EnvelopeResponse<List<EntradaEstoqueDto>> getListaEntradaEstoqueByNroSequencial(Integer nroSequencial) {
+		List<EntradaEstoque> listarEntradaEstoque = entradaEstoqueDao.getListaEntradaEstoqueByNroSequencial(nroSequencial);
+
+		List<EntradaEstoqueDto> listarEntradaEstoqueDto = new ArrayList<EntradaEstoqueDto>();
+		for (EntradaEstoque entradaEstoque : listarEntradaEstoque) {
+
+			listarEntradaEstoqueDto.add(EntradaEstoqueDto.build(entradaEstoque));
+		}
+		return new EnvelopeResponse<List<EntradaEstoqueDto>>(listarEntradaEstoqueDto);
+
+	}
+
 }

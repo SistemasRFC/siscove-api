@@ -3,6 +3,7 @@ package siscove.siscovejava.EntradaEstoque.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,8 +24,14 @@ public class EntradaEstoqueController extends BaseController {
 	public EnvelopeResponse<List<EntradaEstoqueDto>> getListarEntradaEstoque() {
 		return entradaEstoqueService.getListarEntradaEstoque();
 	}
+
 	@RequestMapping(value = "/calcular", method = RequestMethod.GET, consumes = { "*/*" })
 	public EnvelopeResponse<List<EntradaEstoqueDto>> getCalcular() {
 		return entradaEstoqueService.getCalcular();
+	}
+
+	@RequestMapping(value = "/listar/{nroSequencial}", method = RequestMethod.GET, consumes = { "*/*" })
+	public EnvelopeResponse<List<EntradaEstoqueDto>> getListaEntradaEstoqueByNroSequencial(@PathVariable Integer nroSequencial) {
+		return entradaEstoqueService.getListaEntradaEstoqueByNroSequencial(nroSequencial);
 	}
 }

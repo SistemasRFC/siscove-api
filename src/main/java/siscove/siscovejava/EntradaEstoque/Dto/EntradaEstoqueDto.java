@@ -42,7 +42,8 @@ public class EntradaEstoqueDto {
 
 	public static EntradaEstoqueDto build(EntradaEstoque entradaEstoque) {
 		EntradaEstoqueDto entradaEstoqueDto = new EntradaEstoqueDto(
-		entradaEstoque.getProduto(), 
+		menuperfil.getMenuPerfilId().getCodMenuW(),
+		entradaEstoque.getEntradaEstoqueId().getProduto(), 
 		entradaEstoque.getNroSequencial(),
 		entradaEstoque.getDtaEntradaProduto(),
 		entradaEstoque.getQtdEntrada(),
