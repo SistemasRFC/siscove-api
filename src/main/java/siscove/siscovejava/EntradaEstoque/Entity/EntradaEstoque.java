@@ -1,30 +1,24 @@
 package siscove.siscovejava.EntradaEstoque.Entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import siscove.siscovejava.MenuPerfil.Entity.MenuPerfilId;
-import siscove.siscovejava.Produto.Entity.Produto;
 
 @NoArgsConstructor
 @Data
 @Entity(name = "EN_ENTRADA_ESTOQUE")
 
-public class EntradaEstoque {
+public class EntradaEstoque implements Serializable{
 
 
 	@EmbeddedId
-	private EntradaEstoqueId id;
+	public EntradaEstoqueId entradaEstoqueId;
 	
 	@Column(name = "DTA_ENTRADA_PRODUTO")
 	private LocalDate dtaEntradaProduto;
@@ -40,5 +34,7 @@ public class EntradaEstoque {
 
 	@Column(name = "VLR_VENDA")
 	private Float vlrVenda;
+
+
 
 }
