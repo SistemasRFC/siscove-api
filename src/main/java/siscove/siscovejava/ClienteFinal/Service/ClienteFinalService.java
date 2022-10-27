@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import siscove.siscovejava.ClienteFinal.Dao.ClienteFinalDao;
 import siscove.siscovejava.ClienteFinal.Dto.ClienteFinalDto;
 import siscove.siscovejava.ClienteFinal.Entity.ClienteFinal;
+import siscove.siscovejava.ClienteFinal.Repository.ClienteFinalDao;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
 
 @Service

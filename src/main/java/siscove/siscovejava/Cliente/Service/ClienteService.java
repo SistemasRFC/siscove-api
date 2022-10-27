@@ -17,7 +17,7 @@ public class ClienteService {
 	@Autowired
 	private ClienteDao clienteDao;
 
-	public EnvelopeResponse<List<ClienteDto>> getListarClientes(String txtTermo) {
+	public EnvelopeResponse<List<ClienteDto>> getListaClientes(String txtTermo) {
 		List<Cliente> listarClientes = (List<Cliente>) clienteDao.findBydscCliente(txtTermo);
 
 		List<ClienteDto> listarClientesDto = new ArrayList<ClienteDto>();
@@ -27,6 +27,18 @@ public class ClienteService {
 		}
 		
 		return new EnvelopeResponse<List<ClienteDto>>(listarClientesDto);
+	}
+	
+	public EnvelopeResponse<List<ClienteDto>> getListaClienteByDocumento(String nroDoc) {
+		List<Cliente> listarDocumentos = clienteDao.findByNroDocumento(nroDoc);
+
+		List<ClienteDto> listarDocumentosDto = new ArrayList<ClienteDto>();
+		for (Cliente cliente : listarDocumentos) {
+			ClienteDto clienteDto = ClienteDto.build(cliente);
+			listarDocumentosDto.add(clienteDto);
+		}
+		
+		return new EnvelopeResponse<List<ClienteDto>>(listarDocumentosDto);
 	}
 
 	public EnvelopeResponse<ClienteDto> salvar(ClienteDto clienteDto) {
