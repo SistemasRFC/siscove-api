@@ -37,6 +37,7 @@ public class VendaService {
 		return new EnvelopeResponse<List<VendaDto>>(listaVendasAbertasDto);
 	}
 	
+	
 	public EnvelopeResponse<List<VendaDto>> getListaVendasFechadas() {
 		List<Venda> listaVendasFechadas = vendaDao.findByNroStatusVenda("F");
 		

@@ -30,5 +30,5 @@ public class VendaProdutoController {
 	public EnvelopeResponse<List<VendaProdutoDto>> ListarVendasProduto(@PathVariable Integer codVenda) {
 		return vendaProdutoService.getListarVendasProduto(codVenda);
 	}
-
+	
 }
