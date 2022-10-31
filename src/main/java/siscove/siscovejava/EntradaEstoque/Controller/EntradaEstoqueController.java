@@ -31,7 +31,9 @@ public class EntradaEstoqueController extends BaseController {
 	}
 
 	@RequestMapping(value = "/listar/{nroSequencial}", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<EntradaEstoqueDto>> getListaEntradaEstoqueByNroSequencial(@PathVariable Integer nroSequencial) {
+	public EnvelopeResponse<List<EntradaEstoqueDto>> getListaEntradaEstoqueByNroSequencial(
+			@PathVariable Integer nroSequencial) {
 		return entradaEstoqueService.getListaEntradaEstoqueByNroSequencial(nroSequencial);
 	}
+
 }

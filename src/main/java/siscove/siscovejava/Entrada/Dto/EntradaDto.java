@@ -36,9 +36,12 @@ public class EntradaDto {
 	public static EntradaDto build(Entrada entrada) {
 		List<EntradaEstoqueDto> listarEntradaEstoqueDto = new ArrayList<EntradaEstoqueDto>();
 		float vlrTotal =0;
-		for (EntradaEstoque entradaEstoque : entrada.getListaEntradaEstoque()) {
-			listarEntradaEstoqueDto.add(EntradaEstoqueDto.build(entradaEstoque));
-			vlrTotal += entradaEstoque.getVlrUnitario()* entradaEstoque.getQtdEntrada();
+		if (null!=entrada.getListaEntradaEstoque()) {
+			for (EntradaEstoque entradaEstoque : entrada.getListaEntradaEstoque()) {
+				listarEntradaEstoqueDto.add(EntradaEstoqueDto.build(entradaEstoque));
+				vlrTotal += entradaEstoque.getVlrUnitario()* entradaEstoque.getQtdEntrada();
+			}
+			
 		}
 		
 		EntradaDto entradaDto = new EntradaDto(

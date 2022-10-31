@@ -27,12 +27,6 @@ public class EntradaController extends BaseController {
 		return entradaService.getListarEntrada();
 	}
 
-	@RequestMapping(value = "/salvar", method = RequestMethod.POST, consumes = { "*/*" })
-	public EnvelopeResponse<EntradaDto> salvarEntrada(@RequestBody EntradaDto entradaDto) {
-		EnvelopeResponse<EntradaDto> retorno = entradaService.salvar(entradaDto);
-		return retorno;
-	}
-
 	@RequestMapping(value = "/listar/ativos", method = RequestMethod.GET, consumes = { "*/*" })
 	public EnvelopeResponse<List<EntradaDto>> getListarEntradaAtivos() {
 		return entradaService.getListarEntradaAtivos();
@@ -43,5 +37,9 @@ public class EntradaController extends BaseController {
 		List<String> retorno = new ArrayList<String>();
 		return retorno;
 	}
-	
+	@RequestMapping(value = "/salvar", method = RequestMethod.POST, consumes = { "*/*" })
+	public EnvelopeResponse<EntradaDto> salvarEntrada(@RequestBody EntradaDto entradaDto) {
+		EnvelopeResponse<EntradaDto> envLogin = entradaService.salvar(entradaDto);
+		return envLogin;
+	}
 }

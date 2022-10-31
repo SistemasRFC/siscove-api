@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,15 +49,15 @@ public class Entrada {
 	private Integer codClienteFinal;
 	
 	@ManyToOne
-	@JoinColumn(name="COD_FORNECEDOR", insertable = true, updatable = true)
+	@JoinColumn(name="COD_FORNECEDOR", insertable = false, updatable = false)
 	private Fornecedor fornecedor;
 	
 	@ManyToOne
-	@JoinColumn(name="COD_DEPOSITO", insertable = true, updatable = true)
+	@JoinColumn(name="COD_DEPOSITO", insertable = false, updatable = false)
 	private Deposito deposito;
 	
-	@OneToMany
-	@JoinColumn(name="NRO_SEQUENCIAL", insertable = true, updatable = true)
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name="NRO_SEQUENCIAL", insertable = false, updatable = false)
 	private List<EntradaEstoque> listaEntradaEstoque;
 	
 }
