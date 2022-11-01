@@ -47,6 +47,12 @@ public class Entrada {
 
 	@Column(name = "COD_CLIENTE_FINAL")
 	private Integer codClienteFinal;
+
+	@Column(name = "COD_FORNECEDOR")
+	private Integer codFornecedor;
+	
+	@Column(name = "COD_DEPOSITO")
+	private Integer codDeposito;
 	
 	@ManyToOne
 	@JoinColumn(name="COD_FORNECEDOR", insertable = false, updatable = false)

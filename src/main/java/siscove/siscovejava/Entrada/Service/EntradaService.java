@@ -17,16 +17,14 @@ public class EntradaService {
 	@Autowired
 	private EntradaDao entradaDao;
 
-	public EnvelopeResponse<List<EntradaDto>> getListarEntradaAtivos() {
-		List<Entrada> listaEntrada = (List<Entrada>) entradaDao.findAll();
+	public EnvelopeResponse<List<EntradaDto>> findEntradasAbertas() {
+		List<Entrada> listarAtivos = (List<Entrada>) entradaDao.findEntradasAbertas();
 
-		List<EntradaDto> listaEntradaDto = new ArrayList<EntradaDto>();
-		for (Entrada entrada : listaEntrada) {
-			if (entrada.getIndEntrada().equals("A")) {
-				listaEntradaDto.add(EntradaDto.build(entrada));
-			}
+		List<EntradaDto> listarAtivosDto = new ArrayList<EntradaDto>();
+		for (Entrada entrada : listarAtivos) {
+			listarAtivosDto.add(EntradaDto.build(entrada));
 		}
-		return new EnvelopeResponse<List<EntradaDto>>(listaEntradaDto);
+		return new EnvelopeResponse<List<EntradaDto>>(listarAtivosDto);
 	}
 
 	public EnvelopeResponse<List<EntradaDto>> getListarEntrada() {
@@ -47,5 +45,5 @@ public class EntradaService {
 
 		return new EnvelopeResponse<EntradaDto>(entradaDto);
 	}
-	
+
 }

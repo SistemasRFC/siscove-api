@@ -27,9 +27,9 @@ public class EntradaController extends BaseController {
 		return entradaService.getListarEntrada();
 	}
 
-	@RequestMapping(value = "/listar/ativos", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<EntradaDto>> getListarEntradaAtivos() {
-		return entradaService.getListarEntradaAtivos();
+	@RequestMapping(value = "/listar/abertas", method = RequestMethod.GET, consumes = { "*/*" })
+	public EnvelopeResponse<List<EntradaDto>> findEntradasAbertas() {
+		return entradaService.findEntradasAbertas();
 	}
 
 	@RequestMapping(value = "/produto", method = RequestMethod.POST, consumes = { "*/*" })

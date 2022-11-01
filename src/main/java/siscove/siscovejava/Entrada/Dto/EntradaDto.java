@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import siscove.siscovejava.Deposito.Entity.Deposito;
+import siscove.siscovejava.Deposito.Dto.DepositoDto;
 import siscove.siscovejava.Entrada.Entity.Entrada;
 import siscove.siscovejava.EntradaEstoque.Dto.EntradaEstoqueDto;
 import siscove.siscovejava.EntradaEstoque.Entity.EntradaEstoque;
-import siscove.siscovejava.Fornecedor.Entity.Fornecedor;
+import siscove.siscovejava.Fornecedor.Dto.FornecedorDto;
 
 @Component
 @AllArgsConstructor
@@ -24,40 +24,44 @@ public class EntradaDto {
 	private Integer nroSequencial;
 	private String nroNotaFiscal;
 	private LocalDate dtaEntrada;
-	private Fornecedor fornecedor;
-	private Deposito deposito;
+	private FornecedorDto fornecedorDto;
+	private DepositoDto depositoDto;
 	private Integer codUsuario;
 	private String txtObservacao;
 	private String indEntrada;
 	private Integer codClienteFinal;
 	private List<EntradaEstoqueDto> listaEntradaEstoque;
 	private float vlrTotal;
-	
+
 	public static EntradaDto build(Entrada entrada) {
 		List<EntradaEstoqueDto> listarEntradaEstoqueDto = new ArrayList<EntradaEstoqueDto>();
-		float vlrTotal =0;
-		if (null!=entrada.getListaEntradaEstoque()) {
+		float vlrTotal = 0;
+		if (null != entrada.getListaEntradaEstoque()) {
 			for (EntradaEstoque entradaEstoque : entrada.getListaEntradaEstoque()) {
 				listarEntradaEstoqueDto.add(EntradaEstoqueDto.build(entradaEstoque));
-				vlrTotal += entradaEstoque.getVlrUnitario()* entradaEstoque.getQtdEntrada();
+				vlrTotal += entradaEstoque.getVlrUnitario() * entradaEstoque.getQtdEntrada();
 			}
-			
+
 		}
-		
-		EntradaDto entradaDto = new EntradaDto(
-				entrada.getNroSequencial(), 
-				entrada.getNroNotaFiscal(), 
-				entrada.getDtaEntrada(), 
-				entrada.getFornecedor(),
-				entrada.getDeposito(),
-				entrada.getCodUsuario(), 
-				entrada.getTxtObservacao(), 
-				entrada.getIndEntrada(), 
-				entrada.getCodClienteFinal(),
-				listarEntradaEstoqueDto,
-				vlrTotal); 
-				
-				return entradaDto;
+		String indEntrada = "";
+		if (null != entrada.getIndEntrada()) {
+			indEntrada = entrada.getIndEntrada();
+		}
+		FornecedorDto fornecedorDto = new FornecedorDto();
+		if (null != entrada.getFornecedor()) {
+			fornecedorDto = FornecedorDto.build(entrada.getFornecedor());
+		}
+		DepositoDto depositoDto = new DepositoDto();
+		if (null != entrada.getDeposito()) {
+			depositoDto = DepositoDto.build(entrada.getDeposito());
+		}
+
+		EntradaDto entradaDto = new EntradaDto(entrada.getNroSequencial(), entrada.getNroNotaFiscal(),
+				entrada.getDtaEntrada(), fornecedorDto, depositoDto, entrada.getCodUsuario(),
+				entrada.getTxtObservacao(), indEntrada, entrada.getCodClienteFinal(), listarEntradaEstoqueDto,
+				vlrTotal);
+
+		return entradaDto;
 	}
 
 	public static Entrada parse(EntradaDto entradaDto) {
@@ -69,13 +73,13 @@ public class EntradaDto {
 		entrada.setTxtObservacao(entradaDto.getTxtObservacao());
 		entrada.setIndEntrada(entradaDto.getIndEntrada());
 		entrada.setCodClienteFinal(entradaDto.getCodClienteFinal());
-		
-		Fornecedor fornecedor= entradaDto.getFornecedor();
-		entrada.setFornecedor(fornecedor);
-		
-		Deposito deposito= entradaDto.getDeposito();
-		entrada.setDeposito(deposito);
 
+		if (null != entradaDto.getFornecedorDto()) {
+			entrada.setCodFornecedor(entradaDto.getFornecedorDto().getCodFornecedor());
+		}
+		if (null != entradaDto.getDepositoDto()) {
+			entrada.setCodDeposito(entradaDto.getFornecedorDto().getCodFornecedor());
+		}
 		return entrada;
 	}
 }
