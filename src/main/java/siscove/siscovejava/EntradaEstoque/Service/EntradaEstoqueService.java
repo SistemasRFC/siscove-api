@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import siscove.siscovejava.Config.response.EnvelopeResponse;
-import siscove.siscovejava.Entrada.Dto.EntradaDto;
 import siscove.siscovejava.EntradaEstoque.Dto.EntradaEstoqueDto;
 import siscove.siscovejava.EntradaEstoque.Entity.EntradaEstoque;
 import siscove.siscovejava.EntradaEstoque.Repository.EntradaEstoqueDao;
@@ -56,4 +55,11 @@ public class EntradaEstoqueService {
 
 	}
 
+	public EnvelopeResponse<EntradaEstoqueDto> adicionar(EntradaEstoqueDto entradaEstoqueDto) {
+		EntradaEstoque entradaEstoque = entradaEstoqueDao.save(EntradaEstoqueDto.parse(entradaEstoqueDto));
+
+		entradaEstoqueDto = EntradaEstoqueDto.build(entradaEstoque);
+
+		return new EnvelopeResponse<EntradaEstoqueDto>(entradaEstoqueDto);
+	}
 }

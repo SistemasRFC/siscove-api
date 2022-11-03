@@ -18,7 +18,7 @@ import siscove.siscovejava.Produto.Entity.Produto;
 public class EntradaEstoqueDto {
 
 	private Produto produto;
-	private EntradaEstoqueId nroSequencial;
+	private Integer nroSequencial;
 	private LocalDate dtaEntradaProduto;
 	private Float qtdEntrada;
 	private Float vlrUnitario;
@@ -28,7 +28,10 @@ public class EntradaEstoqueDto {
 	public static EntradaEstoque parse(EntradaEstoqueDto entradaEstoqueDto) {
 		EntradaEstoque entradaEstoque = new EntradaEstoque();
 		
-		entradaEstoque.setEntradaEstoqueId(entradaEstoqueDto.getNroSequencial());
+		EntradaEstoqueId id = new EntradaEstoqueId();
+		id.setNroSequencial(entradaEstoqueDto.getNroSequencial());
+		
+		entradaEstoque.setEntradaEstoqueId(id);
 		entradaEstoque.setDtaEntradaProduto(entradaEstoqueDto.getDtaEntradaProduto());
 		entradaEstoque.setQtdEntrada(entradaEstoqueDto.getQtdEntrada());
 		entradaEstoque.setVlrUnitario(entradaEstoqueDto.getVlrUnitario());
@@ -44,7 +47,7 @@ public class EntradaEstoqueDto {
 	public static EntradaEstoqueDto build(EntradaEstoque entradaEstoque) {
 		EntradaEstoqueDto entradaEstoqueDto = new EntradaEstoqueDto(
 		entradaEstoque.getEntradaEstoqueId().getProduto(), 
-		entradaEstoque.getEntradaEstoqueId(),
+		entradaEstoque.getEntradaEstoqueId().getNroSequencial(),
 		entradaEstoque.getDtaEntradaProduto(),
 		entradaEstoque.getQtdEntrada(),
 		entradaEstoque.getVlrUnitario(),

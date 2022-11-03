@@ -17,6 +17,11 @@ import siscove.siscovejava.Produto.Entity.Produto;
 public class EntradaEstoqueId implements Serializable{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "NRO_SEQUENCIAL")
 	private Integer nroSequencial;
 
