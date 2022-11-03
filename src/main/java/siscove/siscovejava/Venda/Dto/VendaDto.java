@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import siscove.siscovejava.Cliente.Entity.Cliente;
-import siscove.siscovejava.Usuario.Dto.UsuarioDto;
 import siscove.siscovejava.Venda.Entity.Venda;
 
 

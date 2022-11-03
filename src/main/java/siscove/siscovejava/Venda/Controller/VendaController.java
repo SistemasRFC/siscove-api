@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import siscove.siscovejava.Config.response.BaseController;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.Venda.Dto.VendaDto;
 import siscove.siscovejava.Venda.Service.VendaService;
 
 @RestController
 @RequestMapping(value = "/venda")
-public class VendaController {
+public class VendaController extends BaseController {
 	
 	@Autowired
 	private VendaService vendaService;
