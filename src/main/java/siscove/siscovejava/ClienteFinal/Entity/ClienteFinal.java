@@ -25,6 +25,16 @@ public class ClienteFinal {
 	@Column(name="DSC_CAMINHO_LOGO")
 	private String dscCaminhoLogo;
 	
+	@Column(name="IND_TIPO_CLIENTE")
+	private String indTipoCliente;
+	
+	@Column(name="NRO_CPF")
+	private String nroCpf;
+	
+	@Column(name="NRO_CNPJ")
+	private String nroCnpj;
+	
+	
 	@Column(name="IND_ATIVO")
 	private String indAtivo;
 }
