@@ -34,6 +34,7 @@ import siscove.siscovejava.Venda.Entity.Venda;
 		private Integer vlrKmRodado;
 		private Integer codUsuarioFechamento;
 
+
 		public static VendaDto build(Venda venda) {
 			VendaDto vendaDto = new VendaDto(
 

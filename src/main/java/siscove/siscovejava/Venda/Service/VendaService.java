@@ -44,17 +44,6 @@ public class VendaService {
 	
 	}
 	
-	public EnvelopeResponse<List<VendaDto>> getListaVendas() {
-		List<Venda> listaVendas = vendaDao.findByNroStatusVenda("A");
-		
-		List<VendaDto> listaVendasDto = new ArrayList<VendaDto>();
-		for (Venda vendas : listaVendas) {
-			listaVendasDto.add(VendaDto.build(vendas));
-		}
-		
-		return new EnvelopeResponse<List<VendaDto>>(listaVendasDto);
-	}
-	
 	public EnvelopeResponse<List<VendaDto>> getListaVendasAbertas() {
 		List<Venda> listaVendasAbertas = vendaDao.findByNroStatusVenda("A");
 		

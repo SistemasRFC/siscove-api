@@ -26,12 +26,12 @@ public class VendaController extends BaseController {
 		return retorno;
 	}
 	
-	@RequestMapping(value = "/listar/vendas/abertas", method = RequestMethod.GET, consumes = { "*/*" })
+	@RequestMapping(value = "/listar/abertas", method = RequestMethod.GET, consumes = { "*/*" })
 	public EnvelopeResponse<List<VendaDto>> ListaVendasAbertas() {
 		return vendaService.getListaVendasAbertas();
 	}
 	
-	@RequestMapping(value = "/listar/vendas/fechadas", method = RequestMethod.GET, consumes = { "*/*" })
+	@RequestMapping(value = "/listar/fechadas", method = RequestMethod.GET, consumes = { "*/*" })
 	public EnvelopeResponse<List<VendaDto>> ListaVendasFechadas() {
 		return vendaService.getListaVendasFechadas();
 	}
