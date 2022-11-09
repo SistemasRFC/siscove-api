@@ -40,6 +40,18 @@ public class ProdutoService {
 
 		return new EnvelopeResponse<List<ProdutoDto>>(listarProdutosDto);
 	}
+	
+	public EnvelopeResponse<List<ProdutoDto>> getListaProdutoByPesquisaDinamica(String dscProduto) {
+		List<Produto> listarProdutos = produtoDao.findByDscProduto(dscProduto);
+
+		List<ProdutoDto> listarProdutosDto = new ArrayList<ProdutoDto>();
+		for (Produto produto : listarProdutos) {
+			ProdutoDto ProdutoDto = ProdutoDto.build(produto);
+			listarProdutosDto.add(ProdutoDto);
+		}
+		
+		return new EnvelopeResponse<List<ProdutoDto>>(listarProdutosDto);
+	}
 
 	public EnvelopeResponse<ProdutoDto> salvar(ProdutoDto produtoDto) {
 		Produto produto = ProdutoDto.parse(produtoDto);

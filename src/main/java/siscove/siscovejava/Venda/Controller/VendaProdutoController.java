@@ -32,4 +32,9 @@ public class VendaProdutoController extends BaseController{
 		return vendaProdutoService.getListarVendasProduto(codVenda);
 	}
 	
+	@RequestMapping(value = "/listar/funcionarios", method = RequestMethod.GET, consumes = { "*/*" })
+	public EnvelopeResponse<List<VendaProdutoDto>> ListarVendedores(@RequestBody Integer codFuncionario) {
+		return vendaProdutoService.getListarVendedores(codFuncionario);
+	}
+	
 }

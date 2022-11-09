@@ -12,7 +12,8 @@ import siscove.siscovejava.Venda.Entity.VendaProduto;
 public interface VendaProdutoDao extends CrudRepository<VendaProduto, Integer> {
 	
 	public List<VendaProduto> findByCodVenda(Integer codVenda);
-
-
+	
+	public List<VendaProduto> findByCodFuncionario(Integer codFuncionario); 
 }
+    
 
