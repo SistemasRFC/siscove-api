@@ -36,16 +36,5 @@ public class VendaProdutoService {
 		
 		return new EnvelopeResponse<List<VendaProdutoDto>>(listaVendasProdutoDto);
 	}
-	
-	public EnvelopeResponse<List<VendaProdutoDto>> getListarVendedores(Integer codFuncionario) {
-		List<VendaProduto> listaVendedores = vendaProdutoDao.findByCodFuncionario(codFuncionario);
-		
-		List<VendaProdutoDto> listaVendedoresDto = new ArrayList<VendaProdutoDto>();
-		for (VendaProduto venda : listaVendedores) {
-			listaVendedoresDto.add(VendaProdutoDto.build(venda));
-		}
-		
-		return new EnvelopeResponse<List<VendaProdutoDto>>(listaVendedoresDto);
-	}
 
 }

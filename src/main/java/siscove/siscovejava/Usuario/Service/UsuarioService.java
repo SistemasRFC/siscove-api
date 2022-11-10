@@ -46,6 +46,18 @@ public class UsuarioService {
 		return new EnvelopeResponse<List<UsuarioDto>>(listaUsuariosDto);
 
 	}
+	
+	public EnvelopeResponse<List<UsuarioDto>> getListarFuncionarios(String nmeUsuario) {
+		List<Usuario> listarFuncionarios = (List<Usuario>) usuarioDao.findByNmeUsuario(nmeUsuario);
+
+		List<UsuarioDto> listarUsuarioDto = new ArrayList<UsuarioDto>();
+		for (Usuario usuario : listarFuncionarios) {
+			UsuarioDto usuarioDto = UsuarioDto.build(usuario);
+			listarUsuarioDto.add(usuarioDto);
+		}
+		
+		return new EnvelopeResponse<List<UsuarioDto>>(listarUsuarioDto);
+	}
 
 	public EnvelopeResponse<List<UsuarioDto>> getListaUsuariosAtivos() {
 		List<Usuario> listaUsuariosAtivos = (List<Usuario>) usuarioDao.findAll();

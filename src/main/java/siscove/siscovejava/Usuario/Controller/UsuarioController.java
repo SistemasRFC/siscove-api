@@ -47,4 +47,9 @@ public class UsuarioController extends BaseController {
 		EnvelopeResponse<UsuarioDto> envLogin = usuarioService.reniciar(codUsuario);
 		return envLogin;
 	}
+	
+	@RequestMapping(value = "/listar/funcionarios", method = RequestMethod.GET, consumes = { "*/*" })
+	public EnvelopeResponse<List<UsuarioDto>> ListarFuncionarios(@RequestBody String nmeUsuario) {
+		return usuarioService.getListarFuncionarios(nmeUsuario);
+	}
 }
