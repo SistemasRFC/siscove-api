@@ -47,8 +47,8 @@ public class UsuarioService {
 
 	}
 	
-	public EnvelopeResponse<List<UsuarioDto>> getListarFuncionarios(String nmeUsuario) {
-		List<Usuario> listarFuncionarios = (List<Usuario>) usuarioDao.findByNmeUsuario(nmeUsuario);
+	public EnvelopeResponse<List<UsuarioDto>> getListarFuncionarios() {
+		List<Usuario> listarFuncionarios = usuarioDao.getListaFuncionarios();
 
 		List<UsuarioDto> listarUsuarioDto = new ArrayList<UsuarioDto>();
 		for (Usuario usuario : listarFuncionarios) {

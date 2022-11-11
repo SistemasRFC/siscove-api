@@ -17,7 +17,7 @@ public interface UsuarioDao extends CrudRepository<Usuario, Integer> {
 	@Query(value="SELECT u.* FROM SE_USUARIO u WHERE COD_PERFIL_W = 4 AND IND_ATIVO = 'S' ORDER BY u.NME_USUARIO_COMPLETO", nativeQuery=true)
 	public List<Usuario> getListaVendedores();
 	
-	@Query(value="SELECT * FROM SE_USUARIO  WHERE NME_USUARIO like %?1%", nativeQuery=true)
-	public List<Usuario> findByNmeUsuario(String nmeUsuario);
+	@Query(value="SELECT u.* FROM SE_USUARIO u WHERE COD_PERFIL_W != 1 AND IND_ATIVO = 'S' ORDER BY u.NME_USUARIO_COMPLETO", nativeQuery=true)
+	public List<Usuario> getListaFuncionarios();
 
 }
