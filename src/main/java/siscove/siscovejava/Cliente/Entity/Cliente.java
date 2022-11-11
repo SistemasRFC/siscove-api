@@ -35,7 +35,7 @@ public class Cliente {
 	
 	@Column(name="TXT_COMPLEMENTO")
 	private String txtComplemento;
-	
+
 	@Column(name="NME_BAIRRO")
 	private String nmeBairro;
 	
