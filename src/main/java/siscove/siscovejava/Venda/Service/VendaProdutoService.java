@@ -26,26 +26,15 @@ public class VendaProdutoService {
 	
 	}
 	
-	public EnvelopeResponse<List<VendaProdutoDto>> getListarVendasProduto(Integer codVenda) {
-		List<VendaProduto> listaVendasProduto = vendaProdutoDao.findByCodVenda(codVenda);
+	public EnvelopeResponse<List<VendaProdutoDto>> getListaProdutosVenda(Integer codVenda) {
+		List<VendaProduto> listaProdutosVenda = vendaProdutoDao.findByCodVenda(codVenda);
 		
 		List<VendaProdutoDto> listaVendasProdutoDto = new ArrayList<VendaProdutoDto>();
-		for (VendaProduto venda : listaVendasProduto) {
+		for (VendaProduto venda : listaProdutosVenda) {
 			listaVendasProdutoDto.add(VendaProdutoDto.build(venda));
 		}
 		
 		return new EnvelopeResponse<List<VendaProdutoDto>>(listaVendasProdutoDto);
-	}
-	
-	public EnvelopeResponse<List<VendaProdutoDto>> getListaProdutos() {
-		List<VendaProduto> listaProdutos = vendaProdutoDao.findByDscProduto();
-		
-		List<VendaProdutoDto> listaVendaProdutoDto = new ArrayList<VendaProdutoDto>();
-		for (VendaProduto vendaProduto : listaProdutos) {
-			listaVendaProdutoDto.add(VendaProdutoDto.build(vendaProduto));
-		}
-		
-		return new EnvelopeResponse<List<VendaProdutoDto>>(listaVendaProdutoDto);
 	}
 
 }

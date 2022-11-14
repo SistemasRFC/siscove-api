@@ -28,12 +28,7 @@ public class VendaProdutoController extends BaseController{
 	}
 	
 	@RequestMapping(value = "/listar/{codVenda}", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<VendaProdutoDto>> ListarVendasProduto(@PathVariable Integer codVenda) {
-		return vendaProdutoService.getListarVendasProduto(codVenda);
-	}
-	
-	@RequestMapping(value = "/listar", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<VendaProdutoDto>> ListarProdutos() {
-		return vendaProdutoService.getListaProdutos();
+	public EnvelopeResponse<List<VendaProdutoDto>> ListarProdutosVenda(@PathVariable Integer codVenda) {
+		return vendaProdutoService.getListaProdutosVenda(codVenda);
 	}
 }

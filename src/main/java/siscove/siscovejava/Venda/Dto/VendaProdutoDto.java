@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.Produto.Dto.ProdutoDto;
 import siscove.siscovejava.Venda.Entity.VendaProduto;
 
 @Component
@@ -18,6 +19,7 @@ public class VendaProdutoDto {
 	private Integer codVenda;
 	private Integer nroSequencial;
 	private Integer codProduto;
+	private ProdutoDto produto;
 	private Float vlrVenda;
 	private Integer qtdVendida;
 	private Float vlrDesconto;
@@ -28,10 +30,10 @@ public class VendaProdutoDto {
 
 	public static VendaProdutoDto build(VendaProduto vendaProduto) {
 		VendaProdutoDto vendaProdutoDto = new VendaProdutoDto(
-
 				vendaProduto.getCodVenda(), 
 				vendaProduto.getNroSequencial(), 
-				vendaProduto.getCodProduto(),  
+				vendaProduto.getCodProduto(), 
+				ProdutoDto.build(vendaProduto.getProduto()), 
 				vendaProduto.getVlrVenda(), 
 				vendaProduto.getQtdVendida(), 
 				vendaProduto.getVlrDesconto(), 
