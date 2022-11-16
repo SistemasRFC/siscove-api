@@ -27,7 +27,7 @@ public class VendaProdutoService {
 	}
 	
 	public EnvelopeResponse<List<VendaProdutoDto>> getListaProdutosVenda(Integer codVenda) {
-		List<VendaProduto> listaProdutosVenda = vendaProdutoDao.findByCodVenda(codVenda);
+		List<VendaProduto> listaProdutosVenda = vendaProdutoDao.findByIdCodVenda(codVenda);
 		
 		List<VendaProdutoDto> listaVendasProdutoDto = new ArrayList<VendaProdutoDto>();
 		for (VendaProduto venda : listaProdutosVenda) {
