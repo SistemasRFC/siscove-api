@@ -34,13 +34,13 @@ public class MarcaService {
 		return new EnvelopeResponse<List<MarcaDto>>(listarMarcaDto);
 	}
 
-	public EnvelopeResponse<MarcaDto> findByCodMarca(Integer codMarca) {
+	public MarcaDto findByCodMarca(Integer codMarca) {
 		Marca marca = marcaDao.findByCodMarca(codMarca);
 		if (null != marca) {
-			return new EnvelopeResponse<MarcaDto>(MarcaDto.build(marca));
+			return MarcaDto.build(marca);
 
 		}
-		return new EnvelopeResponse<MarcaDto>(null);
+		return null;
 	}
 
 	public EnvelopeResponse<MarcaDto> getMarcaByCodigoMarca(Integer codigoMarca) {

@@ -30,9 +30,9 @@ public class ProdutoService {
 			ProdutoDto produtoDto = ProdutoDto.build(produto);
 
 			if (null != produto.getCodMarca()) {
-				MarcaDto marcaDto = marcaSerivce.findByCodMarca(produto.getCodMarca()).getObjeto();
+				MarcaDto marcaDto = marcaSerivce.findByCodMarca(produto.getCodMarca());
 				if (null != marcaDto) {
-					produtoDto.setDscMarca(marcaDto.getDscMarca());
+					produtoDto.setMarca(marcaDto);
 				}
 			}
 			listarProdutosDto.add(produtoDto);
