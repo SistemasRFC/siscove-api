@@ -26,11 +26,11 @@ public class VendaProdutoService {
 	
 	}
 	
-	public EnvelopeResponse<List<VendaProdutoDto>> getListarVendasProduto(Integer codVenda) {
-		List<VendaProduto> listaVendasProduto = vendaProdutoDao.findByCodVenda(codVenda);
+	public EnvelopeResponse<List<VendaProdutoDto>> getListaProdutosVenda(Integer codVenda) {
+		List<VendaProduto> listaProdutosVenda = vendaProdutoDao.findByIdCodVenda(codVenda);
 		
 		List<VendaProdutoDto> listaVendasProdutoDto = new ArrayList<VendaProdutoDto>();
-		for (VendaProduto venda : listaVendasProduto) {
+		for (VendaProduto venda : listaProdutosVenda) {
 			listaVendasProdutoDto.add(VendaProdutoDto.build(venda));
 		}
 		

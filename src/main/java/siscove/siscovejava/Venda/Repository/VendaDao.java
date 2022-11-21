@@ -13,5 +13,5 @@ public interface VendaDao extends CrudRepository<Venda, Integer> {
 	public List<Venda> findByNroStatusVenda(String status);
 	
 	public List<Venda> findByCodVendaLike(Integer codVenda);
-
+	
 }

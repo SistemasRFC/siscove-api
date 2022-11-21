@@ -13,5 +13,7 @@ public interface ProdutoDao extends CrudRepository<Produto, String> {
 
 	@Query(value="SELECT * FROM EN_PRODUTO  WHERE DSC_PRODUTO like %?1%", nativeQuery=true)
 	public List<Produto> findBydscProduto(String dscProduto);
+	
+
 
 }

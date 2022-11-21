@@ -2,6 +2,7 @@ package siscove.siscovejava.Produto.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.ManyToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import siscove.siscovejava.Marca.Entity.Marca;
+import siscove.siscovejava.TipoProduto.Entity.TipoProduto;
 
 @NoArgsConstructor
 @Data
@@ -37,7 +39,7 @@ public class Produto {
 	@Column(name="COD_MARCA")
 	private Integer codMarca;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="COD_MARCA", insertable = false, updatable = false)
 	private Marca marca;
 	
@@ -46,6 +48,10 @@ public class Produto {
 	
 	@Column(name="COD_TIPO_PRODUTO")
 	private Integer codTipoProduto;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="COD_TIPO_PRODUTO", insertable = false, updatable = false)
+	private TipoProduto tipoProduto;
 
 	@Column(name="NRO_ARO_PNEU")
 	private Integer nroAroPneu;
