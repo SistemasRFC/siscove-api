@@ -62,8 +62,10 @@ public class MarcaService {
 	public EnvelopeResponse<MarcaDto> salvar(MarcaDto marcaDto, String token) {
 		TokenDto tokenDto = tokenService.getByToken(token).getObjeto();
 		
-		marcaDto.setCodClienteFinal(tokenDto.getCodClienteFinal())
-		;
+
+		marcaDto.setCodClienteFinal(tokenDto.getCodClienteFinal());
+		
+
 		Marca marca = marcaDao.save(MarcaDto.parse(marcaDto));
 
 		marcaDto = MarcaDto.build(marca);

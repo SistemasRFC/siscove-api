@@ -13,5 +13,8 @@ public interface ClienteDao extends CrudRepository<Cliente, Integer> {
 
 	@Query(value="SELECT * FROM EN_CLIENTE  WHERE DSC_CLIENTE like %?1%", nativeQuery=true)
 	public List<Cliente> findBydscCliente(String dscCliente);
+	
+	@Query(value="SELECT * FROM EN_CLIENTE  WHERE NRO_CPF like %?1% OR NRO_CNPJ like %?1%", nativeQuery=true)
+	public List<Cliente> findByNroDocumento(String nroDoc);
 
 }

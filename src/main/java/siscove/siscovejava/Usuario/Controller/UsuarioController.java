@@ -36,6 +36,11 @@ public class UsuarioController extends BaseController {
 	public EnvelopeResponse<List<UsuarioDto>> ListaUsuariosAtivos() {
 		return usuarioService.getListaUsuariosAtivos();
 	}
+	
+	@RequestMapping(value = "/listar/vendedores", method = RequestMethod.GET, consumes = { "*/*" })
+	public EnvelopeResponse<List<UsuarioDto>> lista() {
+		return usuarioService.getListaVendedores();
+	}
 
 	@RequestMapping(value = "/reniciar/senha/{codUsuario}", method = RequestMethod.GET, consumes = { "*/*" })
 	public EnvelopeResponse<UsuarioDto> reniciar(@PathVariable Integer codUsuario) {

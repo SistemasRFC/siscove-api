@@ -1,4 +1,4 @@
-package siscove.siscovejava.ClienteFinal.Dao;
+package siscove.siscovejava.ClienteFinal.Repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
