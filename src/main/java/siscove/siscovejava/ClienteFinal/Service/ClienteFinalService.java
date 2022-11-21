@@ -59,6 +59,10 @@ public class ClienteFinalService {
 		
 		return new EnvelopeResponse<List<ClienteFinalDto>>(listaClienteFinalDto);
 	}
+
+	public ClienteFinal findByCodClienteFinal(Integer codClienteFinal) {
+		return clienteFinalDao.findByCodClienteFinal(codClienteFinal);
+	}
 }
 	
 	

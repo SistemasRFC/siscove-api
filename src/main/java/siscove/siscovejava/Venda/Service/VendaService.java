@@ -2,6 +2,7 @@ package siscove.siscovejava.Venda.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,24 @@ public class VendaService {
 	public EnvelopeResponse<VendaDto> salvar(VendaDto vendaDto) {		
 		Venda venda = vendaDao.save(VendaDto.parse(vendaDto));
 		
-		vendaDto = VendaDto.build(venda);
+		if (vendaDto.getCodVenda() != null) {
+			Optional<Venda> vendaData = vendaDao.findById(vendaDto.getCodVenda());
+			venda.setDtaVenda(vendaData.get().getDtaVenda());
+		}
+		
+		if (vendaDto.getCodVenda() != null) {
+			Optional<Venda> vendaStatus = vendaDao.findById(vendaDto.getCodVenda());
+			venda.setNroStatusVenda(vendaStatus.get().getNroStatusVenda());
+		}
+		
+		if (vendaDto.getCodVenda() != null) {
+			Optional<Venda> vendaClienteFinal = vendaDao.findById(vendaDto.getCodVenda());
+			venda.setCodClienteFinal(vendaClienteFinal.get().getCodClienteFinal());
+		}
+		
+		venda = vendaDao.save(venda);
+
+		vendaDto.setCodVenda(venda.getCodVenda());
 
 	return new EnvelopeResponse<VendaDto>(vendaDto);
 	
@@ -36,6 +54,7 @@ public class VendaService {
 		
 		return new EnvelopeResponse<List<VendaDto>>(listaVendasAbertasDto);
 	}
+	
 	
 	public EnvelopeResponse<List<VendaDto>> getListaVendasFechadas() {
 		List<Venda> listaVendasFechadas = vendaDao.findByNroStatusVenda("F");

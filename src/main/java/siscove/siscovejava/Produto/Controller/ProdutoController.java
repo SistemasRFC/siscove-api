@@ -25,6 +25,12 @@ public class ProdutoController extends BaseController {
 	public EnvelopeResponse<List<ProdutoDto>> getListarProdutos(@RequestBody String txtTermo) {
 		return produtoService.getListarProdutos(txtTermo);
 	}
+	
+	@RequestMapping(value = "/listar/byProduto", method = RequestMethod.GET, consumes = { "*/*" })
+	public List<ProdutoDto> getListarProdutoAutoComplete(@RequestBody String dscProduto) {
+		return ProdutoService.getListarProdutos(dscProduto).getObjeto();
+	}
+	
 
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, consumes = { "*/*" })
 	public EnvelopeResponse<ProdutoDto> salvarProduto(@RequestBody ProdutoDto produtoDto) {

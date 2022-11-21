@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import siscove.siscovejava.ClienteFinal.Dto.ClienteFinalDto;
+import siscove.siscovejava.ClienteFinal.Entity.ClienteFinal;
 import siscove.siscovejava.ClienteFinal.Service.ClienteFinalService;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.Deposito.Dto.DepositoDto;
@@ -45,8 +45,8 @@ public class DepositoService {
 			DepositoDto dto = DepositoDto.build(deposito);
 
 			if(null != deposito.getCodClienteFinal()) {
-				ClienteFinalDto clienteFinalDto = clienteFinalService.findByCodClienteFinal(deposito.getCodClienteFinal()).getObjeto();
-				dto.setDscClienteFinal(clienteFinalDto.getNmeClienteFinal());				
+				ClienteFinal clienteFinal = clienteFinalService.findByCodClienteFinal(deposito.getCodClienteFinal());
+				dto.setDscClienteFinal(clienteFinal.getNmeClienteFinal());
 			}
 
 			listaDepositoDto.add(dto);

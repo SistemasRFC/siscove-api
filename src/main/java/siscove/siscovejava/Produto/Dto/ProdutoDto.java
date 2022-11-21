@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import siscove.siscovejava.Marca.Dto.MarcaDto;
 import siscove.siscovejava.Produto.Entity.Produto;
+import siscove.siscovejava.TipoProduto.Dto.TipoProdutoDto;
 
 @Component
 @AllArgsConstructor
@@ -17,33 +19,37 @@ public class ProdutoDto {
 	private String dscProduto;
 	private Float vlrProduto;
 	private Float vlrMinimo;
-	private String indTipoProduto;
+	private String indTipoRegistro;
 	private Integer codMarca;
-	private String dscMarca;
+	private MarcaDto marca;
 	private Integer codClienteFinal;
 	private Integer codTipoProduto;
+	private TipoProdutoDto tipoProduto;
 	private Integer nroAroPneu;
 	private String indAtivo;
 	private String indSituacaoProduto;
 	private String indComissaoGerencia;
-	private String indTipoRegistro;
 
 	public static ProdutoDto build(Produto produto) {
-		ProdutoDto produtoDto = new ProdutoDto(
-				produto.getCodProduto(), 
-				produto.getDscProduto(),
-				produto.getVlrMinimo(),
-				produto.getVlrProduto(),
-				produto.getIndTipoRegistro(),
-				produto.getCodMarca(),
-				produto.getDscProduto(),
-				produto.getCodClienteFinal(),
-				produto.getCodTipoProduto(),
-				produto.getNroAroPneu(),
-				produto.getIndAtivo(),
-				produto.getIndSituacaoProduto(),
-				produto.getIndComissaoGerencia(), 
-				produto.getIndTipoRegistro());
+		ProdutoDto produtoDto = new ProdutoDto();
+		produtoDto.setCodProduto(produto.getCodProduto());
+		produtoDto.setDscProduto(produto.getDscProduto());
+		produtoDto.setVlrProduto(produto.getVlrProduto());
+		produtoDto.setVlrMinimo(produto.getVlrMinimo());
+		produtoDto.setIndTipoRegistro(produto.getIndTipoRegistro());
+		produtoDto.setCodMarca(produto.getCodMarca());
+		if(produto.getMarca() != null && !produto.getMarca().getCodMarca().equals(0)) {
+			produtoDto.setMarca(MarcaDto.build(produto.getMarca()));			
+		}
+		produtoDto.setCodClienteFinal(produto.getCodClienteFinal());
+		produtoDto.setCodTipoProduto(produto.getCodTipoProduto());
+		if(produto.getTipoProduto() != null && !produto.getTipoProduto().getCodTipoProduto().equals(0)) {
+			produtoDto.setTipoProduto(TipoProdutoDto.build(produto.getTipoProduto()));
+		}
+		produtoDto.setNroAroPneu(produto.getNroAroPneu());
+		produtoDto.setIndAtivo(produto.getIndAtivo());
+		produtoDto.setIndSituacaoProduto(produto.getIndSituacaoProduto());
+		produtoDto.setIndComissaoGerencia(produto.getIndComissaoGerencia());
 				
 
 		return produtoDto;
@@ -54,17 +60,16 @@ public class ProdutoDto {
 		Produto produto = new Produto();
 		produto.setCodProduto(produtoDto.getCodProduto());
 		produto.setDscProduto(produtoDto.getDscProduto());
-		produto.setIndAtivo(produtoDto.getIndAtivo());
 		produto.setVlrProduto(produtoDto.getVlrProduto());
 		produto.setVlrMinimo(produtoDto.getVlrMinimo());
 		produto.setIndTipoRegistro(produtoDto.getIndTipoRegistro());
 		produto.setCodMarca(produtoDto.getCodMarca());
 		produto.setCodClienteFinal(produtoDto.getCodClienteFinal());
-		produto.setIndAtivo(produtoDto.getIndAtivo());
-		produto.setNroAroPneu(produtoDto.getNroAroPneu());
-		produto.setIndComissaoGerencia(produtoDto.getIndComissaoGerencia());
 		produto.setCodTipoProduto(produtoDto.getCodTipoProduto());
+		produto.setNroAroPneu(produtoDto.getNroAroPneu());
+		produto.setIndAtivo(produtoDto.getIndAtivo());
 		produto.setIndSituacaoProduto(produtoDto.getIndSituacaoProduto());
+		produto.setIndComissaoGerencia(produtoDto.getIndComissaoGerencia());
 		
 		return produto;
 
