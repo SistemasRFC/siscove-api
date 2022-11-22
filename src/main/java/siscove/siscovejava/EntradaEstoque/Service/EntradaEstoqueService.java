@@ -55,11 +55,4 @@ public class EntradaEstoqueService {
 
 	}
 
-	public EnvelopeResponse<EntradaEstoqueDto> adicionar(EntradaEstoqueDto entradaEstoqueDto) {
-		EntradaEstoque entradaEstoque = entradaEstoqueDao.save(EntradaEstoqueDto.parse(entradaEstoqueDto));
-
-		entradaEstoqueDto = EntradaEstoqueDto.build(entradaEstoque);
-
-		return new EnvelopeResponse<EntradaEstoqueDto>(entradaEstoqueDto);
-	}
 }

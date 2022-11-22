@@ -42,6 +42,10 @@ public class EntradaDto {
 				vlrTotal += entradaEstoque.getVlrUnitario() * entradaEstoque.getQtdEntrada();
 			}
 
+		}else {
+			EntradaEstoque entradaEstoque = new EntradaEstoque();
+			listarEntradaEstoqueDto.add(EntradaEstoqueDto.build(entradaEstoque));
+			
 		}
 		String indEntrada = "";
 		if (null != entrada.getIndEntrada()) {

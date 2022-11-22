@@ -18,7 +18,7 @@ import siscove.siscovejava.Produto.Entity.Produto;
 public class EntradaEstoqueDto {
 
 	private Produto produto;
-	private Integer nroSequencial;
+	private EntradaEstoqueId nroSequencial;
 	private LocalDate dtaEntradaProduto;
 	private Float qtdEntrada;
 	private Float vlrUnitario;
@@ -27,32 +27,25 @@ public class EntradaEstoqueDto {
 
 	public static EntradaEstoque parse(EntradaEstoqueDto entradaEstoqueDto) {
 		EntradaEstoque entradaEstoque = new EntradaEstoque();
-		
-		EntradaEstoqueId id = new EntradaEstoqueId();
-		id.setNroSequencial(entradaEstoqueDto.getNroSequencial());
-		
-		entradaEstoque.setEntradaEstoqueId(id);
+
+		entradaEstoque.setEntradaEstoqueId(entradaEstoqueDto.getNroSequencial());
 		entradaEstoque.setDtaEntradaProduto(entradaEstoqueDto.getDtaEntradaProduto());
 		entradaEstoque.setQtdEntrada(entradaEstoqueDto.getQtdEntrada());
 		entradaEstoque.setVlrUnitario(entradaEstoqueDto.getVlrUnitario());
 		entradaEstoque.setVlrMinimo(entradaEstoqueDto.getVlrMinimo());
 		entradaEstoque.setVlrVenda(entradaEstoqueDto.getVlrVenda());
-		
-		Produto produto= entradaEstoqueDto.getProduto();
+
+		Produto produto = entradaEstoqueDto.getProduto();
 		entradaEstoque.entradaEstoqueId.setProduto(produto);
 
 		return entradaEstoque;
 	}
 
 	public static EntradaEstoqueDto build(EntradaEstoque entradaEstoque) {
-		EntradaEstoqueDto entradaEstoqueDto = new EntradaEstoqueDto(
-		entradaEstoque.getEntradaEstoqueId().getProduto(), 
-		entradaEstoque.getEntradaEstoqueId().getNroSequencial(),
-		entradaEstoque.getDtaEntradaProduto(),
-		entradaEstoque.getQtdEntrada(),
-		entradaEstoque.getVlrUnitario(),
-		entradaEstoque.getVlrMinimo(),
-		entradaEstoque.getVlrVenda());
+		EntradaEstoqueDto entradaEstoqueDto = new EntradaEstoqueDto(entradaEstoque.getEntradaEstoqueId().getProduto(),
+				entradaEstoque.getEntradaEstoqueId(), entradaEstoque.getDtaEntradaProduto(),
+				entradaEstoque.getQtdEntrada(), entradaEstoque.getVlrUnitario(), entradaEstoque.getVlrMinimo(),
+				entradaEstoque.getVlrVenda());
 		return entradaEstoqueDto;
 	}
 }

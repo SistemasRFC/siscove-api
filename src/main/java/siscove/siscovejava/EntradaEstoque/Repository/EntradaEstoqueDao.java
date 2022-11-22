@@ -13,5 +13,4 @@ public interface EntradaEstoqueDao extends CrudRepository<EntradaEstoque, Intege
 
 	@Query(value="SELECT u.* FROM EN_ENTRADA_ESTOQUE u WHERE NRO_SEQUENCIAL = ?1 ", nativeQuery=true)
 	public List<EntradaEstoque> getListaEntradaEstoqueByNroSequencial(Integer nroSequencial);
-}	
-
+}

@@ -14,12 +14,11 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity(name = "EN_ENTRADA_ESTOQUE")
 
-public class EntradaEstoque implements Serializable{
-
+public class EntradaEstoque implements Serializable {
 
 	@EmbeddedId
 	public EntradaEstoqueId entradaEstoqueId;
-	
+
 	@Column(name = "DTA_ENTRADA_PRODUTO")
 	private LocalDate dtaEntradaProduto;
 
@@ -34,7 +33,5 @@ public class EntradaEstoque implements Serializable{
 
 	@Column(name = "VLR_VENDA")
 	private Float vlrVenda;
-
-
 
 }

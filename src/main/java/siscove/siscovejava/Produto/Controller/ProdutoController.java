@@ -21,20 +21,21 @@ public class ProdutoController extends BaseController {
 	@Autowired
 	private ProdutoService produtoService;
 
-	//@RequestMapping(value = "/listar/byTermo", method = RequestMethod.POST, consumes = { "*/*" })
-	//public EnvelopeResponse<List<ProdutoDto>> getListarProdutos(@RequestBody String txtTermo) {
-	//	return produtoService.getListarProdutos(txtTermo);
-	//}
-	
+	// @RequestMapping(value = "/listar/byTermo", method = RequestMethod.POST,
+	// consumes = { "*/*" })
+	// public EnvelopeResponse<List<ProdutoDto>> getListarProdutos(@RequestBody
+	// String txtTermo) {
+	// return produtoService.getListarProdutos(txtTermo);
+	// }
 
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, consumes = { "*/*" })
 	public EnvelopeResponse<ProdutoDto> salvarProduto(@RequestBody ProdutoDto produtoDto) {
 		EnvelopeResponse<ProdutoDto> envLogin = produtoService.salvar(produtoDto);
 		return envLogin;
 	}
-	
+
 	@RequestMapping(value = "/listar/byTermo/{txtTermo}", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<ProdutoDto>> getListarProdutosAutoComplete(@PathVariable String txtTermo) {
-		return produtoService.getListarProdutos(txtTermo);
+	public List<ProdutoDto> getListarProdutosAutoComplete(@PathVariable String txtTermo) {
+		return produtoService.getListarProdutos(txtTermo).getObjeto();
 	}
 }
