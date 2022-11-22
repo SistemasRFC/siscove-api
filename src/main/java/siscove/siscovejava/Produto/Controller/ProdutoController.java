@@ -3,6 +3,7 @@ package siscove.siscovejava.Produto.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,8 +26,8 @@ public class ProdutoController extends BaseController {
 		return ProdutoService.getListarProdutos(txtTermo);
 	}
 	
-	@RequestMapping(value = "/listar/byProduto", method = RequestMethod.GET, consumes = { "*/*" })
-	public List<ProdutoDto> getListarProdutoAutoComplete(@RequestBody String dscProduto) {
+	@RequestMapping(value = "/listar/byProduto/{dscProduto}", method = RequestMethod.GET, consumes = { "*/*" })
+	public List<ProdutoDto> getListarProdutoAutoComplete(@PathVariable String dscProduto) {
 		return ProdutoService.getListarProdutos(dscProduto).getObjeto();
 	}
 	
