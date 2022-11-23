@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import siscove.siscovejava.Entrada.Entity.Entrada;
 
-@Repository(value = "EntradaDao")
-public interface EntradaDao extends CrudRepository<Entrada, Integer> {
+@Repository(value = "EntradaRepository")
+public interface EntradaRepository extends CrudRepository<Entrada, Integer> {
 	
 	@Query(value="SELECT * FROM EN_ENTRADA  WHERE IND_ENTRADA = 'A'", nativeQuery=true)
 	public List<Entrada> findEntradasAbertas();

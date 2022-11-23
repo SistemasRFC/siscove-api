@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import siscove.siscovejava.Config.response.BaseController;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.Entrada.Dto.EntradaDto;
+import siscove.siscovejava.Entrada.Dto.EntradasAbertasDto;
 import siscove.siscovejava.Entrada.Service.EntradaService;
 
 @RestController
@@ -28,7 +29,7 @@ public class EntradaController extends BaseController {
 	}
 
 	@RequestMapping(value = "/listar/abertas", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<EntradaDto>> findEntradasAbertas() {
+	public EnvelopeResponse<List<EntradasAbertasDto>> findEntradasAbertas() {
 		return entradaService.findEntradasAbertas();
 	}
 
