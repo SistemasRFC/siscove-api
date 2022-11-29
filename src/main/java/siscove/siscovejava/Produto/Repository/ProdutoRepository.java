@@ -8,12 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import siscove.siscovejava.Produto.Entity.Produto;
 
-@Repository(value = "ProdutoDao")
-public interface ProdutoDao extends CrudRepository<Produto, String> {
+@Repository(value = "ProdutoRepository")
+public interface ProdutoRepository extends CrudRepository<Produto, Integer> {
 
-	@Query(value="SELECT * FROM EN_PRODUTO  WHERE DSC_PRODUTO like %?1%", nativeQuery=true)
+	@Query(value="select * from EN_PRODUTO WHERE DSC_PRODUTO like %?1% AND IND_ATIVO = 'S'", nativeQuery=true)
 	public List<Produto> findBydscProduto(String dscProduto);
 	
-
+	
 
 }

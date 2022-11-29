@@ -47,11 +47,11 @@ public class UsuarioService {
 
 	}
 	
-	public EnvelopeResponse<List<UsuarioDto>> getListarFuncionarios() {
-		List<Usuario> listarFuncionarios = usuarioDao.getListaFuncionarios();
+	public EnvelopeResponse<List<UsuarioDto>> getListaFuncionarios() {
+		List<Usuario> listaFuncionarios = usuarioDao.getListaFuncionarios();
 
 		List<UsuarioDto> listarUsuarioDto = new ArrayList<UsuarioDto>();
-		for (Usuario usuario : listarFuncionarios) {
+		for (Usuario usuario : listaFuncionarios) {
 			UsuarioDto usuarioDto = UsuarioDto.build(usuario);
 			listarUsuarioDto.add(usuarioDto);
 		}

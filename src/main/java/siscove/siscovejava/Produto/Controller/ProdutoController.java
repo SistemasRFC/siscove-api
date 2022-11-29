@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import siscove.siscovejava.Config.response.BaseController;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
+import siscove.siscovejava.Produto.Dto.ProdutoAutoDto;
 import siscove.siscovejava.Produto.Dto.ProdutoDto;
 import siscove.siscovejava.Produto.Service.ProdutoService;
 
@@ -22,19 +23,18 @@ public class ProdutoController extends BaseController {
 	private ProdutoService ProdutoService;
 
 	@RequestMapping(value = "/listar/byTermo", method = RequestMethod.POST, consumes = { "*/*" })
-	public EnvelopeResponse<List<ProdutoDto>> getListarProdutos(@RequestBody String txtTermo) {
-		return ProdutoService.getListarProdutos(txtTermo);
+	public EnvelopeResponse<List<ProdutoDto>> getListaProdutos(@RequestBody String txtTermo) {
+		return ProdutoService.getListaProdutos(txtTermo);
 	}
 	
-	@RequestMapping(value = "/listar/byProduto/{dscProduto}", method = RequestMethod.GET, consumes = { "*/*" })
-	public List<ProdutoDto> getListarProdutoAutoComplete(@PathVariable String dscProduto) {
-		return ProdutoService.getListarProdutos(dscProduto).getObjeto();
+	@RequestMapping(value = "/listar/autoComplete/{dscProduto}", method = RequestMethod.GET, consumes = { "*/*" })
+	public List<ProdutoAutoDto> getListaProdutoAutoComplete(@PathVariable String dscProduto) {
+		return ProdutoService.getListaProdutoByDscProduto(dscProduto).getObjeto();
 	}
-	
 
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, consumes = { "*/*" })
 	public EnvelopeResponse<ProdutoDto> salvarProduto(@RequestBody ProdutoDto produtoDto) {
-		EnvelopeResponse<ProdutoDto> envLogin = ProdutoService.salvar(produtoDto);
-		return envLogin;
+		EnvelopeResponse<ProdutoDto> envProduto = ProdutoService.salvar(produtoDto);
+		return envProduto;
 	}
 }

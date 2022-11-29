@@ -50,6 +50,6 @@ public class UsuarioController extends BaseController {
 	
 	@RequestMapping(value = "/listar/funcionarios", method = RequestMethod.GET, consumes = { "*/*" })
 	public EnvelopeResponse<List<UsuarioDto>> ListarFuncionarios() {
-		return usuarioService.getListarFuncionarios();
+		return usuarioService.getListaFuncionarios();
 	}
 }

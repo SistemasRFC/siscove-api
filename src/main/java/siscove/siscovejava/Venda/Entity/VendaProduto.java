@@ -48,7 +48,7 @@ public class VendaProduto {
 	private LocalDateTime dtaVendaProduto;
 	
 	@Column(name="TXT_OBSERVACAO")
-	private Integer txtObservacao;
+	private String txtObservacao;
 	
 	
 
