@@ -19,4 +19,6 @@ public class EntradasAbertasDto {
 	private Integer codDeposito;
 	private String dscDeposito;
 	private Double vlrTotal;
+	private String dtaEntradaFormatada;
+	private String vlrTotalFormatada;
 }

@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import siscove.siscovejava.EntradaEstoque.Entity.EntradaEstoque;
 import siscove.siscovejava.EntradaEstoque.Entity.EntradaEstoqueId;
-import siscove.siscovejava.Produto.Entity.Produto;
+import siscove.siscovejava.Produto.Dto.ProdutoDto;
 
 @Component
 @AllArgsConstructor
@@ -17,8 +17,8 @@ import siscove.siscovejava.Produto.Entity.Produto;
 @Data
 public class EntradaEstoqueDto {
 
-	private Produto produto;
-	private EntradaEstoqueId nroSequencial;
+	private ProdutoDto produto;
+	private Integer nroSequencial;
 	private LocalDate dtaEntradaProduto;
 	private Float qtdEntrada;
 	private Float vlrUnitario;
@@ -27,24 +27,30 @@ public class EntradaEstoqueDto {
 
 	public static EntradaEstoque parse(EntradaEstoqueDto entradaEstoqueDto) {
 		EntradaEstoque entradaEstoque = new EntradaEstoque();
+		
+		EntradaEstoqueId entradaEstoqueId = new EntradaEstoqueId();
+		entradaEstoqueId.setNroSequencial(entradaEstoqueDto.getNroSequencial());
+		entradaEstoqueId.setProduto(ProdutoDto.parse( entradaEstoqueDto.getProduto()));
+		
+		entradaEstoque.setEntradaEstoqueId(entradaEstoqueId);
 
-		entradaEstoque.setEntradaEstoqueId(entradaEstoqueDto.getNroSequencial());
 		entradaEstoque.setDtaEntradaProduto(entradaEstoqueDto.getDtaEntradaProduto());
 		entradaEstoque.setQtdEntrada(entradaEstoqueDto.getQtdEntrada());
 		entradaEstoque.setVlrUnitario(entradaEstoqueDto.getVlrUnitario());
 		entradaEstoque.setVlrMinimo(entradaEstoqueDto.getVlrMinimo());
 		entradaEstoque.setVlrVenda(entradaEstoqueDto.getVlrVenda());
 
-		Produto produto = entradaEstoqueDto.getProduto();
-		entradaEstoque.entradaEstoqueId.setProduto(produto);
-
 		return entradaEstoque;
 	}
 
 	public static EntradaEstoqueDto build(EntradaEstoque entradaEstoque) {
-		EntradaEstoqueDto entradaEstoqueDto = new EntradaEstoqueDto(entradaEstoque.getEntradaEstoqueId().getProduto(),
-				entradaEstoque.getEntradaEstoqueId(), entradaEstoque.getDtaEntradaProduto(),
-				entradaEstoque.getQtdEntrada(), entradaEstoque.getVlrUnitario(), entradaEstoque.getVlrMinimo(),
+		EntradaEstoqueDto entradaEstoqueDto = new EntradaEstoqueDto(
+				ProdutoDto.build(entradaEstoque.getEntradaEstoqueId().getProduto()),
+				entradaEstoque.getEntradaEstoqueId().getNroSequencial(), 
+				entradaEstoque.getDtaEntradaProduto(),
+				entradaEstoque.getQtdEntrada(), 
+				entradaEstoque.getVlrUnitario(), 
+				entradaEstoque.getVlrMinimo(),
 				entradaEstoque.getVlrVenda());
 		return entradaEstoqueDto;
 	}

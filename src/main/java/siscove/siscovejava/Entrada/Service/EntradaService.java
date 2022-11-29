@@ -7,15 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import siscove.siscovejava.Config.response.EnvelopeResponse;
-import siscove.siscovejava.Deposito.Dto.DepositoDto;
 import siscove.siscovejava.Entrada.Dao.EntradaDao;
 import siscove.siscovejava.Entrada.Dto.EntradaDto;
 import siscove.siscovejava.Entrada.Dto.EntradasAbertasDto;
 import siscove.siscovejava.Entrada.Entity.Entrada;
 import siscove.siscovejava.Entrada.Repository.EntradaRepository;
-import siscove.siscovejava.EntradaEstoque.Dto.EntradaEstoqueDto;
-import siscove.siscovejava.EntradaEstoque.Entity.EntradaEstoque;
-import siscove.siscovejava.Fornecedor.Dto.FornecedorDto;
+import siscove.siscovejava.Util.UtilData;
+import siscove.siscovejava.UtilMoeda.UtilMoeda;
 
 @Service
 public class EntradaService {
@@ -29,38 +27,14 @@ public class EntradaService {
 	public EnvelopeResponse<List<EntradasAbertasDto>> findEntradasAbertas() {
 		List<EntradasAbertasDto> listaEntradasAbertas = entradaDao.getListaEntradasAbertas();
 
-//		List<EntradaDto> listarAtivosDto = new ArrayList<EntradaDto>();
-//		for (Entrada entrada : listarAtivos) {
-//			
-//			List<EntradaEstoqueDto> listarEntradaEstoqueDto = new ArrayList<EntradaEstoqueDto>();
-//			float vlrTotal = 0;
-//			if (null != entrada.getListaEntradaEstoque()) {
-//				for (EntradaEstoque entradaEstoque : entrada.getListaEntradaEstoque()) {
-//					vlrTotal += entradaEstoque.getVlrUnitario() * entradaEstoque.getQtdEntrada();
-//				}
-//
-//			}
-//			
-//			String indEntrada = "";
-//			if (null != entrada.getIndEntrada()) {
-//				indEntrada = entrada.getIndEntrada();
-//			}
-//			FornecedorDto fornecedorDto = new FornecedorDto();
-//			if (null != entrada.getFornecedor()) {
-//				fornecedorDto = FornecedorDto.build(entrada.getFornecedor());
-//			}
-//			DepositoDto depositoDto = new DepositoDto();
-//			if (null != entrada.getDeposito()) {
-//				depositoDto = DepositoDto.build(entrada.getDeposito());
-//			}
-//
-//			EntradaDto entradaDto = new EntradaDto(entrada.getNroSequencial(), entrada.getNroNotaFiscal(),
-//					entrada.getDtaEntrada(), fornecedorDto, depositoDto, entrada.getCodUsuario(),
-//					entrada.getTxtObservacao(), indEntrada, entrada.getCodClienteFinal(), listarEntradaEstoqueDto,
-//					vlrTotal);
-//			
-//			listarAtivosDto.add(entradaDto);
-//		}
+		for (EntradasAbertasDto entrada : listaEntradasAbertas) {
+			entrada.setDtaEntradaFormatada(UtilData.formataData(entrada.getDtaEntrada()));
+		}
+		
+		for (EntradasAbertasDto entrada : listaEntradasAbertas) {
+			entrada.setVlrTotalFormatada(UtilMoeda.formataMoeda(entrada.getVlrTotal()));
+		}
+		
 		return new EnvelopeResponse<List<EntradasAbertasDto>>(listaEntradasAbertas);
 	}
 

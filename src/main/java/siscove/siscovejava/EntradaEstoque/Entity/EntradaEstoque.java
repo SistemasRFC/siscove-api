@@ -33,5 +33,4 @@ public class EntradaEstoque implements Serializable {
 
 	@Column(name = "VLR_VENDA")
 	private Float vlrVenda;
-
 }

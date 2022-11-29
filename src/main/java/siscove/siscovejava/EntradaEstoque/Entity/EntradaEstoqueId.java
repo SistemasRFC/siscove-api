@@ -21,7 +21,7 @@ public class EntradaEstoqueId implements Serializable {
 	private Integer nroSequencial;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "COD_PRODUTO", insertable = true, updatable = true)
+	@JoinColumn(name = "COD_PRODUTO", insertable = false, updatable = false)
 	private Produto produto;
 
 }
