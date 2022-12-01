@@ -40,8 +40,9 @@ public class EntradaController extends BaseController {
 	}
 
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, consumes = { "*/*" })
-	public EnvelopeResponse<EntradaDto> salvarEntrada(@RequestBody EntradaDto entradaDto) {
+	public EnvelopeResponse<EntradaDto> salvar(@RequestBody EntradaDto entradaDto) {
 		EnvelopeResponse<EntradaDto> envLogin = entradaService.salvar(entradaDto);
 		return envLogin;
 	}
+	
 }

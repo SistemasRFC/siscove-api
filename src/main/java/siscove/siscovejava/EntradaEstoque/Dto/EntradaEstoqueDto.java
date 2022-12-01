@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import siscove.siscovejava.EntradaEstoque.Entity.EntradaEstoque;
 import siscove.siscovejava.EntradaEstoque.Entity.EntradaEstoqueId;
 import siscove.siscovejava.Produto.Dto.ProdutoDto;
+import siscove.siscovejava.Produto.Entity.Produto;
 
 @Component
 @AllArgsConstructor
@@ -30,7 +31,13 @@ public class EntradaEstoqueDto {
 		
 		EntradaEstoqueId entradaEstoqueId = new EntradaEstoqueId();
 		entradaEstoqueId.setNroSequencial(entradaEstoqueDto.getNroSequencial());
-		entradaEstoqueId.setProduto(ProdutoDto.parse( entradaEstoqueDto.getProduto()));
+		
+		Produto produto = new Produto();
+		
+		if (null!=entradaEstoqueDto.getProduto()) {
+			produto = ProdutoDto.parse(entradaEstoqueDto.getProduto());
+		}
+		entradaEstoqueId.setProduto(produto);
 		
 		entradaEstoque.setEntradaEstoqueId(entradaEstoqueId);
 
@@ -44,9 +51,15 @@ public class EntradaEstoqueDto {
 	}
 
 	public static EntradaEstoqueDto build(EntradaEstoque entradaEstoque) {
+		ProdutoDto produtoDto = new ProdutoDto();
+		Integer nroSequencial = null;
+		if (null!=entradaEstoque.getEntradaEstoqueId()) {
+			produtoDto = ProdutoDto.build(entradaEstoque.getEntradaEstoqueId().getProduto());
+			nroSequencial = entradaEstoque.getEntradaEstoqueId().getNroSequencial();
+		}
 		EntradaEstoqueDto entradaEstoqueDto = new EntradaEstoqueDto(
-				ProdutoDto.build(entradaEstoque.getEntradaEstoqueId().getProduto()),
-				entradaEstoque.getEntradaEstoqueId().getNroSequencial(), 
+				produtoDto,
+				nroSequencial, 
 				entradaEstoque.getDtaEntradaProduto(),
 				entradaEstoque.getQtdEntrada(), 
 				entradaEstoque.getVlrUnitario(), 
