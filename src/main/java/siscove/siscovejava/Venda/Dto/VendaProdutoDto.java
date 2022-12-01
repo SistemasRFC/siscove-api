@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import siscove.siscovejava.Produto.Dto.ProdutoDto;
-import siscove.siscovejava.TipoProduto.Dto.TipoProdutoDto;
 import siscove.siscovejava.Usuario.Dto.UsuarioDto;
 import siscove.siscovejava.Venda.Entity.VendaProduto;
 import siscove.siscovejava.Venda.Entity.VendaProdutoId;
@@ -31,27 +30,36 @@ public class VendaProdutoDto {
 	private String indEstoque;
 	private LocalDateTime dtaVendaProduto;
 	private String txtObservacao;
-
+	
 	public static VendaProdutoDto build(VendaProduto vendaProduto) {
-		VendaProdutoDto vendaProdutoDto = new VendaProdutoDto();
-				vendaProduto.getId().getCodVenda();
-				vendaProduto.getId().getNroSequencial(); 
-				vendaProduto.getId().getCodProduto();  
-				vendaProduto.getVlrVenda(); 
-				vendaProduto.getQtdVendida(); 
-				vendaProduto.setCodFuncionario(vendaProduto.getCodFuncionario());
-				if(vendaProduto.getFuncionario() != null && !vendaProduto.getFuncionario().getCodUsuario().equals(0)) {
-					vendaProduto .setFuncionario(UsuarioDto.build(vendaProduto.getFuncionario()));			
-				}
-				vendaProduto.getVlrDesconto();
-				VendaProduto.setProduto(vendaProduto.getProduto());
-				if(vendaProduto.getProduto() != null && !vendaProduto.getProduto().getCodProduto().equals(0)) {
-					vendaProdutoDto.setProduto(ProdutoDto.build(vendaProduto.getProduto()));
-				}
-				vendaProduto.getCodFuncionario(); 
-				vendaProduto.getIndEstoque(); 
-				vendaProduto.getDtaVendaProduto(); 
-				vendaProduto.getTxtObservacao();
+		ProdutoDto produtoDto = new ProdutoDto();
+		UsuarioDto funcionarioDto = new UsuarioDto();
+		
+		if (null!=vendaProduto) {
+			if (null!=vendaProduto.getProduto()) {
+				produtoDto = ProdutoDto.build(vendaProduto.getProduto());
+			}
+			
+			if (null!=vendaProduto.getFuncionario()) {
+				funcionarioDto = UsuarioDto.build(vendaProduto.getFuncionario());
+			}
+		}
+		
+		VendaProdutoDto vendaProdutoDto = new VendaProdutoDto(
+			vendaProduto.getId().getCodVenda(),
+			vendaProduto.getId().getNroSequencial(),
+			vendaProduto.getId().getCodProduto(),
+			produtoDto,
+			vendaProduto.getVlrVenda(),
+			vendaProduto.getQtdVendida(),
+			vendaProduto.getVlrDesconto(),
+			vendaProduto.getCodFuncionario(),
+			funcionarioDto,
+			vendaProduto.getIndEstoque(),
+			vendaProduto.getDtaVendaProduto(),
+			vendaProduto.getTxtObservacao()
+		);
+		
 		return vendaProdutoDto;    
 	}
 
