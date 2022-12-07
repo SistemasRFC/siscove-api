@@ -1,6 +1,7 @@
 package siscove.siscovejava.EntradaEstoque.Dto;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
@@ -41,7 +42,13 @@ public class EntradaEstoqueDto {
 		
 		entradaEstoque.setEntradaEstoqueId(entradaEstoqueId);
 
-		entradaEstoque.setDtaEntradaProduto(entradaEstoqueDto.getDtaEntradaProduto());
+		LocalDate dtaEntradaProduto = LocalDate.now();
+		
+		if (null!=entradaEstoqueDto.getDtaEntradaProduto()) {
+			dtaEntradaProduto = entradaEstoqueDto.getDtaEntradaProduto();
+		}
+		
+		entradaEstoque.setDtaEntradaProduto(dtaEntradaProduto);
 		entradaEstoque.setQtdEntrada(entradaEstoqueDto.getQtdEntrada());
 		entradaEstoque.setVlrUnitario(entradaEstoqueDto.getVlrUnitario());
 		entradaEstoque.setVlrMinimo(entradaEstoqueDto.getVlrMinimo());
