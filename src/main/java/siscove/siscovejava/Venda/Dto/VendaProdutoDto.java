@@ -30,6 +30,7 @@ public class VendaProdutoDto {
 	private String indEstoque;
 	private LocalDateTime dtaVendaProduto;
 	private String txtObservacao;
+	private float vlrTotalProduto;
 	
 	public static VendaProdutoDto build(VendaProduto vendaProduto) {
 		ProdutoDto produtoDto = new ProdutoDto();
@@ -44,7 +45,7 @@ public class VendaProdutoDto {
 				funcionarioDto = UsuarioDto.build(vendaProduto.getFuncionario());
 			}
 		}
-		
+		float vlrTotalProduto = (vendaProduto.getVlrVenda()*vendaProduto.getQtdVendida())-vendaProduto.getVlrDesconto();
 		VendaProdutoDto vendaProdutoDto = new VendaProdutoDto(
 			vendaProduto.getId().getCodVenda(),
 			vendaProduto.getId().getNroSequencial(),
@@ -57,7 +58,8 @@ public class VendaProdutoDto {
 			funcionarioDto,
 			vendaProduto.getIndEstoque(),
 			vendaProduto.getDtaVendaProduto(),
-			vendaProduto.getTxtObservacao()
+			vendaProduto.getTxtObservacao(),
+			vlrTotalProduto
 		);
 		
 		return vendaProdutoDto;    

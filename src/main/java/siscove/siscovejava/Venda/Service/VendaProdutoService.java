@@ -17,8 +17,22 @@ public class VendaProdutoService {
 	@Autowired
 	private VendaProdutoDao vendaProdutoDao;
 
-	public EnvelopeResponse<VendaProdutoDto> salvar(VendaProdutoDto vendaProdutoDto) {		
-		VendaProduto vendaProduto = vendaProdutoDao.save(VendaProdutoDto.parse(vendaProdutoDto));
+	public EnvelopeResponse<VendaProdutoDto> salvar(VendaProdutoDto vendaProdutoDto) {
+		if (vendaProdutoDto.getCodProduto()==null) {
+			return new EnvelopeResponse<VendaProdutoDto>(null, false, "Código do produto não informado!");
+		}
+		
+		if (vendaProdutoDto.getNroSequencial()==null) {
+			return new EnvelopeResponse<VendaProdutoDto>(null, false, "Número sequencial não informado!");
+		}
+		
+		if (vendaProdutoDto.getCodVenda()==null) {
+			return new EnvelopeResponse<VendaProdutoDto>(null, false, "Código da venda não informado!");
+		}
+		
+		VendaProduto vendaProduto = VendaProdutoDto.parse(vendaProdutoDto);
+		
+		vendaProduto = vendaProdutoDao.save(vendaProduto);
 		
 		vendaProdutoDto = VendaProdutoDto.build(vendaProduto);
 

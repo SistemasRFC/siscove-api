@@ -32,7 +32,9 @@ public class ProdutoDto {
 
 	public static ProdutoDto build(Produto produto) {
 		ProdutoDto produtoDto = new ProdutoDto();
-		produtoDto.setCodProduto(produto.getCodProduto());
+		if(produto.getCodProduto() != null && !produto.getCodProduto().equals(0)) {
+			produtoDto.setCodProduto(produto.getCodProduto());
+		}
 		produtoDto.setDscProduto(produto.getDscProduto());
 		produtoDto.setVlrProduto(produto.getVlrProduto());
 		produtoDto.setVlrMinimo(produto.getVlrMinimo());
