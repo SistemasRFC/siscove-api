@@ -23,7 +23,7 @@ public class VendaProdutoService {
 		}
 		
 		if (vendaProdutoDto.getNroSequencial()==null) {
-			return new EnvelopeResponse<VendaProdutoDto>(null, false, "Número sequencial não informado!");
+			return new EnvelopeResponse<VendaProdutoDto>(null, false, "Número Sequencial não informado!");
 		}
 		
 		if (vendaProdutoDto.getCodVenda()==null) {
