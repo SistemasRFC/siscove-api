@@ -21,4 +21,8 @@ public class EntradasAbertasDto {
 	private Double vlrTotal;
 	private String dtaEntradaFormatada;
 	private String vlrTotalFormatada;
+	private String txtObservacao;
+	private String indEntrada="A";
+	private Integer codUsuario;
+	private Integer codClienteFinal;
 }
