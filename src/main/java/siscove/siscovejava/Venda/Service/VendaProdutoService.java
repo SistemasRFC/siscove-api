@@ -50,5 +50,37 @@ public class VendaProdutoService {
 		
 		return new EnvelopeResponse<List<VendaProdutoDto>>(listaVendasProdutoDto);
 	}
+	
+	public EnvelopeResponse<List<VendaProdutoDto>> getRemoverProdutosVenda(Integer codProduto) {
+		List<VendaProduto> excluiProdutosVenda = vendaProdutoDao.findByIdCodProduto(codProduto);
+		
+		List<VendaProdutoDto> excluiVendasProdutoDto = new ArrayList<VendaProdutoDto>();
+		for (VendaProduto venda : excluiProdutosVenda) {
+			excluiVendasProdutoDto.add(VendaProdutoDto.build(venda));
+		}
+		
+		return new EnvelopeResponse<List<VendaProdutoDto>>(excluiVendasProdutoDto);
+	}
+	
+	public EnvelopeResponse<List<VendaProdutoDto>> getRemoverNumeroSequencial(Integer nroSequencial) {
+		List<VendaProduto> excluiProdutosVenda = vendaProdutoDao.findByIdNroSequencial(nroSequencial);
+		
+		List<VendaProdutoDto> excluiVendasProdutoDto = new ArrayList<VendaProdutoDto>();
+		for (VendaProduto venda : excluiProdutosVenda) {
+			excluiVendasProdutoDto.add(VendaProdutoDto.build(venda));
+		}
+		
+		return new EnvelopeResponse<List<VendaProdutoDto>>(excluiVendasProdutoDto);
+	}
 
+	public EnvelopeResponse<List<VendaProdutoDto>> getRemoverCodigoVenda(Integer codProduto) {
+		List<VendaProduto> excluiProdutosVenda = vendaProdutoDao.findByIdCodProduto(codProduto);
+		
+		List<VendaProdutoDto> excluiVendasProdutoDto = new ArrayList<VendaProdutoDto>();
+		for (VendaProduto venda : excluiProdutosVenda) {
+			excluiVendasProdutoDto.add(VendaProdutoDto.build(venda));
+		}
+		
+		return new EnvelopeResponse<List<VendaProdutoDto>>(excluiVendasProdutoDto);
+	}
 }

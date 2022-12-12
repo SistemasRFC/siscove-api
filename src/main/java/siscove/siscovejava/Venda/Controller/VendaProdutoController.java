@@ -31,4 +31,20 @@ public class VendaProdutoController extends BaseController{
 	public EnvelopeResponse<List<VendaProdutoDto>> ListarProdutosVenda(@PathVariable Integer codVenda) {
 		return vendaProdutoService.getListaProdutosVenda(codVenda);
 	}
+	
+	@RequestMapping(value = "/remover/{codProduto}", method = RequestMethod.DELETE, consumes = { "*/*" })
+	public EnvelopeResponse<List<VendaProdutoDto>> RemoverProdutosVenda(@PathVariable Integer codVenda) {
+		return vendaProdutoService.getRemoverProdutosVenda(codVenda);
+	}
+	
+
+	@RequestMapping(value = "/remover/{nroSequencial}", method = RequestMethod.DELETE, consumes = { "*/*" })
+	public EnvelopeResponse<List<VendaProdutoDto>> RemoverNumeroSequencial(@PathVariable Integer nroSequencial) {
+		return vendaProdutoService.getRemoverNumeroSequencial(nroSequencial);
+	}
+	
+	@RequestMapping(value = "/remover/{codVenda}", method = RequestMethod.DELETE, consumes = { "*/*" })
+	public EnvelopeResponse<List<VendaProdutoDto>> RemoverCodigoVenda(@PathVariable Integer codVenda) {
+		return vendaProdutoService.getRemoverCodigoVenda(codVenda);
+	}
 }

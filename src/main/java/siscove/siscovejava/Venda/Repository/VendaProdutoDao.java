@@ -13,7 +13,9 @@ public interface VendaProdutoDao extends CrudRepository<VendaProduto, Integer> {
 	
 	public List<VendaProduto> findByIdCodVenda(Integer codVenda);
 	
+	public List<VendaProduto> findByIdCodProduto(Integer codProduto);
 	
+	public List<VendaProduto> findByIdNroSequencial(Integer nroSequencial);
+	   
+   
 }
-    
-
