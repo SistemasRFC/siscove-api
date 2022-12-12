@@ -14,6 +14,7 @@ import siscove.siscovejava.Config.response.BaseController;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.Entrada.Dto.EntradaDto;
 import siscove.siscovejava.Entrada.Dto.EntradasAbertasDto;
+import siscove.siscovejava.Entrada.Dto.EntradasFechadasDto;
 import siscove.siscovejava.Entrada.Service.EntradaService;
 
 @RestController
@@ -45,4 +46,8 @@ public class EntradaController extends BaseController {
 		return envLogin;
 	}
 	
+	@RequestMapping(value = "/listar/fechadas", method = RequestMethod.GET, consumes = { "*/*" })
+	public EnvelopeResponse<List<EntradasFechadasDto>> findEntradasFechadas() {
+		return entradaService.findEntradasFechadas();
+	}
 }

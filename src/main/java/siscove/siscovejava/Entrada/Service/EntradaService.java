@@ -10,6 +10,7 @@ import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.Entrada.Dao.EntradaDao;
 import siscove.siscovejava.Entrada.Dto.EntradaDto;
 import siscove.siscovejava.Entrada.Dto.EntradasAbertasDto;
+import siscove.siscovejava.Entrada.Dto.EntradasFechadasDto;
 import siscove.siscovejava.Entrada.Entity.Entrada;
 import siscove.siscovejava.Entrada.Repository.EntradaRepository;
 import siscove.siscovejava.Util.UtilData;
@@ -36,6 +37,20 @@ public class EntradaService {
 		}
 		
 		return new EnvelopeResponse<List<EntradasAbertasDto>>(listaEntradasAbertas);
+	}
+	
+	public EnvelopeResponse<List<EntradasFechadasDto>> findEntradasFechadas() {
+		List<EntradasFechadasDto> listaEntradasFechadas = entradaDao.getListaEntradasFechadas();
+
+		for (EntradasFechadasDto entrada : listaEntradasFechadas) {
+			entrada.setDtaEntradaFormatada(UtilData.formataData(entrada.getDtaEntrada()));
+		}
+		
+		for (EntradasFechadasDto entrada : listaEntradasFechadas) {
+			entrada.setVlrTotalFormatada(UtilMoeda.formataMoeda(entrada.getVlrTotal()));
+		}
+		
+		return new EnvelopeResponse<List<EntradasFechadasDto>>(listaEntradasFechadas);
 	}
 
 	public EnvelopeResponse<List<EntradaDto>> getListarEntrada() {
