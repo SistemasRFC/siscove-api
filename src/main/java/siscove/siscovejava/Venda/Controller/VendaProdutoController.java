@@ -2,6 +2,9 @@ package siscove.siscovejava.Venda.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,29 +25,23 @@ public class VendaProdutoController extends BaseController{
 	private VendaProdutoService vendaProdutoService;
 	
 	@RequestMapping(value="/salvar", method = RequestMethod.POST, consumes = {"*/*"})
-	public EnvelopeResponse<VendaProdutoDto> salvarVendaProduto(@RequestBody VendaProdutoDto vendaProdutoDto){
-		EnvelopeResponse<VendaProdutoDto> retorno = vendaProdutoService.salvar(vendaProdutoDto);
+	public EnvelopeResponse<VendaProdutoDto> salvarVendaProduto(HttpServletRequest request, @RequestBody VendaProdutoDto vendaProdutoDto){
+		HttpSession session = request.getSession();
+		String token = session.getAttribute("token").toString();
+		EnvelopeResponse<VendaProdutoDto> retorno = vendaProdutoService.salvar(vendaProdutoDto, token);
 		return retorno;
 	}
 	
 	@RequestMapping(value = "/listar/{codVenda}", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<VendaProdutoDto>> ListarProdutosVenda(@PathVariable Integer codVenda) {
+	public EnvelopeResponse<List<VendaProdutoDto>> listarProdutosVenda(@PathVariable Integer codVenda) {
 		return vendaProdutoService.getListaProdutosVenda(codVenda);
 	}
 	
-	@RequestMapping(value = "/remover/{codProduto}", method = RequestMethod.DELETE, consumes = { "*/*" })
-	public EnvelopeResponse<List<VendaProdutoDto>> RemoverProdutosVenda(@PathVariable Integer codVenda) {
-		return vendaProdutoService.getRemoverProdutosVenda(codVenda);
-	}
-	
-
-	@RequestMapping(value = "/remover/{nroSequencial}", method = RequestMethod.DELETE, consumes = { "*/*" })
-	public EnvelopeResponse<List<VendaProdutoDto>> RemoverNumeroSequencial(@PathVariable Integer nroSequencial) {
-		return vendaProdutoService.getRemoverNumeroSequencial(nroSequencial);
-	}
-	
-	@RequestMapping(value = "/remover/{codVenda}", method = RequestMethod.DELETE, consumes = { "*/*" })
-	public EnvelopeResponse<List<VendaProdutoDto>> RemoverCodigoVenda(@PathVariable Integer codVenda) {
-		return vendaProdutoService.getRemoverCodigoVenda(codVenda);
+	@RequestMapping(value = "/excluir/{nroSequencial}/{codVenda}/{codProduto}", method = RequestMethod.DELETE, consumes = { "*/*" })
+	public EnvelopeResponse<List<VendaProdutoDto>> excluirProdutosVenda(
+			@PathVariable Integer nroSequencial,
+			@PathVariable Integer codVenda,
+			@PathVariable Integer codProduto) {
+		return vendaProdutoService.excluirProdutosVenda(nroSequencial, codVenda, codProduto);
 	}
 }

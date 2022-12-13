@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import siscove.siscovejava.Config.response.EnvelopeResponse;
+import siscove.siscovejava.Token.Dto.TokenDto;
+import siscove.siscovejava.Token.Service.TokenService;
 import siscove.siscovejava.Venda.Dto.VendaProdutoDto;
 import siscove.siscovejava.Venda.Entity.VendaProduto;
+import siscove.siscovejava.Venda.Entity.VendaProdutoId;
 import siscove.siscovejava.Venda.Repository.VendaProdutoDao;
 
 @Service
@@ -16,8 +19,15 @@ public class VendaProdutoService {
 	
 	@Autowired
 	private VendaProdutoDao vendaProdutoDao;
+	
+	@Autowired
+	private TokenService tokenService;
 
-	public EnvelopeResponse<VendaProdutoDto> salvar(VendaProdutoDto vendaProdutoDto) {
+	public EnvelopeResponse<VendaProdutoDto> salvar(VendaProdutoDto vendaProdutoDto, String token) {
+		TokenDto tokenDto = tokenService.getByToken(token).getObjeto();
+		
+		vendaProdutoDto.setCodFuncionario(tokenDto.getCodUsuario());
+		
 		if (vendaProdutoDto.getCodProduto()==null) {
 			return new EnvelopeResponse<VendaProdutoDto>(null, false, "Código do produto não informado!");
 		}
@@ -51,36 +61,21 @@ public class VendaProdutoService {
 		return new EnvelopeResponse<List<VendaProdutoDto>>(listaVendasProdutoDto);
 	}
 	
-	public EnvelopeResponse<List<VendaProdutoDto>> getRemoverProdutosVenda(Integer codProduto) {
-		List<VendaProduto> excluiProdutosVenda = vendaProdutoDao.findByIdCodProduto(codProduto);
+	public EnvelopeResponse<List<VendaProdutoDto>> excluirProdutosVenda(
+			Integer nroSequencial,
+			Integer codVenda,
+			Integer codProduto) {
 		
-		List<VendaProdutoDto> excluiVendasProdutoDto = new ArrayList<VendaProdutoDto>();
-		for (VendaProduto venda : excluiProdutosVenda) {
-			excluiVendasProdutoDto.add(VendaProdutoDto.build(venda));
-		}
+		VendaProdutoId id = new VendaProdutoId();
+		id.setNroSequencial(nroSequencial);
+		id.setCodVenda(codVenda);
+		id.setCodProduto(codProduto);
+		VendaProduto vendaProduto = new VendaProduto();
+		vendaProduto.setId(id);
 		
-		return new EnvelopeResponse<List<VendaProdutoDto>>(excluiVendasProdutoDto);
-	}
-	
-	public EnvelopeResponse<List<VendaProdutoDto>> getRemoverNumeroSequencial(Integer nroSequencial) {
-		List<VendaProduto> excluiProdutosVenda = vendaProdutoDao.findByIdNroSequencial(nroSequencial);
+		vendaProduto = vendaProdutoDao.findById(id);
+		vendaProdutoDao.delete(vendaProduto);
 		
-		List<VendaProdutoDto> excluiVendasProdutoDto = new ArrayList<VendaProdutoDto>();
-		for (VendaProduto venda : excluiProdutosVenda) {
-			excluiVendasProdutoDto.add(VendaProdutoDto.build(venda));
-		}
-		
-		return new EnvelopeResponse<List<VendaProdutoDto>>(excluiVendasProdutoDto);
-	}
-
-	public EnvelopeResponse<List<VendaProdutoDto>> getRemoverCodigoVenda(Integer codProduto) {
-		List<VendaProduto> excluiProdutosVenda = vendaProdutoDao.findByIdCodProduto(codProduto);
-		
-		List<VendaProdutoDto> excluiVendasProdutoDto = new ArrayList<VendaProdutoDto>();
-		for (VendaProduto venda : excluiProdutosVenda) {
-			excluiVendasProdutoDto.add(VendaProdutoDto.build(venda));
-		}
-		
-		return new EnvelopeResponse<List<VendaProdutoDto>>(excluiVendasProdutoDto);
+		return this.getListaProdutosVenda(codVenda);
 	}
 }
