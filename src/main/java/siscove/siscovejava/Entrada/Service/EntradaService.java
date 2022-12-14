@@ -39,8 +39,8 @@ public class EntradaService {
 		return new EnvelopeResponse<List<EntradasAbertasDto>>(listaEntradasAbertas);
 	}
 	
-	public EnvelopeResponse<List<EntradasFechadasDto>> findEntradasFechadas() {
-		List<EntradasFechadasDto> listaEntradasFechadas = entradaDao.getListaEntradasFechadas();
+	public EnvelopeResponse<List<EntradasFechadasDto>> findEntradasFechadas(Integer codFornecedor) {
+		List<EntradasFechadasDto> listaEntradasFechadas = entradaDao.getListaEntradasFechadas(codFornecedor);
 
 		for (EntradasFechadasDto entrada : listaEntradasFechadas) {
 			entrada.setDtaEntradaFormatada(UtilData.formataData(entrada.getDtaEntrada()));

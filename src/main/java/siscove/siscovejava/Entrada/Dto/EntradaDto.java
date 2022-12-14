@@ -82,7 +82,7 @@ public class EntradaDto {
 			entrada.setCodFornecedor(entradaDto.getFornecedorDto().getCodFornecedor());
 		}
 		if (null != entradaDto.getDepositoDto()) {
-			entrada.setCodDeposito(entradaDto.getFornecedorDto().getCodFornecedor());
+			entrada.setCodDeposito(entradaDto.getDepositoDto().getCodDeposito());
 		}
 		return entrada;
 	}

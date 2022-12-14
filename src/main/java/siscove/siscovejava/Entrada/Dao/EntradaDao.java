@@ -60,7 +60,7 @@ public class EntradaDao {
 		return listaEntradasAbertas;
 	}
 	
-	public List<EntradasFechadasDto> getListaEntradasFechadas() {
+	public List<EntradasFechadasDto> getListaEntradasFechadas(Integer codFornecedor) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("select ee.NRO_SEQUENCIAL, ");
 		sb.append("	   DTA_ENTRADA, ");
@@ -77,7 +77,7 @@ public class EntradaDao {
 		sb.append(" inner join en_fornecedor ef on ee.COD_FORNECEDOR =ef.COD_FORNECEDOR  ");
 		sb.append(" inner join en_entrada_estoque eee on ee.NRO_SEQUENCIAL = eee.NRO_SEQUENCIAL  ");
 		sb.append("inner join en_deposito ed on ee.COD_DEPOSITO = ed.COD_DEPOSITO ");
-		sb.append(" where ee.IND_ENTRADA ='F' ");
+		sb.append(" where ee.IND_ENTRADA ='F' and ee.COD_FORNECEDOR = "+codFornecedor);
 		sb.append(" group by ee.NRO_SEQUENCIAL ");
 
 		List<Object[]> listaRetorno = entityManager.createNativeQuery(sb.toString()).getResultList();

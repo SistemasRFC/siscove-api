@@ -46,8 +46,8 @@ public class EntradaController extends BaseController {
 		return envLogin;
 	}
 	
-	@RequestMapping(value = "/listar/fechadas", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<EntradasFechadasDto>> findEntradasFechadas() {
-		return entradaService.findEntradasFechadas();
+	@RequestMapping(value = "/listar/fechadas/{codFornecedor}", method = RequestMethod.GET, consumes = { "*/*" })
+	public EnvelopeResponse<List<EntradasFechadasDto>> findEntradasFechadas(@PathVariable Integer codFornecedor) {
+		return entradaService.findEntradasFechadas(codFornecedor);
 	}
 }
