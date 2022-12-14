@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 	@NoArgsConstructor
 	@Data
 	@Entity(name = "EN_LOG_VENDA")
-	public class LogVendaEntity {
+	public class LogVenda {
 
 		@Id
 		@Column(name = "COD_OPERACAO")

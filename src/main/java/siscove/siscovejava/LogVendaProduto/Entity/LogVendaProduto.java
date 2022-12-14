@@ -1,4 +1,4 @@
-package siscove.siscovejava.LogVendaPagamento.Entity;
+package siscove.siscovejava.LogVendaProduto.Entity;
 
 import java.time.LocalDateTime;
 
@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-@Entity(name = "EN_LOG_VENDA_PAGAMENTO")
-public class LogVendaPagamentoEntity {
+@Entity(name = "EN_LOG_VENDA_PRODUTO")
+public class LogVendaProduto {
 
 	@Id
 	@Column(name = "COD_OPERACAO")
@@ -24,14 +24,14 @@ public class LogVendaPagamentoEntity {
 	@Column(name = "COD_VENDA")
 	private Integer codVenda;
 	
-	@Column(name = "COD_PAGAMENTO")
-	private Integer codPagamento;
+	@Column(name = "COD_PRODUTO")
+	private Integer codProduto;
 	
-	@Column(name = "COD_TIPO_PAGAMENTO")
-	private Integer codTipoPagamento;
+	@Column(name = "QTD_PRODUTO")
+	private Integer qtdProduto;
 	
-	@Column(name = "VLR_PAGAMENTO")
-	private String vlrPagamento;
+	@Column(name = "VLR_PRODUTO")
+	private String vlrProduto;
 	
 	@Column(name = "COD_USUARIO")
 	private Integer codUsuario;
