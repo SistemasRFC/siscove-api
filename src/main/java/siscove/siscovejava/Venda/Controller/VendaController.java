@@ -2,6 +2,9 @@ package siscove.siscovejava.Venda.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +24,10 @@ public class VendaController extends BaseController {
 	private VendaService vendaService;
 	
 	@RequestMapping(value="/salvar", method = RequestMethod.POST, consumes = {"*/*"})
-	public EnvelopeResponse<VendaDto> salvarVenda(@RequestBody VendaDto vendaDto){
-		EnvelopeResponse<VendaDto> retorno = vendaService.salvar(vendaDto);
+	public EnvelopeResponse<VendaDto> salvarVenda(HttpServletRequest request, @RequestBody VendaDto vendaDto){
+		HttpSession session = request.getSession();
+		String token = session.getAttribute("token").toString();
+		EnvelopeResponse<VendaDto> retorno = vendaService.salvar(vendaDto, token);
 		return retorno;
 	}
 	
