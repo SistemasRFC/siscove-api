@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import siscove.siscovejava.Config.response.BaseController;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
-import siscove.siscovejava.Entrada.Dto.EntradaDto;
 import siscove.siscovejava.EntradaEstoque.Dto.EntradaEstoqueDto;
 import siscove.siscovejava.EntradaEstoque.Service.EntradaEstoqueService;
 
@@ -43,4 +42,13 @@ public class EntradaEstoqueController extends BaseController {
 		EnvelopeResponse<EntradaEstoqueDto> envLogin = entradaEstoqueService.salvar(entradaEstoqueDto);
 		return envLogin;
 	}
+	
+	@RequestMapping(value = "/remover/{nroSequencial}/{codProduto}", method = RequestMethod.DELETE, consumes = {"*/*"})
+	public EnvelopeResponse remover 
+		(@PathVariable Integer nroSequencial,
+		@PathVariable Integer codProduto) {
+			return entradaEstoqueService.removerProduto(nroSequencial,codProduto);
+		}
+	
+	
 }

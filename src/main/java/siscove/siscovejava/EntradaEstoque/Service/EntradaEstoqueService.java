@@ -2,6 +2,7 @@ package siscove.siscovejava.EntradaEstoque.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Service;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.EntradaEstoque.Dto.EntradaEstoqueDto;
 import siscove.siscovejava.EntradaEstoque.Entity.EntradaEstoque;
+import siscove.siscovejava.EntradaEstoque.Entity.EntradaEstoqueId;
 import siscove.siscovejava.EntradaEstoque.Repository.EntradaEstoqueDao;
+import siscove.siscovejava.Produto.Entity.Produto;
 
 @Service
 public class EntradaEstoqueService {
@@ -64,5 +67,14 @@ public class EntradaEstoqueService {
 		return new EnvelopeResponse<EntradaEstoqueDto>(entradaEstoqueDto);
 	}
 
-
+	public EnvelopeResponse<List<EntradaEstoqueDto>> removerProduto(Integer nroSequencial,Integer codProduto) {
+		Produto produto = new Produto();
+		produto.setCodProduto(codProduto);
+		EntradaEstoqueId entradaEstoqueId = new EntradaEstoqueId();
+		entradaEstoqueId.setNroSequencial(nroSequencial);
+		entradaEstoqueId.setProduto(produto);
+		Optional<EntradaEstoque> entradaEstoque = entradaEstoqueDao.findById(entradaEstoqueId);
+		entradaEstoqueDao.delete(entradaEstoque.get());
+		return this.getListaEntradaEstoqueByNroSequencial(nroSequencial);
+	}
 }
