@@ -36,9 +36,12 @@ public class VendaPagamentoService {
 
 		TokenDto tokenDto = tokenService.getByToken(token).getObjeto();
 		
-		logVendaPagamentoService.salvar(vendaPagamento.getCodVenda(), tokenDto.getCodUsuario(), operacao);
-		
+		logVendaPagamentoService.salvar(vendaPagamento.getCodVenda(),vendaPagamento.getNroSequencial(),vendaPagamento.getCodTipoPagamento(), tokenDto.getCodUsuario(), operacao);
+		;
 		vendaPagamentoDto.setCodVenda(vendaPagamento.getCodVenda());
+		vendaPagamentoDto.setNroSequencial(vendaPagamento.getNroSequencial());
+		vendaPagamentoDto.setCodTipoPagamento(vendaPagamento.getCodTipoPagamento ());
+		
 
 	return new EnvelopeResponse<VendaPagamentoDto>(vendaPagamentoDto);
 	

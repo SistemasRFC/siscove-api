@@ -12,6 +12,7 @@ import siscove.siscovejava.Token.Service.TokenService;
 import siscove.siscovejava.Venda.Dto.VendaProdutoDto;
 import siscove.siscovejava.Venda.Entity.VendaProduto;
 import siscove.siscovejava.Venda.Entity.VendaProdutoId;
+import siscove.siscovejava.Venda.Enum.TipoOperacaoEnum;
 import siscove.siscovejava.Venda.Repository.VendaProdutoDao;
 
 @Service
@@ -25,6 +26,12 @@ public class VendaProdutoService {
 
 	public EnvelopeResponse<VendaProdutoDto> salvar(VendaProdutoDto vendaProdutoDto, String token) {
 		TokenDto tokenDto = tokenService.getByToken(token).getObjeto();
+		VendaProduto vendaProduto = vendaProdutoDao.save(VendaProdutoDto.parse(vendaProdutoDto));
+		
+		TipoOperacaoEnum operacao = TipoOperacaoEnum.ALTERACAO;
+		if (vendaProdutoDto.getCodProduto ()==null) {
+			operacao = TipoOperacaoEnum.INCLUSAO;
+		}
 		
 		vendaProdutoDto.setCodFuncionario(tokenDto.getCodUsuario());
 		
@@ -47,6 +54,8 @@ public class VendaProdutoService {
 		vendaProdutoDto = VendaProdutoDto.build(vendaProduto);
 
 		return new EnvelopeResponse<VendaProdutoDto>(vendaProdutoDto);
+		
+		
 	
 	}
 	
@@ -78,4 +87,5 @@ public class VendaProdutoService {
 		
 		return this.getListaProdutosVenda(codVenda);
 	}
+	
 }
