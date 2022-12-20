@@ -27,6 +27,9 @@ public class VendaProdutoService {
 	
 	@Autowired
 	private LogVendaProdutoService logVendaProdutoService;
+	
+	@Autowired
+	private VendaProdutoId vendaProdutoId;
 
 	public EnvelopeResponse<VendaProdutoDto> salvar(VendaProdutoDto vendaProdutoDto, String token) {
 		TokenDto tokenDto = tokenService.getByToken(token).getObjeto();
@@ -37,9 +40,9 @@ public class VendaProdutoService {
 			operacao = TipoOperacaoEnum.INCLUSAO;
 		}
 		
-		logVendaProdutoService.salvar(vendaProduto.getCodProduto(),vendaProduto.getCodFuncionario(), tokenDto.getCodUsuario(), operacao);
+		logVendaProdutoService.salvar(vendaProdutoId.getCodProduto(),vendaProduto.getCodFuncionario(), tokenDto.getCodUsuario(), operacao);
 		;
-		vendaProdutoDto.setCodProduto(vendaProduto.getCodProduto());
+		vendaProdutoDto.setCodProduto(vendaProdutoId.getCodProduto());
 		vendaProdutoDto.setCodFuncionario(vendaProduto.getCodFuncionario());
 		
 		vendaProdutoDto.setCodFuncionario(tokenDto.getCodUsuario());
@@ -58,7 +61,7 @@ public class VendaProdutoService {
 		
 		VendaProduto vendaProdutos = VendaProdutoDto.parse(vendaProdutoDto);
 		
-		vendaProduto = vendaProdutoDao.save(vendaProduto);
+		vendaProdutos = vendaProdutoDao.save(vendaProdutos);
 		
 		vendaProdutoDto = VendaProdutoDto.build(vendaProduto);
 

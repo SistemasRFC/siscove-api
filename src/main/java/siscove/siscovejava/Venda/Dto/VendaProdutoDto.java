@@ -29,7 +29,7 @@ public class VendaProdutoDto {
 	private UsuarioDto funcionario;
 	private String indEstoque;
 	private LocalDateTime dtaVendaProduto;
-	private String txtObservacao;
+	private String txtObservacao; 
 	private float vlrTotalProduto;
 	
 	public static VendaProdutoDto build(VendaProduto vendaProduto) {
