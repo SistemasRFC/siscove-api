@@ -16,6 +16,11 @@ import lombok.NoArgsConstructor;
 
 public class EntradaEstoque implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@EmbeddedId
 	public EntradaEstoqueId entradaEstoqueId;
 
@@ -33,4 +38,5 @@ public class EntradaEstoque implements Serializable {
 
 	@Column(name = "VLR_VENDA")
 	private Float vlrVenda;
+	
 }

@@ -38,8 +38,8 @@ public class EntradaEstoqueController extends BaseController {
 	}
 
 	@RequestMapping(value = "/adicionar/produto", method = RequestMethod.POST, consumes = { "*/*" })
-	public EnvelopeResponse<EntradaEstoqueDto> salvar(@RequestBody EntradaEstoqueDto entradaEstoqueDto) {
-		EnvelopeResponse<EntradaEstoqueDto> envLogin = entradaEstoqueService.salvar(entradaEstoqueDto);
+	public EnvelopeResponse<List<EntradaEstoqueDto>> salvar(@RequestBody EntradaEstoqueDto entradaEstoqueDto) {
+		EnvelopeResponse<List<EntradaEstoqueDto>> envLogin = entradaEstoqueService.salvar(entradaEstoqueDto);
 		return envLogin;
 	}
 	

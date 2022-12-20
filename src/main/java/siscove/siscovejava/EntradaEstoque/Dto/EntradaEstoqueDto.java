@@ -38,7 +38,7 @@ public class EntradaEstoqueDto {
 		if (null!=entradaEstoqueDto.getProduto()) {
 			produto = ProdutoDto.parse(entradaEstoqueDto.getProduto());
 		}
-		entradaEstoqueId.setProduto(produto);
+		entradaEstoqueId.setCodProduto(entradaEstoqueDto.getProduto().getCodProduto());
 		
 		entradaEstoque.setEntradaEstoqueId(entradaEstoqueId);
 
@@ -61,7 +61,6 @@ public class EntradaEstoqueDto {
 		ProdutoDto produtoDto = new ProdutoDto();
 		Integer nroSequencial = null;
 		if (null!=entradaEstoque.getEntradaEstoqueId()) {
-			produtoDto = ProdutoDto.build(entradaEstoque.getEntradaEstoqueId().getProduto());
 			nroSequencial = entradaEstoque.getEntradaEstoqueId().getNroSequencial();
 		}
 		EntradaEstoqueDto entradaEstoqueDto = new EntradaEstoqueDto(

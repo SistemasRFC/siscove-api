@@ -30,8 +30,14 @@ public class EntradaDto {
 	private String txtObservacao;
 	private String indEntrada;
 	private Integer codClienteFinal;
+	private Float vlrProduto;
+	private Float vlrVenda;
+	private Float vlrMinimo;
+	private Float vlrUnitario;
 	private List<EntradaEstoqueDto> listaEntradaEstoque;
 	private float vlrTotal;
+
+	
 
 	public static EntradaDto build(Entrada entrada) {
 		List<EntradaEstoqueDto> listarEntradaEstoqueDto = new ArrayList<EntradaEstoqueDto>();
@@ -78,11 +84,11 @@ public class EntradaDto {
 		entrada.setIndEntrada(entradaDto.getIndEntrada());
 		entrada.setCodClienteFinal(entradaDto.getCodClienteFinal());
 
-		if (null != entradaDto.getFornecedorDto()) {
-			entrada.setCodFornecedor(entradaDto.getFornecedorDto().getCodFornecedor());
-		}
 		if (null != entradaDto.getDepositoDto()) {
 			entrada.setCodDeposito(entradaDto.getDepositoDto().getCodDeposito());
+		}
+		if (null != entradaDto.getFornecedorDto()) {
+			entrada.setCodFornecedor(entradaDto.getFornecedorDto().getCodFornecedor());
 		}
 		return entrada;
 	}
