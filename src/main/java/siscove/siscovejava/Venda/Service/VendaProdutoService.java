@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import siscove.siscovejava.Config.response.EnvelopeResponse;
+import siscove.siscovejava.LogVendaProduto.Service.LogVendaProdutoService;
 import siscove.siscovejava.Token.Dto.TokenDto;
 import siscove.siscovejava.Token.Service.TokenService;
 import siscove.siscovejava.Venda.Dto.VendaProdutoDto;
@@ -23,6 +24,9 @@ public class VendaProdutoService {
 	
 	@Autowired
 	private TokenService tokenService;
+	
+	@Autowired
+	private LogVendaProdutoService logVendaProdutoService;
 
 	public EnvelopeResponse<VendaProdutoDto> salvar(VendaProdutoDto vendaProdutoDto, String token) {
 		TokenDto tokenDto = tokenService.getByToken(token).getObjeto();
@@ -32,6 +36,11 @@ public class VendaProdutoService {
 		if (vendaProdutoDto.getCodProduto ()==null) {
 			operacao = TipoOperacaoEnum.INCLUSAO;
 		}
+		
+		logVendaProdutoService.salvar(vendaProduto.getCodProduto(),vendaProduto.getCodFuncionario(), tokenDto.getCodUsuario(), operacao);
+		;
+		vendaProdutoDto.setCodProduto(vendaProduto.getCodProduto());
+		vendaProdutoDto.setCodFuncionario(vendaProduto.getCodFuncionario());
 		
 		vendaProdutoDto.setCodFuncionario(tokenDto.getCodUsuario());
 		
@@ -47,7 +56,7 @@ public class VendaProdutoService {
 			return new EnvelopeResponse<VendaProdutoDto>(null, false, "Código da venda não informado!");
 		}
 		
-		VendaProduto vendaProduto = VendaProdutoDto.parse(vendaProdutoDto);
+		VendaProduto vendaProdutos = VendaProdutoDto.parse(vendaProdutoDto);
 		
 		vendaProduto = vendaProdutoDao.save(vendaProduto);
 		
