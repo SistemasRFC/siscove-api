@@ -26,7 +26,7 @@ public class ProdutoDao {
 		StringBuilder sb = new StringBuilder();
 		sb.append("select NRO_SEQUENCIAL, "
 			+ "	   COD_PRODUTO, "
-			+ "		concat(DSC_PRODUTO, ' Tipo: ', situacao , ' Marca: ', "
+			+ "		concat(DSC_PRODUTO, ' Tipo: ', situacao , ' Marca: ', " 
 			+ "              DSC_MARCA, ' Valor: ', VLR_VENDA, ' Estoque: ', QTD_ESTOQUE) as DSC_PRODUTO, "
 			+ "       VLR_VENDA, "
 			+ "       QTD_ESTOQUE "
