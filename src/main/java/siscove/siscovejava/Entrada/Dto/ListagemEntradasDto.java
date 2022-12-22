@@ -19,7 +19,7 @@ import siscove.siscovejava.UtilMoeda.UtilMoeda;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class EntradaDto {
+public class ListagemEntradasDto {
 
 	private Integer nroSequencial;
 	private String nroNotaFiscal;
@@ -34,10 +34,11 @@ public class EntradaDto {
 	private Double vlrTotal;
 	private String dtaEntradaFormatada;
 	private String vlrTotalFormatada;
-	private Integer codUsuario;
+	private Integer codProduto;
+	private String dscProduto;
 
 	
-	public static EntradaDto build(Entrada entrada) {
+	public static ListagemEntradasDto build(Entrada entrada) {
 		List<EntradaEstoqueDto> listarEntradaEstoqueDto = new ArrayList<EntradaEstoqueDto>();
 		Double vlrTotal = 0.0;
 		if (null != entrada.getListaEntradaEstoque()) {
@@ -56,7 +57,7 @@ public class EntradaDto {
 			indEntrada = entrada.getIndEntrada();
 		}
 
-		EntradaDto entradaDto = new EntradaDto(
+		ListagemEntradasDto entradaDto = new ListagemEntradasDto(
 				entrada.getNroSequencial(), 
 				entrada.getNroNotaFiscal(),
 				entrada.getDtaEntrada(), 
@@ -64,28 +65,29 @@ public class EntradaDto {
 				entrada.getIndEntrada(),
 				entrada.getCodClienteFinal(),
 				entrada.getCodFornecedor(),
-				null,
+				entrada.getFornecedor().getDscFornecedor(),
 				entrada.getDeposito().getCodDeposito(),
 				entrada.getDeposito().getDscDeposito(),
 				vlrTotal,
 				UtilData.formataData(entrada.getDtaEntrada()),
 				UtilMoeda.formataMoeda(vlrTotal),
-				entrada.getCodUsuario());
+				null, null);
 				
 		return entradaDto;
 	}
 
-	public static Entrada parse(EntradaDto entradaDto) {
+	public static Entrada parse(ListagemEntradasDto entradaDto) {
 		Entrada entrada = new Entrada();
 		entrada.setNroSequencial(entradaDto.getNroSequencial());
 		entrada.setNroNotaFiscal(entradaDto.getNroNotaFiscal());
 		entrada.setDtaEntrada(entradaDto.getDtaEntrada());
+//		entrada.setCodUsuario(entradaDto.getCodUsuario());
 		entrada.setTxtObservacao(entradaDto.getTxtObservacao());
 		entrada.setIndEntrada(entradaDto.getIndEntrada());
 		entrada.setCodClienteFinal(entradaDto.getCodClienteFinal());
 		entrada.setCodFornecedor(entradaDto.getCodFornecedor());
-		entrada.setCodDeposito(entradaDto.getCodDeposito());
-		entrada.setCodUsuario(entradaDto.getCodUsuario());
+//		entrada.setDeposito(entradaDto.getDeposito());
+//		entrada.getCodProduto(entradaDto.getCodProduto());
 		
 		return entrada;
 	}

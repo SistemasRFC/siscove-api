@@ -35,6 +35,9 @@ public class ProdutoService {
 					produtoDto.setMarca(marcaDto);
 				}
 			}
+			if (null != produtoDto.getMarca()) {
+				produtoDto.setDscProduto(produtoDto.getDscProduto()+" Marca: "+produtoDto.getMarca().getDscMarca());
+			}
 			listarProdutosDto.add(produtoDto);
 		}
 

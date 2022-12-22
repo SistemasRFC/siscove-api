@@ -1,7 +1,6 @@
 package siscove.siscovejava.EntradaEstoque.Dto;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
@@ -19,26 +18,21 @@ import siscove.siscovejava.Produto.Entity.Produto;
 @Data
 public class EntradaEstoqueDto {
 
-	private ProdutoDto produto;
-	private Integer nroSequencial;
-	private LocalDate dtaEntradaProduto;
-	private Float qtdEntrada;
-	private Float vlrUnitario;
-	private Float vlrMinimo;
-	private Float vlrVenda;
+	private Integer       	codProduto;
+	private String        	dscProduto;
+	private Integer       	nroSequencial;
+	private LocalDate      	dtaEntradaProduto;
+	private Float 			qtdEntrada;
+	private Float 			vlrUnitario;
+	private Float 			vlrMinimo;
+	private Float 			vlrVenda;
 
 	public static EntradaEstoque parse(EntradaEstoqueDto entradaEstoqueDto) {
 		EntradaEstoque entradaEstoque = new EntradaEstoque();
 		
 		EntradaEstoqueId entradaEstoqueId = new EntradaEstoqueId();
 		entradaEstoqueId.setNroSequencial(entradaEstoqueDto.getNroSequencial());
-		
-		Produto produto = new Produto();
-		
-		if (null!=entradaEstoqueDto.getProduto()) {
-			produto = ProdutoDto.parse(entradaEstoqueDto.getProduto());
-		}
-		entradaEstoqueId.setCodProduto(entradaEstoqueDto.getProduto().getCodProduto());
+		entradaEstoqueId.setCodProduto(entradaEstoqueDto.getCodProduto());
 		
 		entradaEstoque.setEntradaEstoqueId(entradaEstoqueId);
 
@@ -62,9 +56,11 @@ public class EntradaEstoqueDto {
 		Integer nroSequencial = null;
 		if (null!=entradaEstoque.getEntradaEstoqueId()) {
 			nroSequencial = entradaEstoque.getEntradaEstoqueId().getNroSequencial();
+			
+			
 		}
-		EntradaEstoqueDto entradaEstoqueDto = new EntradaEstoqueDto(
-				produtoDto,
+		EntradaEstoqueDto entradaEstoqueDto = new EntradaEstoqueDto(entradaEstoque.getEntradaEstoqueId().getCodProduto(),
+				entradaEstoque.getProduto().getDscProduto(),
 				nroSequencial, 
 				entradaEstoque.getDtaEntradaProduto(),
 				entradaEstoque.getQtdEntrada(), 

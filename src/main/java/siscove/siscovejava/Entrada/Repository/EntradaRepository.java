@@ -13,5 +13,8 @@ public interface EntradaRepository extends CrudRepository<Entrada, Integer> {
 	
 	@Query(value="SELECT * FROM EN_ENTRADA  WHERE IND_ENTRADA = 'A'", nativeQuery=true)
 	public List<Entrada> findEntradasAbertas();
+	
+	@Query(value="SELECT * FROM EN_ENTRADA  WHERE NRO_SEQUENCIAL = ?1", nativeQuery=true)
+	public Entrada findByNroSequencial(Integer nroSequencial);
 
 }

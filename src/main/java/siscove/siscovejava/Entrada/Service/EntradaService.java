@@ -1,6 +1,5 @@
 package siscove.siscovejava.Entrada.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +8,11 @@ import org.springframework.stereotype.Service;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.Entrada.Dao.EntradaDao;
 import siscove.siscovejava.Entrada.Dto.EntradaDto;
-import siscove.siscovejava.Entrada.Dto.EntradasAbertasDto;
-import siscove.siscovejava.Entrada.Dto.EntradasFechadasDto;
+import siscove.siscovejava.Entrada.Dto.ListagemEntradasDto;
 import siscove.siscovejava.Entrada.Entity.Entrada;
 import siscove.siscovejava.Entrada.Repository.EntradaRepository;
+import siscove.siscovejava.Token.Dto.TokenDto;
+import siscove.siscovejava.Token.Service.TokenService;
 import siscove.siscovejava.Util.UtilData;
 import siscove.siscovejava.UtilMoeda.UtilMoeda;
 
@@ -21,55 +21,57 @@ public class EntradaService {
 
 	@Autowired
 	private EntradaRepository entradaRepository;
-	
+
 	@Autowired
 	private EntradaDao entradaDao;
 
-	public EnvelopeResponse<List<EntradasAbertasDto>> findEntradasAbertas() {
-		List<EntradasAbertasDto> listaEntradasAbertas = entradaDao.getListaEntradasAbertas();
+	@Autowired
+	private TokenService tokenService;
 
-		for (EntradasAbertasDto entrada : listaEntradasAbertas) {
+	public EnvelopeResponse<List<ListagemEntradasDto>> findEntradasAbertas() {
+		List<ListagemEntradasDto> listaEntradasAbertas = entradaDao.getListaEntradasAbertas();
+
+		for (ListagemEntradasDto entrada : listaEntradasAbertas) {
 			entrada.setDtaEntradaFormatada(UtilData.formataData(entrada.getDtaEntrada()));
 		}
-		
-		for (EntradasAbertasDto entrada : listaEntradasAbertas) {
+
+		for (ListagemEntradasDto entrada : listaEntradasAbertas) {
 			entrada.setVlrTotalFormatada(UtilMoeda.formataMoeda(entrada.getVlrTotal()));
 		}
-		
-		return new EnvelopeResponse<List<EntradasAbertasDto>>(listaEntradasAbertas);
-	}
-	
-	public EnvelopeResponse<List<EntradasFechadasDto>> findEntradasFechadas(Integer codFornecedor) {
-		List<EntradasFechadasDto> listaEntradasFechadas = entradaDao.getListaEntradasFechadas(codFornecedor);
 
-		for (EntradasFechadasDto entrada : listaEntradasFechadas) {
+		return new EnvelopeResponse<List<ListagemEntradasDto>>(listaEntradasAbertas);
+	}
+
+	public EnvelopeResponse<List<ListagemEntradasDto>> findEntradasFechadas(Integer codFornecedor) {
+		List<ListagemEntradasDto> listaEntradasFechadas = entradaDao.getListaEntradasFechadas(codFornecedor);
+
+		for (ListagemEntradasDto entrada : listaEntradasFechadas) {
 			entrada.setDtaEntradaFormatada(UtilData.formataData(entrada.getDtaEntrada()));
 		}
-		
-		for (EntradasFechadasDto entrada : listaEntradasFechadas) {
+
+		for (ListagemEntradasDto entrada : listaEntradasFechadas) {
 			entrada.setVlrTotalFormatada(UtilMoeda.formataMoeda(entrada.getVlrTotal()));
 		}
-		
-		return new EnvelopeResponse<List<EntradasFechadasDto>>(listaEntradasFechadas);
+
+		return new EnvelopeResponse<List<ListagemEntradasDto>>(listaEntradasFechadas);
 	}
 
-	public EnvelopeResponse<List<EntradaDto>> getListarEntrada() {
-		List<Entrada> listaEntrada = (List<Entrada>) entradaRepository.findAll();
+	public EnvelopeResponse<Boolean> salvar(EntradaDto entradaDto, String token) {
+		Entrada entrada = EntradaDto.parse(entradaDto);
 
-		List<EntradaDto> listaEntradaDto = new ArrayList<EntradaDto>();
-		for (Entrada entrada : listaEntrada) {
-			listaEntradaDto.add(EntradaDto.build(entrada));
+		if (entradaDto.getNroSequencial() == null) {
+			TokenDto tokenDto = tokenService.getByToken(token).getObjeto();
+			entrada.setCodUsuario(tokenDto.getCodUsuario());
 		}
-		return new EnvelopeResponse<List<EntradaDto>>(listaEntradaDto);
+		entradaRepository.save(entrada);
 
+		return new EnvelopeResponse<Boolean>(true);
 	}
 
-	public EnvelopeResponse<EntradaDto> salvar(EntradaDto entradaDto) {
-		Entrada entrada = entradaRepository.save(EntradaDto.parse(entradaDto));
+	public EnvelopeResponse<EntradaDto> findByNroSequencial(Integer nroSequencial) {
+		Entrada entrada = entradaRepository.findByNroSequencial(nroSequencial);
 
-		entradaDto = EntradaDto.build(entrada);
-
-		return new EnvelopeResponse<EntradaDto>(entradaDto);
+		return new EnvelopeResponse<EntradaDto>(EntradaDto.build(entrada));
 	}
 
 }

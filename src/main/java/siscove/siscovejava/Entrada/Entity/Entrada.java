@@ -1,6 +1,6 @@
 package siscove.siscovejava.Entrada.Entity;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 import siscove.siscovejava.Deposito.Entity.Deposito;
 import siscove.siscovejava.EntradaEstoque.Entity.EntradaEstoque;
 import siscove.siscovejava.Fornecedor.Entity.Fornecedor;
+import siscove.siscovejava.Produto.Entity.Produto;
 
 @NoArgsConstructor
 @Data
@@ -34,7 +35,7 @@ public class Entrada {
 	private String nroNotaFiscal;
 
 	@Column(name = "DTA_ENTRADA")
-	private LocalDate dtaEntrada;
+	private Date dtaEntrada;
 
 	@Column(name = "COD_USUARIO")
 	private Integer codUsuario;

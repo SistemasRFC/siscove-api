@@ -12,38 +12,12 @@ import siscove.siscovejava.EntradaEstoque.Dto.EntradaEstoqueDto;
 import siscove.siscovejava.EntradaEstoque.Entity.EntradaEstoque;
 import siscove.siscovejava.EntradaEstoque.Entity.EntradaEstoqueId;
 import siscove.siscovejava.EntradaEstoque.Repository.EntradaEstoqueRepository;
-import siscove.siscovejava.Produto.Entity.Produto;
 
 @Service
 public class EntradaEstoqueService {
 
 	@Autowired
 	private EntradaEstoqueRepository entradaEstoqueRepository;
-
-	public EnvelopeResponse<List<EntradaEstoqueDto>> getListarEntradaEstoque() {
-		List<EntradaEstoque> listarEntradaEstoque = (List<EntradaEstoque>) entradaEstoqueRepository.findAll();
-
-		List<EntradaEstoqueDto> listarEntradaEstoqueDto = new ArrayList<EntradaEstoqueDto>();
-		for (EntradaEstoque entradaEstoque : listarEntradaEstoque) {
-
-			listarEntradaEstoqueDto.add(EntradaEstoqueDto.build(entradaEstoque));
-		}
-		return new EnvelopeResponse<List<EntradaEstoqueDto>>(listarEntradaEstoqueDto);
-
-	}
-
-	public EnvelopeResponse<List<EntradaEstoqueDto>> getCalcular() {
-		List<EntradaEstoque> listarEntradaEstoque = (List<EntradaEstoque>) entradaEstoqueRepository.findAll();
-
-		List<EntradaEstoqueDto> listarEntradaEstoqueDto = new ArrayList<EntradaEstoqueDto>();
-		float vlrTotal = 0;
-		for (EntradaEstoque entradaEstoque : listarEntradaEstoque) {
-			vlrTotal += entradaEstoque.getVlrUnitario() * entradaEstoque.getVlrMinimo();
-			listarEntradaEstoqueDto.add(EntradaEstoqueDto.build(entradaEstoque));
-
-		}
-		return new EnvelopeResponse<List<EntradaEstoqueDto>>(listarEntradaEstoqueDto);
-	}
 
 	public EnvelopeResponse<List<EntradaEstoqueDto>> getListaEntradaEstoqueByNroSequencial(Integer nroSequencial) {
 		List<EntradaEstoque> listaEntradaEstoque = new ArrayList<EntradaEstoque>();
@@ -58,16 +32,14 @@ public class EntradaEstoqueService {
 
 	}
 
-	public EnvelopeResponse<List<EntradaEstoqueDto>> salvar(EntradaEstoqueDto entradaEstoqueDto) {
+	public EnvelopeResponse<Boolean> salvar(EntradaEstoqueDto entradaEstoqueDto) {
 
 		entradaEstoqueRepository.saveAndFlush(EntradaEstoqueDto.parse(entradaEstoqueDto));
 
-		return this.getListaEntradaEstoqueByNroSequencial(entradaEstoqueDto.getNroSequencial());
+		return new EnvelopeResponse<Boolean>(true);
 	}
 
-	public EnvelopeResponse<List<EntradaEstoqueDto>> removerProduto(Integer nroSequencial,Integer codProduto) {
-		Produto produto = new Produto();
-		produto.setCodProduto(codProduto);
+	public EnvelopeResponse<List<EntradaEstoqueDto>> removerProduto(Integer nroSequencial, Integer codProduto) {
 		EntradaEstoqueId entradaEstoqueId = new EntradaEstoqueId();
 		entradaEstoqueId.setNroSequencial(nroSequencial);
 		entradaEstoqueId.setCodProduto(codProduto);

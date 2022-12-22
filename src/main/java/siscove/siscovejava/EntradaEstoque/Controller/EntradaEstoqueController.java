@@ -21,16 +21,6 @@ public class EntradaEstoqueController extends BaseController {
 	@Autowired
 	private EntradaEstoqueService entradaEstoqueService;
 
-	@RequestMapping(value = "/listar", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<EntradaEstoqueDto>> getListarEntradaEstoque() {
-		return entradaEstoqueService.getListarEntradaEstoque();
-	}
-
-	@RequestMapping(value = "/calcular", method = RequestMethod.GET, consumes = { "*/*" })
-	public EnvelopeResponse<List<EntradaEstoqueDto>> getCalcular() {
-		return entradaEstoqueService.getCalcular();
-	}
-
 	@RequestMapping(value = "/listar/{nroSequencial}", method = RequestMethod.GET, consumes = { "*/*" })
 	public EnvelopeResponse<List<EntradaEstoqueDto>> getListaEntradaEstoqueByNroSequencial(
 			@PathVariable Integer nroSequencial) {
@@ -38,17 +28,14 @@ public class EntradaEstoqueController extends BaseController {
 	}
 
 	@RequestMapping(value = "/adicionar/produto", method = RequestMethod.POST, consumes = { "*/*" })
-	public EnvelopeResponse<List<EntradaEstoqueDto>> salvar(@RequestBody EntradaEstoqueDto entradaEstoqueDto) {
-		EnvelopeResponse<List<EntradaEstoqueDto>> envLogin = entradaEstoqueService.salvar(entradaEstoqueDto);
-		return envLogin;
+	public EnvelopeResponse<Boolean> salvar(@RequestBody EntradaEstoqueDto entradaEstoqueDto) {
+		return entradaEstoqueService.salvar(entradaEstoqueDto);
 	}
-	
-	@RequestMapping(value = "/remover/{nroSequencial}/{codProduto}", method = RequestMethod.DELETE, consumes = {"*/*"})
-	public EnvelopeResponse remover 
-		(@PathVariable Integer nroSequencial,
-		@PathVariable Integer codProduto) {
-			return entradaEstoqueService.removerProduto(nroSequencial,codProduto);
-		}
-	
-	
+
+	@RequestMapping(value = "/remover/{nroSequencial}/{codProduto}", method = RequestMethod.DELETE, consumes = {
+			"*/*" })
+	public EnvelopeResponse remover(@PathVariable Integer nroSequencial, @PathVariable Integer codProduto) {
+		return entradaEstoqueService.removerProduto(nroSequencial, codProduto);
+	}
+
 }
