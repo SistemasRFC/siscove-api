@@ -50,7 +50,9 @@ public class VendaProduto {
 	@Column(name="TXT_OBSERVACAO")
 	private String txtObservacao;
 
+	}
+
 	
 	
 
-}
+

@@ -15,13 +15,13 @@ public class LogVendaProdutoService {
 	@Autowired
 	private LogVendaProdutoRepository logVendaProdutoRepository;
 
-	public void salvar(Integer codOperacao, Integer codVenda,Integer codProduto, TipoOperacaoEnum tipoOperacao) {		
+	public void salvar(Integer codOperacao, Integer codVenda,Integer codProduto, TipoOperacaoEnum tpoOperacao) {		
 		LogVendaProduto logVendaProduto = new LogVendaProduto();
 		logVendaProduto.setCodOperacao(codOperacao);
 		logVendaProduto.setCodVenda(codVenda);
 		logVendaProduto.setCodProduto(codProduto);
 		logVendaProduto.setDtaOperacao(LocalDateTime.now());
-		logVendaProduto.setTipoOperacao(tipoOperacao.getDscOperacao());
+		logVendaProduto.setTipoOperacao(tpoOperacao.getDscOperacao());
 		
 		logVendaProdutoRepository.save(logVendaProduto);
 	}
