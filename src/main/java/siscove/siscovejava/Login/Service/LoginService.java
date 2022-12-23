@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import siscove.siscovejava.Config.response.EnvelopeResponse;
 import siscove.siscovejava.Deposito.Dto.DepositoDto;
-import siscove.siscovejava.Deposito.Entity.Deposito;
 import siscove.siscovejava.Deposito.Service.DepositoService;
 import siscove.siscovejava.Login.Dto.LoginDto;
 import siscove.siscovejava.Token.Dto.TokenDto;

@@ -29,7 +29,10 @@ public class DepositoDto {
 	public static DepositoDto build(Deposito deposito) {
 		DepositoDto depositoDto = new DepositoDto(
 				
-				deposito.getCodDeposito(), deposito.getDscDeposito(), deposito.getCodClienteFinal(), deposito.getIndAtivo());
+				deposito.getCodDeposito(), 
+				deposito.getDscDeposito(), 
+				deposito.getCodClienteFinal(), 
+				deposito.getIndAtivo());
 		return depositoDto;
 	}
 	
