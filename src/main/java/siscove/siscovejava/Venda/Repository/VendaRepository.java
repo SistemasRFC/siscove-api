@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import siscove.siscovejava.Venda.Entity.Venda;
 
-@Repository(value = "VendaDao")
-public interface VendaDao extends CrudRepository<Venda, Integer> {
+@Repository(value = "VendaRepository")
+public interface VendaRepository extends CrudRepository<Venda, Integer> {
 	
 	public List<Venda> findByNroStatusVenda(String status);
 	

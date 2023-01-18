@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import siscove.siscovejava.Venda.Entity.VendaPagamento;
 
 @Repository(value = "VendaPagamentoDao")
-	public interface VendaPagamentoDao extends CrudRepository<VendaPagamento, Integer> {
+	public interface VendaPagamentoRepository extends CrudRepository<VendaPagamento, Integer> {
 		
 		
 	}

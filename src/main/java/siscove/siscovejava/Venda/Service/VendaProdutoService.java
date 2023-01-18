@@ -14,13 +14,13 @@ import siscove.siscovejava.Venda.Dto.VendaProdutoDto;
 import siscove.siscovejava.Venda.Entity.VendaProduto;
 import siscove.siscovejava.Venda.Entity.VendaProdutoId;
 import siscove.siscovejava.Venda.Enum.TipoOperacaoEnum;
-import siscove.siscovejava.Venda.Repository.VendaProdutoDao;
+import siscove.siscovejava.Venda.Repository.VendaProdutoRepository;
 
 @Service
 public class VendaProdutoService {
 	
 	@Autowired
-	private VendaProdutoDao vendaProdutoDao;
+	private VendaProdutoRepository vendaProdutoRepository;
 	
 	@Autowired
 	private TokenService tokenService;
@@ -30,7 +30,7 @@ public class VendaProdutoService {
 
 	public EnvelopeResponse<VendaProdutoDto> salvar(VendaProdutoDto vendaProdutoDto, String token) {
 		TokenDto tokenDto = tokenService.getByToken(token).getObjeto();
-		VendaProduto vendaProduto = vendaProdutoDao.save(VendaProdutoDto.parse(vendaProdutoDto));
+		VendaProduto vendaProduto = vendaProdutoRepository.save(VendaProdutoDto.parse(vendaProdutoDto));
 		
 		TipoOperacaoEnum operacao = TipoOperacaoEnum.ALTERACAO;
 		if (vendaProdutoDto.getCodProduto ()==null) {
@@ -58,7 +58,7 @@ public class VendaProdutoService {
 		
 		VendaProduto vendaProdutos = VendaProdutoDto.parse(vendaProdutoDto);
 		
-		vendaProdutos = vendaProdutoDao.save(vendaProdutos);
+		vendaProdutos = vendaProdutoRepository.save(vendaProdutos);
 		
 		vendaProdutoDto = VendaProdutoDto.build(vendaProduto);
 
@@ -69,7 +69,7 @@ public class VendaProdutoService {
 	}
 	
 	public EnvelopeResponse<List<VendaProdutoDto>> getListaProdutosVenda(Integer codVenda) {
-		List<VendaProduto> listaProdutosVenda = vendaProdutoDao.findByIdCodVenda(codVenda);
+		List<VendaProduto> listaProdutosVenda = vendaProdutoRepository.findByIdCodVenda(codVenda);
 		
 		List<VendaProdutoDto> listaVendasProdutoDto = new ArrayList<VendaProdutoDto>();
 		for (VendaProduto venda : listaProdutosVenda) {
@@ -91,8 +91,8 @@ public class VendaProdutoService {
 		VendaProduto vendaProduto = new VendaProduto();
 		vendaProduto.setId(id);
 		
-		vendaProduto = vendaProdutoDao.findById(id);
-		vendaProdutoDao.delete(vendaProduto);
+		vendaProduto = vendaProdutoRepository.findById(id);
+		vendaProdutoRepository.delete(vendaProduto);
 		
 		return this.getListaProdutosVenda(codVenda);
 	}

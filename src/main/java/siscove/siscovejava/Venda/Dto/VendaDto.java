@@ -20,7 +20,10 @@ import siscove.siscovejava.Venda.Entity.Venda;
 		private LocalDateTime dtaVenda;
 		private String nroStatusVenda;
 		private Integer codCliente;
+		private String dscCliente;
+		private String nroDocumentoCliente;
 		private Integer codVendedor;
+		private String dscVendedor;
 		private Float vlrDesconto;
 		private String dscVeiculo;
 		private String nroPlaca;
@@ -34,30 +37,37 @@ import siscove.siscovejava.Venda.Entity.Venda;
 		private Integer vlrKmRodado;
 		private Integer codUsuarioFechamento;
 
-
 		public static VendaDto build(Venda venda) {
-			VendaDto vendaDto = new VendaDto(
+			VendaDto vendaDto = new VendaDto();
+			vendaDto.setCodVenda(venda.getCodVenda());
+			vendaDto.setDtaVenda(venda.getDtaVenda());
+			vendaDto.setNroStatusVenda(venda.getNroStatusVenda());
+			vendaDto.setVlrDesconto(venda.getVlrDesconto());
+			vendaDto.setDscVeiculo(venda.getDscVeiculo());
+			vendaDto.setNroPlaca(venda.getNroPlaca());
+			vendaDto.setDtaFechamento(venda.getDtaFechamento());
+			vendaDto.setCodVeiculo(venda.getCodVeiculo());
+			vendaDto.setTxtObservacao(venda.getTxtObservacao());
+			vendaDto.setTxtJustificativa(venda.getTxtJustificativa());
+			vendaDto.setCodClienteFinal(venda.getCodClienteFinal());
+			vendaDto.setVlrImpostoProduto(venda.getVlrImpostoProduto());
+			vendaDto.setVlrImpostoServico(venda.getVlrImpostoServico());
+			vendaDto.setVlrKmRodado(venda.getVlrKmRodado());
+			vendaDto.setCodUsuarioFechamento(venda.getCodUsuarioFechamento());
+			if (null != venda.getCliente()) {
+				vendaDto.setCodCliente(venda.getCliente().getCodCliente());
+				vendaDto.setDscCliente(venda.getCliente().getDscCliente());
+				if(null != venda.getCliente().getNroCpf()) {
+					vendaDto.setNroDocumentoCliente(venda.getCliente().getNroCpf());
+				} else {
+					vendaDto.setNroDocumentoCliente(venda.getCliente().getNroCnpj());	
+				}
+			}
+			if (null != venda.getVendedor()) {
+				vendaDto.setCodVendedor(venda.getVendedor().getCodUsuario());
+				vendaDto.setDscVendedor(venda.getVendedor().getNmeUsuarioCompleto());
+			}
 
-					venda.getCodVenda(), 
-					venda.getDtaVenda(), 
-					venda.getNroStatusVenda(), 
-					venda.getCliente().getCodCliente(), 
-					venda.getVendedor().getCodUsuario(), 
-					venda.getVlrDesconto(), 
-					venda.getDscVeiculo(), 
-					venda.getNroPlaca(), 
-					venda.getDtaFechamento(), 
-					venda.getCodVeiculo(), 
-					venda.getTxtObservacao(), 
-					venda.getTxtJustificativa(), 
-					venda.getCodClienteFinal(), 
-					venda.getVlrImpostoProduto(), 
-					venda.getVlrImpostoServico(), 
-					venda.getVlrKmRodado(), 
-					venda.getCodUsuarioFechamento()); 
-					 
-					
-					
 			return vendaDto;
 		}
 

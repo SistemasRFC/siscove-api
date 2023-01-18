@@ -10,7 +10,7 @@ import siscove.siscovejava.Venda.Entity.VendaProdutoId;
 
 
 @Repository(value = "VendaProdutoDao")
-public interface VendaProdutoDao extends CrudRepository<VendaProduto, Integer> {
+public interface VendaProdutoRepository extends CrudRepository<VendaProduto, Integer> {
 	
 	public List<VendaProduto> findByIdCodVenda(Integer codVenda);
 	

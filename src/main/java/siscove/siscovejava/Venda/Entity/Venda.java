@@ -36,14 +36,14 @@ public class Venda {
 	private Integer codCliente;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="COD_CLIENTE", insertable = false, updatable = false)
+	@JoinColumn(name="COD_CLIENTE", insertable = false, updatable = false, nullable = true)
 	private Cliente cliente;
 	
 	@Column(name="COD_USUARIO")
 	private Integer codVendedor;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="COD_USUARIO", insertable = false, updatable = false)
+	@JoinColumn(name="COD_USUARIO", insertable = false, updatable = false, nullable = true)
 	private Usuario vendedor;
 	
 	@Column(name="VLR_DESCONTO")

@@ -10,13 +10,13 @@ import siscove.siscovejava.Token.Service.TokenService;
 import siscove.siscovejava.Venda.Dto.VendaPagamentoDto;
 import siscove.siscovejava.Venda.Entity.VendaPagamento;
 import siscove.siscovejava.Venda.Enum.TipoOperacaoEnum;
-import siscove.siscovejava.Venda.Repository.VendaPagamentoDao;
+import siscove.siscovejava.Venda.Repository.VendaPagamentoRepository;
 
 @Service
 public class VendaPagamentoService {
 	
 	@Autowired
-	private VendaPagamentoDao vendaPagamentoDao;
+	private VendaPagamentoRepository vendaPagamentoRepository;
 
 	@Autowired
 	private TokenService tokenService;
@@ -25,14 +25,14 @@ public class VendaPagamentoService {
 	private LogVendaPagamentoService logVendaPagamentoService;
 	
 	public EnvelopeResponse<VendaPagamentoDto> salvar(VendaPagamentoDto vendaPagamentoDto, String token) {		
-		VendaPagamento vendaPagamento = vendaPagamentoDao.save(VendaPagamentoDto.parse(vendaPagamentoDto));
+		VendaPagamento vendaPagamento = vendaPagamentoRepository.save(VendaPagamentoDto.parse(vendaPagamentoDto));
 	
 		TipoOperacaoEnum operacao = TipoOperacaoEnum.ALTERACAO;
 		if (vendaPagamentoDto.getCodVenda ()==null) {
 			operacao = TipoOperacaoEnum.INCLUSAO;
 		}
 		
-		vendaPagamento = vendaPagamentoDao.save(vendaPagamento);
+		vendaPagamento = vendaPagamentoRepository.save(vendaPagamento);
 
 		TokenDto tokenDto = tokenService.getByToken(token).getObjeto();
 		
