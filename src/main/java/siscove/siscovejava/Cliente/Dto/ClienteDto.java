@@ -57,7 +57,7 @@ public class ClienteDto {
 				cliente.getNroCnpj(), 
 				cliente.getNroIe(), 
 				cliente.getCodClienteFinal(), 
-				cliente.getDtaNascimento(), 
+				cliente.getDtaNascimento(),
 				cliente.getTxtEmail()); 
 				
 				
@@ -70,8 +70,10 @@ public class ClienteDto {
 		cliente.setDscCliente(clienteDto.getDscCliente());
 		cliente.setIndTipoCliente(clienteDto.getIndTipoCliente());
 		cliente.setNroCep(clienteDto.getNroCep());
+		cliente.setTxtLocalidade(clienteDto.getTxtLocalidade());
 		cliente.setTxtLogradouro(clienteDto.getTxtLogradouro());
 		cliente.setTxtComplemento(clienteDto.getTxtComplemento());
+		cliente.setNmeBairro(clienteDto.getNmeBairro());
 		cliente.setSglUf(clienteDto.getSglUf());
 		cliente.setTxtUnidade(clienteDto.getTxtUnidade());
 		cliente.setCodIbge(clienteDto.getCodIbge());
