@@ -32,4 +32,5 @@ public class BaixaEstoqueDto {
 		return	baixaEstoqueDto;
 		
 	}
+
 }
